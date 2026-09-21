@@ -1,8 +1,4 @@
 cards = {'Which costing method is NOT permitted under International Financial Reporting Standards (IFRS)?': 'LIFO',
- 'Test': 'Answer',
- 'Another Question': 'Another Answer',
- 'save this': 'answer',
- 'test 2': 'test',
  'G/L Account': 'General Ledger Account = Hovedbokskonto',
  'Liability': 'Gjeld eller forpliktelse',
  'Account Type': 'Label som sier hvordan kontoen fungerer',
@@ -146,6 +142,7 @@ cards = {'Which costing method is NOT permitted under International Financial Re
         '1) og XXL (distribusjonssenter 2) representere 3 SKUer.',
  'Best Price Principle': 'BC finner automatisk den beste prisen eller rabatten '
                          'kunden har krav på. Ex.: Skal jeg benytte meg av 3 '
+<<<<<<< HEAD
                          'for 2 eller 30% rabatt?',
  'test3': 'test3',
  'Filter expression: <>10': 'All records except 10',
@@ -158,3 +155,6 @@ cards = {'Which costing method is NOT permitted under International Financial Re
  'Jeg husker ikke om en kunde heter Catarina eller Katarina. Hvordan kan jeg søke etter henne med det jeg vet?': '?atarina',
  'Hva betyr Purchase Quote?': 'Pristilbud',
  'Hva er en "Blanket Purchase Order"?': 'Rammeavtale / Innkjøpsavtale'}
+=======
+                         'for 2 eller 30% rabatt?'}
+>>>>>>> 2b76a29e965ee37a615c3e9612cb9c7cc3e363ad
