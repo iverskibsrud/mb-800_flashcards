@@ -1,4 +1,5 @@
 import tkinter as tk
+import json
 from pathlib import Path
 from pprint import pformat
 from tkinter import messagebox
@@ -127,6 +128,16 @@ class FlashcardApp:
 		cards_file = Path(__file__).with_name("cards.py")
 		cards_file.write_text(
 			"cards = " + pformat(cards, sort_dicts=False) + "\n",
+			encoding="utf-8",
+		)
+		json_file = Path(__file__).with_name("cards.json")
+		json_file.write_text(
+			json.dumps(
+				[{"question": question, "answer": answer} for question, answer in cards.items()],
+				ensure_ascii=False,
+				indent=2,
+			)
+			+ "\n",
 			encoding="utf-8",
 		)
 

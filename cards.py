@@ -146,4 +146,5 @@ cards = {'Which costing method is NOT permitted under International Financial Re
         '1) og XXL (distribusjonssenter 2) representere 3 SKUer.',
  'Best Price Principle': 'BC finner automatisk den beste prisen eller rabatten '
                          'kunden har krav på. Ex.: Skal jeg benytte meg av 3 '
-                         'for 2 eller 30% rabatt?'}
+                         'for 2 eller 30% rabatt?',
+ 'test3': 'test3'}
