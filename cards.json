@@ -4,20 +4,8 @@
     "answer": "LIFO"
   },
   {
-    "question": "Test",
-    "answer": "Answer"
-  },
-  {
     "question": "Another Question",
     "answer": "Another Answer"
-  },
-  {
-    "question": "save this",
-    "answer": "answer"
-  },
-  {
-    "question": "test 2",
-    "answer": "test"
   },
   {
     "question": "G/L Account",
@@ -190,10 +178,6 @@
   {
     "question": "Best Price Principle",
     "answer": "BC finner automatisk den beste prisen eller rabatten kunden har krav på. Ex.: Skal jeg benytte meg av 3 for 2 eller 30% rabatt?"
-  },
-  {
-    "question": "test3",
-    "answer": "test3"
   },
   {
     "question": "Filter expression: <>10",
