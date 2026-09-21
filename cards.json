@@ -4,6 +4,22 @@
     "answer": "LIFO"
   },
   {
+    "question": "Test",
+    "answer": "Answer"
+  },
+  {
+    "question": "Another Question",
+    "answer": "Another Answer"
+  },
+  {
+    "question": "save this",
+    "answer": "answer"
+  },
+  {
+    "question": "test 2",
+    "answer": "test"
+  },
+  {
     "question": "G/L Account",
     "answer": "General Ledger Account = Hovedbokskonto"
   },
@@ -174,5 +190,41 @@
   {
     "question": "Best Price Principle",
     "answer": "BC finner automatisk den beste prisen eller rabatten kunden har krav på. Ex.: Skal jeg benytte meg av 3 for 2 eller 30% rabatt?"
+  },
+  {
+    "question": "test3",
+    "answer": "test3"
+  },
+  {
+    "question": "Filter expression: <>10",
+    "answer": "All records except 10"
+  },
+  {
+    "question": "Is \"<10\" or \"10>\" correct when filtering lower than 10?",
+    "answer": "\"<10\". Set the expression first."
+  },
+  {
+    "question": "How do we show records between 10 and 20?",
+    "answer": "10..20. The \"..\" operator is inclusive."
+  },
+  {
+    "question": "What will \"Smith|Johnson\" show?",
+    "answer": "Records containing Smith or Johnson."
+  },
+  {
+    "question": "Filter: \"@s*\"",
+    "answer": "All items starting with a lowercase and uppercase \"s\""
+  },
+  {
+    "question": "Jeg husker ikke om en kunde heter Catarina eller Katarina. Hvordan kan jeg søke etter henne med det jeg vet?",
+    "answer": "?atarina"
+  },
+  {
+    "question": "Hva betyr Purchase Quote?",
+    "answer": "Pristilbud"
+  },
+  {
+    "question": "Hva er en \"Blanket Purchase Order\"?",
+    "answer": "Rammeavtale / Innkjøpsavtale"
   }
 ]

@@ -147,4 +147,14 @@ cards = {'Which costing method is NOT permitted under International Financial Re
  'Best Price Principle': 'BC finner automatisk den beste prisen eller rabatten '
                          'kunden har krav på. Ex.: Skal jeg benytte meg av 3 '
                          'for 2 eller 30% rabatt?',
- 'test3': 'test3'}
+ 'test3': 'test3',
+ 'Filter expression: <>10': 'All records except 10',
+ 'Is "<10" or "10>" correct when filtering lower than 10?': '"<10". Set the '
+                                                            'expression first.',
+ 'How do we show records between 10 and 20?': '10..20. The ".." operator is '
+                                              'inclusive.',
+ 'What will "Smith|Johnson" show?': 'Records containing Smith or Johnson.',
+ 'Filter: "@s*"': 'All items starting with a lowercase and uppercase "s"',
+ 'Jeg husker ikke om en kunde heter Catarina eller Katarina. Hvordan kan jeg søke etter henne med det jeg vet?': '?atarina',
+ 'Hva betyr Purchase Quote?': 'Pristilbud',
+ 'Hva er en "Blanket Purchase Order"?': 'Rammeavtale / Innkjøpsavtale'}
