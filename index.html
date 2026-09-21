@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MB-800 Flashcards</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <h1>MB-800 Flashcards</h1>
+        <p class="subtitle">Read-only flashcards for review</p>
+      </header>
+
+      <section class="card" id="card" aria-live="polite">
+        <p class="label" id="cardLabel">Question</p>
+        <p class="content" id="cardContent">Loading…</p>
+      </section>
+
+      <section class="controls">
+        <button id="prevBtn" type="button">Previous</button>
+        <button id="flipBtn" type="button">Flip</button>
+        <button id="nextBtn" type="button">Next</button>
+        <button id="shuffleBtn" type="button">Shuffle</button>
+      </section>
+
+      <p class="meta" id="meta"></p>
+    </main>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+[
+  {
+    "question": "Which costing method is NOT permitted under International Financial Reporting Standards (IFRS)?",
+    "answer": "LIFO"
+  },
+  {
+    "question": "Test",
+    "answer": "Answer"
+  },
+  {
+    "question": "Another Question",
+    "answer": "Another Answer"
+  },
+  {
+    "question": "save this",
+    "answer": "answer"
+  },
+  {
+    "question": "test 2",
+    "answer": "test"
+  },
+  {
+    "question": "G/L Account",
+    "answer": "General Ledger Account = Hovedbokskonto"
+  },
+  {
+    "question": "Liability",
+    "answer": "Gjeld eller forpliktelse"
+  },
+  {
+    "question": "Account Type",
+    "answer": "Label som sier hvordan kontoen fungerer"
+  },
+  {
+    "question": "Account Category",
+    "answer": "Hva slags regnskapskategori den tilhører. Må tilhøre en av følgende kategorier. (1) Assets - verdier som bedriften eier. (2) Liabilities - Penger som bedriften skylder alene. (3) Equity - aksjekapital, EK osv. (4) Income - penger selskapet tjener. (5) Cost of goods (COGS) - Direkte kostnader knyttet til det bedriften selger. (6) Expense - Driftskostnader som ikke er direkte nyttet til varen bedriften selger."
+  },
+  {
+    "question": "Business Posting Group",
+    "answer": "Hvem du selger til"
+  },
+  {
+    "question": "Product Posting Group",
+    "answer": "Hva du selger"
+  },
+  {
+    "question": "Posting",
+    "answer": "Bokføring. Når man posterer et dokument, forteller vi BC at dokumentet er ferdig, og at BC kan opprette regnskapspostene som hører til."
+  },
+  {
+    "question": "Direct Posting",
+    "answer": "Bokføring direkte mot en konto via en journal. Noen kontoer styres av subledgers/reskontro."
+  },
+  {
+    "question": "Reskontro",
+    "answer": "Detaljert oversikt over hvem som skylder penger og til hvem de skylder penger."
+  },
+  {
+    "question": "Kundereskontro (Accounts Receivable)",
+    "answer": "Hvilke kunder som skylder deg penger, hvor mye de skylder deg, og ubetalte fakturaer."
+  },
+  {
+    "question": "Leverandørreskontro (Accounts Payable)",
+    "answer": "Hvilke leverandører du skylder penger. Hvilke fakturaer som ikke er betalt."
+  },
+  {
+    "question": "Subledger",
+    "answer": "Engelsk for en detaljert underbok/reskontro. Denne viser deg detaljene bak saldoen i hovedbokskontoen. Eksempel: 1500 Kundefordringer (hovedbokskonto) er på 15 000 kr. Reskontroen viser at kundene Iver AS og Daniel AS hhv. skylder 10 000 kr og 5 000 kr."
+  },
+  {
+    "question": "Hva er \"Purchase Order\" på norsk i BC?",
+    "answer": "Bestilling"
+  },
+  {
+    "question": "Hva er \"Sales Order\" på norsk?",
+    "answer": "Ordre"
+  },
+  {
+    "question": "BC er bygd på 'Navition', som opprinnelig ikke var en del av Microsoft. Hvor kommer selskapet som utviklet BC fra?",
+    "answer": "Danmark"
+  },
+  {
+    "question": "Har BC en CRM-modul?",
+    "answer": "Ja, men den er ikke så god."
+  },
+  {
+    "question": "Hva er \"Tilbud\" på engelsk i BC?",
+    "answer": "Sales Quote"
+  },
+  {
+    "question": "Chart of Accounts",
+    "answer": "Kontoplan"
+  },
+  {
+    "question": "Journal",
+    "answer": "Kladd = En fane/side man forbereder postering før den bokføres"
+  },
+  {
+    "question": "General Journal",
+    "answer": "Finanskladd/Generell kladd = Den mest fleksible journal-/kladdetypen"
+  },
+  {
+    "question": "Journal Batch",
+    "answer": "En samling av kladder hver bruker kan få, slik at man slipper å redigere alle linjene hver gang man skal opprette og postere en kladd."
+  },
+  {
+    "question": "Fix Exchange Rate Amount",
+    "answer": "Felt som bestemmer hvilken side av valutakursen som er låst fast når man beregner eller endrer valutakursen."
+  },
+  {
+    "question": "Bank Account Posting Group",
+    "answer": "BC skiller mellom en virkelig bankkonto (i DNB f.eks.) og regnskapskontoen (1920 Bankinnskudd). Fordi BC ikke automatisk vet at 1920 skal oppdateres når det kommer penger inn på DNB-kontoen, har vi Bank Account Posting Group. Når vi setter denne til 'BANK', så har vi en regel som sier at når DNB-kontoen endres, så er det 1920 som skal oppdateres.Objektet (kunde, leverandør, bankkonto) vet vanligvis bare hvillken posting group den til.hører. Når BC vet hva slags objekt det er, kanden finne ut hvilken konto som skal oppdateresnår endringer skjer."
+  },
+  {
+    "question": "Variable Allocation Account",
+    "answer": "Konto som brukes til å automatisk fordele et beløp etter en bestemt fordelingsnøkkel. Dersom Enora for eksempel betaler husleie på 100k, så skal 2/3 føres på regnskapsavdelingen og resterende på Digital. Når vi har postert 100k på 6300 Husleie, kjører man en Allocation Account og får følgende nye posteringer: 6300 Husleie, Regnskap = 67k og 6300 Husleie, Digital = 33k."
+  },
+  {
+    "question": "Hva menes med \"Card\" i BC?",
+    "answer": "En side som hjelper deg med å endre en rad/objekt fra en tabell. Ex.: Item Card."
+  },
+  {
+    "question": "Hva menes med \"Document page\" i BC?",
+    "answer": "Dokument Pages minner om \"Card\", men er sider som åpner detaljer rundt brukeroppgaver, som Purchase Orders (PO), Sales Order, Purchase Invoice (PI) osv."
+  },
+  {
+    "question": "Statistical Account",
+    "answer": "Konto for å lagre ikke-finansiell data. Ex.: Antall ansatte, avdelingsareal osv."
+  },
+  {
+    "question": "Dimensjon",
+    "answer": "Tenk kolonne. En måte å merke transaksjoner med ekstra informasjon slik at man kan analysere regnskapet på flere måter uten å måtte opprette mange nye hovedbokskontoer. Typiske dimensjoner er Department, Project og Location."
+  },
+  {
+    "question": "Default dimension",
+    "answer": "Dimensjon som foreslåls automatisk. Når for eksempel en kostnad bliur ført på '6300 Husleie', så skal systemet automatisk sette Department=Admin."
+  },
+  {
+    "question": "Dimension requirement",
+    "answer": "En dimensjon som må være fylt ut for at man skal kunne fortsette bokføring."
+  },
+  {
+    "question": "Global dimension",
+    "answer": "De to første kolonnene i alle rader. Disse blir festet og ligger alltid synlig."
+  },
+  {
+    "question": "Shortcut dimension",
+    "answer": "Snarveiskolonner. Kan legge til 6 i tillegg til de to glogbale."
+  },
+  {
+    "question": "Default Dimension Priority",
+    "answer": "Regelen som avgjør hvilken verdi som vinner (blir registrert) når flere objekterforeslår ulike verdier for samme dimensjon. Dersom en kunde med 'Project' = 'ABAR' legger inn en salgsordre på en vare med 'Project' = 'AFLASK', og Customer har høyere prioritet enn Item, blir resultatet 'ABAR'."
+  },
+  {
+    "question": "Fiscal Year",
+    "answer": "Regnskapsår. Periode på 12 mnd. som foretak bruker til å utarbeide regnskapsår. For eksempel er det ikke hensiktsmessig for varehandelen å avslutte året 31. januar da det er i høysesong. Derfor har varehandelen ofte regnskapsår fra 1. februar til 31. januar."
+  },
+  {
+    "question": "Straight Line Depreciation",
+    "answer": "Avskrivningsmetode der eiendelen avskrives med samme beløpet hvert år. # Avskrivningsår må defineres."
+  },
+  {
+    "question": "DB1",
+    "answer": "Defining Balance 1 method. Avskrivningsmetode der verdien blir avskrevet med en prosentandel. Verdien avskrives med den summen biannually. Ex.= Declining balance % = 25%, Val_0 = 100. Val_jan_0 = 100. Val_jun_0 = 100 - (halvparten av 100*25%) = 87,5. I des_0 skjer det samme, og verdien er 75. I jun_1 blir verdien 75 - (halvparten av 75*25%). Samme summen trekkes fra i des_1. Osv."
+  },
+  {
+    "question": "DB2",
+    "answer": "Declining Balance 2 method. Avskriviningsmetode der avskrivningsmengden er gitt ved følgende formel: DA = BV(1(1-P))^D. Ganske lik med DB1, men internt i et år skrives det av mer tidlig i året. Ser vi på året isolert sett, så blir avskrivningene de samme."
+  },
+  {
+    "question": "External Document Number",
+    "answer": "Referansenummer fra ekstern part. Ex.: Leverandørens fakturanummer eller leverandørens kreditnotanummer."
+  },
+  {
+    "question": "Costing Method",
+    "answer": "Hvordan vi skal verdsette lagerbeholdningen. Det er viktig for å vite hvordan man skal regnskapsføre kostnadene. For eksempel kjøper vi grandis to ganger - først på tilbud til 30 kr, så til 70 kr. Begge ligger i frysen ved siden av hverandre. Vi spiser så en av dem (tilsvarer verdi på 100 kr). Hvordan skal vi føre kostnadene? FIFO = 30kr. LIFO (ulovlig) = 70kr. Average = 50kr. Specific = Hvilken grandis spiste vi?"
+  },
+  {
+    "question": "Put-away and pick",
+    "answer": "Put-away er prosessen med å flytte varer fra mottaksområdet til lagerplass (bin) etter at varene er mottatt. Innlagring på norsk. Pick er plukk, altså henting av varer fra lagerplassene for å klargjøre de for levering."
+  },
+  {
+    "question": "Directed put-away and pick",
+    "answer": "Den mest avanserte lagerkonfigurasjonen i BC. Den lar ikke brukere flytte varer mellom bins. Systemet styrer og optimaliserer lageroperasjonene med egne dokumenter og regler."
+  },
+  {
+    "question": "SKU",
+    "answer": "Stockkeeping unit. Et objekt/rad/enhet som holder informasjon om en vare for spesifikke plasseringer, varianter eller begge. F.eks. vil aero bars lagret på fabrikken (main), intersport (distribusjonssenter 1) og XXL (distribusjonssenter 2) representere 3 SKUer."
+  },
+  {
+    "question": "Best Price Principle",
+    "answer": "BC finner automatisk den beste prisen eller rabatten kunden har krav på. Ex.: Skal jeg benytte meg av 3 for 2 eller 30% rabatt?"
+  }
+]
