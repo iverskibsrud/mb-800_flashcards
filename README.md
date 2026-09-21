@@ -1,6 +1,6 @@
 # MB-800 Flashcards
 
-Read-only flashcards with a simple GUI for browsing, flipping, and shuffling cards.
+Flashcards with a simple GUI for browsing, flipping, shuffling, and adding cards from the web page (password protected, stored in browser local storage).
 
 ## GitHub Pages
 
