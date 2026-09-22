@@ -210,5 +210,17 @@
   {
     "question": "Hva er en \"Blanket Purchase Order\"?",
     "answer": "Rammeavtale / Innkjøpsavtale"
+  },
+  {
+    "question": "test",
+    "answer": "test"
+  },
+  {
+    "question": "Deferral",
+    "answer": "Utsettelse"
+  },
+  {
+    "question": "Prepayment",
+    "answer": "Betaling før du leverer varen"
   }
 ]

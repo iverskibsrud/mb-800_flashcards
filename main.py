@@ -1,9 +1,14 @@
-import tkinter as tk
 import json
+import tkinter as tk
 from pathlib import Path
 from tkinter import messagebox
 
-from cards import cards
+
+cards_file = Path(__file__).with_name("cards.json")
+cards = {
+	card["question"]: card["answer"]
+	for card in json.loads(cards_file.read_text(encoding="utf-8"))
+}
 
 
 class FlashcardApp:
