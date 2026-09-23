@@ -92,30 +92,3 @@ button:hover {
   color: #5a6876;
 }
 
-.editor {
-  margin-top: 18px;
-  display: grid;
-  gap: 8px;
-}
-
-.editor h2 {
-  margin: 0 0 6px;
-  font-size: 1.1rem;
-}
-
-.editor label {
-  font-weight: 600;
-}
-
-.editor textarea {
-  width: 100%;
-  border: 1px solid #c8d1db;
-  border-radius: 10px;
-  padding: 10px;
-  font: inherit;
-  resize: vertical;
-}
-
-.editor button {
-  justify-self: start;
-}
