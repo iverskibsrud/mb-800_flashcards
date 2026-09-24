@@ -8,10 +8,32 @@
   </head>
   <body>
     <main class="app">
-      <header>
+      <header class="app-header">
+        <div>
         <h1>MB-800 Flashcards</h1>
         <p class="subtitle">Flashcards for review</p>
+        </div>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-controls="categoryMenu" aria-expanded="false">
+          <span class="menu-icon" aria-hidden="true">☰</span>
+          <span>Categories</span>
+        </button>
       </header>
+
+      <aside class="category-menu" id="categoryMenu" aria-label="Filter by category" hidden>
+        <div class="menu-heading">
+          <div>
+            <p class="menu-kicker">Study set</p>
+            <h2>Choose categories</h2>
+          </div>
+          <button class="close-menu" id="closeMenu" type="button" aria-label="Close category menu">×</button>
+        </div>
+        <div class="category-actions">
+          <button id="selectAllBtn" type="button">Select all</button>
+          <button id="clearAllBtn" type="button">Clear all</button>
+        </div>
+        <div class="category-list" id="categoryList"></div>
+      </aside>
+      <div class="menu-backdrop" id="menuBackdrop" hidden></div>
 
       <section class="card" id="card" aria-live="polite">
         <p class="label" id="cardLabel">Question</p>

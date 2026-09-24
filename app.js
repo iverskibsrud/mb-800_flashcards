@@ -1,26 +1,72 @@
+let allCards = [];
 let cards = [];
 let index = 0;
 let showingAnswer = false;
+let selectedCategories = new Set();
 const storageKey = "mb800_flashcards_cards";
 
 const card = document.getElementById("card");
 const cardLabel = document.getElementById("cardLabel");
 const cardContent = document.getElementById("cardContent");
 const meta = document.getElementById("meta");
+const menuToggle = document.getElementById("menuToggle");
+const categoryMenu = document.getElementById("categoryMenu");
+const categoryList = document.getElementById("categoryList");
+const menuBackdrop = document.getElementById("menuBackdrop");
+
+function renderCategoryOptions(categories) {
+  categoryList.replaceChildren();
+  categories.forEach((category) => {
+    const label = document.createElement("label");
+    label.className = "category-option";
+    label.innerHTML = `<input type="checkbox" value="${category}"><span>${category}</span>`;
+    const checkbox = label.querySelector("input");
+    checkbox.checked = selectedCategories.has(category);
+    checkbox.addEventListener("change", updateSelectedCategories);
+    categoryList.append(label);
+  });
+}
+
+function updateSelectedCategories() {
+  selectedCategories = new Set(
+    [...categoryList.querySelectorAll("input:checked")].map((input) => input.value),
+  );
+  cards = selectedCategories.size
+    ? allCards.filter((item) => selectedCategories.has(item.category))
+    : allCards;
+  index = 0;
+  showingAnswer = false;
+  render();
+}
+
+function setAllCategories(selected) {
+  categoryList.querySelectorAll("input").forEach((input) => {
+    input.checked = selected;
+  });
+  updateSelectedCategories();
+}
+
+function setMenuOpen(isOpen) {
+  categoryMenu.hidden = !isOpen;
+  menuBackdrop.hidden = !isOpen;
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+}
 
 function render() {
   const current = cards[index];
   if (!current) {
     cardLabel.textContent = "No cards";
     cardContent.textContent = "No flashcards found.";
-    meta.textContent = "";
+    meta.textContent = `${allCards.length} cards available`;
     return;
   }
 
   card.classList.toggle("answer", showingAnswer);
   cardLabel.textContent = showingAnswer ? "Answer" : "Question";
   cardContent.textContent = showingAnswer ? current.answer : current.question;
-  meta.textContent = `Card ${index + 1} of ${cards.length}`;
+  meta.textContent = selectedCategories.size
+    ? `Card ${index + 1} of ${cards.length} · ${selectedCategories.size} ${selectedCategories.size === 1 ? "category" : "categories"}`
+    : `Card ${index + 1} of ${cards.length} · All categories`;
 }
 
 function nextCard() {
@@ -62,7 +108,8 @@ function loadStoredCards() {
       (item) =>
         item &&
         typeof item.question === "string" &&
-        typeof item.answer === "string",
+        typeof item.answer === "string" &&
+        typeof item.category === "string",
     );
     return valid ? parsed : null;
   } catch {
@@ -78,6 +125,11 @@ document.getElementById("nextBtn").addEventListener("click", nextCard);
 document.getElementById("prevBtn").addEventListener("click", previousCard);
 document.getElementById("flipBtn").addEventListener("click", flipCard);
 document.getElementById("shuffleBtn").addEventListener("click", shuffleCard);
+menuToggle.addEventListener("click", () => setMenuOpen(categoryMenu.hidden));
+document.getElementById("closeMenu").addEventListener("click", () => setMenuOpen(false));
+menuBackdrop.addEventListener("click", () => setMenuOpen(false));
+document.getElementById("selectAllBtn").addEventListener("click", () => setAllCategories(true));
+document.getElementById("clearAllBtn").addEventListener("click", () => setAllCategories(false));
 
 window.addEventListener("keydown", (event) => {
   if (event.code === "Space") {
@@ -93,7 +145,11 @@ window.addEventListener("keydown", (event) => {
 fetch("cards.json")
   .then((response) => response.json())
   .then((data) => {
-    cards = loadStoredCards() ?? data;
+    allCards = loadStoredCards() ?? data;
+    const categories = [...new Set(allCards.map((item) => item.category))].sort((a, b) => a.localeCompare(b, "no"));
+    selectedCategories = new Set(categories);
+    renderCategoryOptions(categories);
+    cards = allCards;
     render();
   })
   .catch(() => {
