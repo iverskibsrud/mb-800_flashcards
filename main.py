@@ -1,10 +1,26 @@
 import json
 import tkinter as tk
 from pathlib import Path
-from tkinter import messagebox
+from tkinter import messagebox, ttk
 
 
 cards_file = Path(__file__).with_name("cards.json")
+mock_questions_file = Path(__file__).with_name("mock_qs.json")
+
+
+question_types = {
+	"multiple_choice": "Multiple choice",
+	"multi_select": "Multi-select",
+	"drag_and_drop": "Drag and drop",
+	"sequence": "Sequence / order",
+}
+
+
+def load_json(path, fallback):
+	try:
+		return json.loads(path.read_text(encoding="utf-8"))
+	except (OSError, json.JSONDecodeError):
+		return fallback
 cards = {
 	card["question"]: card["answer"]
 	for card in json.loads(cards_file.read_text(encoding="utf-8"))
@@ -21,12 +37,22 @@ class FlashcardApp:
 		self.answer_color = "#dff3df"
 		self.animation_token = 0
 		self.adding_card = False
+		self.mock_questions = load_json(mock_questions_file, [])
+		self.mock_index = 0
+		self.mock_answer_widgets = []
 
-		root.title("Flashcards")
-		root.geometry("700x400")
-		root.minsize(400, 250)
+		root.title("MB-800 Study Tool")
+		root.geometry("760x560")
+		root.minsize(500, 360)
 
-		self.toolbar = tk.Frame(root, bg=self.question_color)
+		self.tabs = ttk.Notebook(root)
+		self.tabs.pack(expand=True, fill="both")
+		self.flashcard_tab = tk.Frame(self.tabs, bg=self.question_color)
+		self.mock_tab = tk.Frame(self.tabs, bg="#f6f8fb")
+		self.tabs.add(self.flashcard_tab, text="Flashcards")
+		self.tabs.add(self.mock_tab, text="MB-800 Mock Exam")
+
+		self.toolbar = tk.Frame(self.flashcard_tab, bg=self.question_color)
 		self.toolbar.pack(fill="x")
 		self.add_button = tk.Button(
 			self.toolbar,
@@ -37,7 +63,7 @@ class FlashcardApp:
 		)
 		self.add_button.pack(side="right", padx=8, pady=6)
 
-		self.card_area = tk.Frame(root, bg=self.question_color)
+		self.card_area = tk.Frame(self.flashcard_tab, bg=self.question_color)
 		self.card_area.pack(expand=True, fill="both")
 
 		self.card_text = tk.Label(
@@ -53,13 +79,14 @@ class FlashcardApp:
 		self.card_text.place(relx=0.5, rely=0.5, anchor="center")
 
 		self.instructions = tk.Label(
-			root,
+			self.flashcard_tab,
 			text="Space: flip  |  Left/Right: change card  |  Esc: exit  |  a: add card",
 			font=("Arial", 11),
 			pady=12,
 			bg=self.question_color,
 		)
 		self.instructions.pack()
+		self.build_mock_exam_view()
 
 		root.bind("<space>", self.flip_card)
 		root.bind("<Right>", self.next_card)
@@ -71,6 +98,171 @@ class FlashcardApp:
 		root.focus_set()
 
 		self.update_card()
+		self.render_mock_question()
+
+	def build_mock_exam_view(self):
+		header = tk.Frame(self.mock_tab, bg="#f6f8fb")
+		header.pack(fill="x", padx=28, pady=(22, 8))
+		tk.Label(header, text="MB-800 Mock Exam", font=("Arial", 20, "bold")).pack(side="left")
+		tk.Button(header, text="Add question", command=self.show_mock_question_form).pack(side="right")
+		self.mock_meta = tk.Label(self.mock_tab, text="", bg="#f6f8fb", fg="#52606d")
+		self.mock_meta.pack(anchor="w", padx=28)
+		self.mock_question = tk.Label(
+			self.mock_tab, text="", font=("Arial", 16, "bold"), wraplength=690,
+			justify="left", anchor="w", bg="#ffffff", padx=22, pady=20,
+		)
+		self.mock_question.pack(fill="x", padx=28, pady=(12, 10))
+		self.mock_answers = tk.Frame(self.mock_tab, bg="#f6f8fb")
+		self.mock_answers.pack(fill="both", expand=True, padx=28)
+		self.mock_feedback = tk.Label(self.mock_tab, text="", wraplength=690, justify="left", anchor="w", bg="#f6f8fb")
+		self.mock_feedback.pack(fill="x", padx=28, pady=8)
+		controls = tk.Frame(self.mock_tab, bg="#f6f8fb")
+		controls.pack(fill="x", padx=28, pady=(4, 20))
+		tk.Button(controls, text="Check answer", command=self.check_mock_answer).pack(side="left")
+		tk.Button(controls, text="Previous", command=self.previous_mock_question).pack(side="right", padx=(8, 0))
+		tk.Button(controls, text="Next", command=self.next_mock_question).pack(side="right")
+
+	def render_mock_question(self):
+		for widget in self.mock_answers.winfo_children():
+			widget.destroy()
+		self.mock_answer_widgets = []
+		if not self.mock_questions:
+			self.mock_question.config(text="No mock questions found.")
+			self.mock_meta.config(text="Add a question to mock_qs.json from the form.")
+			return
+		question = self.mock_questions[self.mock_index]
+		question_type = question.get("type", "multiple_choice")
+		self.mock_meta.config(
+			text=f"Question {self.mock_index + 1} of {len(self.mock_questions)}  |  "
+			f"{question.get('topic', 'General')}  |  {question_types.get(question_type, question_type)}"
+		)
+		self.mock_question.config(text=question.get("question", ""))
+		alternatives = question.get("alternatives", [])
+		if question_type == "multiple_choice":
+			self.mock_answer_widgets = [tk.IntVar(value=-1)]
+			for number, alternative in enumerate(alternatives):
+				tk.Radiobutton(self.mock_answers, text=alternative, variable=self.mock_answer_widgets[0], value=number).pack(anchor="w", pady=3)
+		elif question_type == "multi_select":
+			self.mock_answer_widgets = [tk.BooleanVar(value=False) for _ in alternatives]
+			for number, alternative in enumerate(alternatives):
+				tk.Checkbutton(self.mock_answers, text=alternative, variable=self.mock_answer_widgets[number]).pack(anchor="w", pady=3)
+		else:
+			listbox = tk.Listbox(self.mock_answers, height=max(3, len(alternatives)), exportselection=False)
+			for alternative in alternatives:
+				listbox.insert(tk.END, alternative)
+			listbox.pack(side="left", fill="both", expand=True)
+			self.mock_answer_widgets = [listbox]
+			buttons = tk.Frame(self.mock_answers, bg="#f6f8fb")
+			buttons.pack(side="left", padx=10)
+			tk.Button(buttons, text="Move up", command=lambda: self.move_mock_item(-1)).pack(pady=3)
+			tk.Button(buttons, text="Move down", command=lambda: self.move_mock_item(1)).pack(pady=3)
+		self.mock_feedback.config(text="")
+
+	def move_mock_item(self, direction):
+		listbox = self.mock_answer_widgets[0]
+		selection = listbox.curselection()
+		if not selection:
+			return
+		old_index = selection[0]
+		new_index = old_index + direction
+		if not 0 <= new_index < listbox.size():
+			return
+		value = listbox.get(old_index)
+		listbox.delete(old_index)
+		listbox.insert(new_index, value)
+		listbox.selection_set(new_index)
+
+	def check_mock_answer(self):
+		question = self.mock_questions[self.mock_index]
+		question_type = question.get("type")
+		if question_type == "multiple_choice":
+			answer = self.mock_answer_widgets[0].get()
+			correct = answer == question.get("correct_answer", -1)
+		elif question_type == "multi_select":
+			answer = [index for index, variable in enumerate(self.mock_answer_widgets) if variable.get()]
+			correct = set(answer) == set(question.get("correct_answers", []))
+		else:
+			answer = list(self.mock_answer_widgets[0].get(0, tk.END))
+			correct_items = [question.get("alternatives", [])[index] for index in question.get("correct_order", [])]
+			correct = answer == correct_items
+		result = "Correct" if correct else "Not quite"
+		self.mock_feedback.config(text=f"{result}. {question.get('explanation', '')}", fg="#176b35" if correct else "#9b2c2c")
+
+	def next_mock_question(self):
+		if self.mock_questions:
+			self.mock_index = (self.mock_index + 1) % len(self.mock_questions)
+			self.render_mock_question()
+
+	def previous_mock_question(self):
+		if self.mock_questions:
+			self.mock_index = (self.mock_index - 1) % len(self.mock_questions)
+			self.render_mock_question()
+
+	def show_mock_question_form(self):
+		form = tk.Toplevel(self.root)
+		form.title("Add mock exam question")
+		form.geometry("620x650")
+		form.transient(self.root)
+		form.grab_set()
+		body = tk.Frame(form, padx=24, pady=18)
+		body.pack(expand=True, fill="both")
+		entries = {}
+		for label, key in (("Topic", "topic"), ("Question", "question"), ("Explanation", "explanation")):
+			tk.Label(body, text=label).pack(anchor="w", pady=(8, 2))
+			entry = tk.Entry(body)
+			entry.pack(fill="x")
+			entries[key] = entry
+		tk.Label(body, text="Question type").pack(anchor="w", pady=(8, 2))
+		type_var = tk.StringVar(value="multiple_choice")
+		ttk.Combobox(body, textvariable=type_var, values=list(question_types), state="readonly").pack(fill="x")
+		tk.Label(body, text="Alternatives (one per line)").pack(anchor="w", pady=(8, 2))
+		alternatives = tk.Text(body, height=7)
+		alternatives.pack(fill="both", expand=True)
+		tk.Label(body, text="Correct indexes, starting at 0 (for example: 0 or 0,2 or 2,0,1)").pack(anchor="w", pady=(8, 2))
+		correct = tk.Entry(body)
+		correct.pack(fill="x")
+
+		def save_question():
+			items = [item.strip() for item in alternatives.get("1.0", tk.END).splitlines() if item.strip()]
+			try:
+				indexes = [int(item.strip()) for item in correct.get().split(",") if item.strip()]
+			except ValueError:
+				messagebox.showerror("Invalid answer", "Use comma-separated numbers such as 0 or 0,2.", parent=form)
+				return
+			if not entries["topic"].get().strip() or not entries["question"].get().strip() or not items:
+				messagebox.showerror("Missing information", "Topic, question, and alternatives are required.", parent=form)
+				return
+			if any(index < 0 or index >= len(items) for index in indexes):
+				messagebox.showerror("Invalid answer", "Every answer index must refer to an alternative.", parent=form)
+				return
+			question_type = type_var.get()
+			question = {
+				"type": question_type,
+				"topic": entries["topic"].get().strip(),
+				"question": entries["question"].get().strip(),
+				"alternatives": items,
+				"explanation": entries["explanation"].get().strip(),
+			}
+			if question_type == "multiple_choice":
+				if len(indexes) != 1:
+					messagebox.showerror("Invalid answer", "Multiple choice needs exactly one correct index.", parent=form)
+					return
+				question["correct_answer"] = indexes[0]
+			elif question_type == "multi_select":
+				question["correct_answers"] = indexes
+			else:
+				question["correct_order"] = indexes
+			self.mock_questions.append(question)
+			try:
+				mock_questions_file.write_text(json.dumps(self.mock_questions, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+			except OSError as error:
+				messagebox.showerror("Could not save question", str(error), parent=form)
+				return
+			self.mock_index = len(self.mock_questions) - 1
+			form.destroy()
+			self.render_mock_question()
+
+		tk.Button(body, text="Save question", command=save_question).pack(pady=(14, 0))
 
 	def update_card(self):
 		question, answer = self.flashcards[self.card_index]

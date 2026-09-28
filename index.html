@@ -19,6 +19,11 @@
         </button>
       </header>
 
+      <nav class="tabs" aria-label="Study mode">
+        <button class="tab active" id="flashcardsTab" type="button" aria-selected="true">Flashcards</button>
+        <button class="tab" id="mockExamTab" type="button" aria-selected="false">MB-800 Mock Exam</button>
+      </nav>
+
       <aside class="category-menu" id="categoryMenu" aria-label="Filter by category" hidden>
         <div class="menu-heading">
           <div>
@@ -35,6 +40,7 @@
       </aside>
       <div class="menu-backdrop" id="menuBackdrop" hidden></div>
 
+      <div class="tab-panel" id="flashcardsPanel">
       <section class="card" id="card" aria-live="polite">
         <p class="label" id="cardLabel">Question</p>
         <p class="content" id="cardContent">Loading…</p>
@@ -48,6 +54,20 @@
       </section>
 
       <p class="meta" id="meta"></p>
+      </div>
+
+      <section class="tab-panel mock-panel" id="mockExamPanel" hidden aria-live="polite">
+        <p class="label">Mock exam</p>
+        <p class="mock-meta" id="mockMeta">Loading questions...</p>
+        <h2 id="mockQuestion"></h2>
+        <div class="mock-options" id="mockOptions"></div>
+        <p class="feedback" id="mockFeedback"></p>
+        <div class="controls">
+          <button id="checkMockBtn" type="button">Check answer</button>
+          <button id="prevMockBtn" type="button">Previous</button>
+          <button id="nextMockBtn" type="button">Next</button>
+        </div>
+      </section>
     </main>
 
     <script src="app.js" defer></script>

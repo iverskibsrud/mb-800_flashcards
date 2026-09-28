@@ -1,0 +1,52 @@
+[
+  {
+    "type": "multiple_choice",
+    "topic": "Financial management",
+    "question": "Which costing method is not permitted under IFRS?",
+    "alternatives": [
+      "FIFO",
+      "LIFO",
+      "Weighted average",
+      "Specific identification"
+    ],
+    "explanation": "LIFO is not permitted under IFRS because it can leave inventory valued at older costs.",
+    "correct_answer": 1
+  },
+  {
+    "type": "multi_select",
+    "topic": "Posting setup",
+    "question": "Which two values help determine the G/L account used when posting a sales document?",
+    "alternatives": [
+      "Customer posting group",
+      "Product posting group",
+      "User password",
+      "Browser zoom level"
+    ],
+    "explanation": "The customer and product posting groups work together with the general posting setup to determine the account.",
+    "correct_answers": [0, 1]
+  },
+  {
+    "type": "drag_and_drop",
+    "topic": "Posting groups",
+    "question": "Place each posting setup concept in the order it is evaluated for this simplified example.",
+    "alternatives": [
+      "Product posting group: what is being sold",
+      "General posting setup: find the posting combination",
+      "G/L account: post the resulting entry"
+    ],
+    "explanation": "The product is classified first, the posting setup resolves the combination, and the resulting G/L account receives the entry.",
+    "correct_order": [0, 1, 2]
+  },
+  {
+    "type": "sequence",
+    "topic": "Dimensions",
+    "question": "Put these steps in the correct order when configuring a new dimension.",
+    "alternatives": [
+      "Create the dimension values",
+      "Create the dimension",
+      "Add the dimension to the required setup"
+    ],
+    "explanation": "Create the dimension before its values, then make it available through the relevant setup.",
+    "correct_order": [1, 0, 2]
+  }
+]
