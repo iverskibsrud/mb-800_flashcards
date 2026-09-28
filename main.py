@@ -146,6 +146,15 @@ class FlashcardApp:
 			self.mock_answer_widgets = [tk.BooleanVar(value=False) for _ in alternatives]
 			for number, alternative in enumerate(alternatives):
 				tk.Checkbutton(self.mock_answers, text=alternative, variable=self.mock_answer_widgets[number]).pack(anchor="w", pady=3)
+		elif question.get("matching"):
+			self.mock_answer_widgets = []
+			for target in question.get("targets", []):
+				row = tk.Frame(self.mock_answers, bg="#f6f8fb")
+				row.pack(fill="x", pady=4)
+				tk.Label(row, text=target, wraplength=430, justify="left", anchor="w", bg="#f6f8fb").pack(side="left", fill="x", expand=True)
+				answer = tk.StringVar()
+				ttk.Combobox(row, textvariable=answer, values=alternatives, state="readonly", width=28).pack(side="right")
+				self.mock_answer_widgets.append(answer)
 		else:
 			listbox = tk.Listbox(self.mock_answers, height=max(3, len(alternatives)), exportselection=False)
 			for alternative in alternatives:
@@ -181,6 +190,14 @@ class FlashcardApp:
 		elif question_type == "multi_select":
 			answer = [index for index, variable in enumerate(self.mock_answer_widgets) if variable.get()]
 			correct = set(answer) == set(question.get("correct_answers", []))
+		elif question.get("matching"):
+			answer = []
+			for variable in self.mock_answer_widgets:
+				try:
+					answer.append(question.get("alternatives", []).index(variable.get()))
+				except ValueError:
+					answer.append(-1)
+			correct = answer == question.get("correct_matches", [])
 		else:
 			answer = list(self.mock_answer_widgets[0].get(0, tk.END))
 			correct_items = [question.get("alternatives", [])[index] for index in question.get("correct_order", [])]

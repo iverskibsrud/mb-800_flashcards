@@ -46,6 +46,10 @@ function renderMockQuestion() {
   mockMeta.textContent = `Question ${mockIndex + 1} of ${mockQuestions.length} · ${current.topic} · ${current.type}`;
   mockQuestion.textContent = current.question;
   mockOrder = current.alternatives.map((_, index) => index);
+  if (current.matching) {
+    renderMockMatching(current);
+    return;
+  }
   if (current.type === "drag_and_drop" || current.type === "sequence") {
     renderMockOrder(current);
     return;
@@ -59,6 +63,25 @@ function renderMockQuestion() {
     input.value = index;
     label.append(input, document.createTextNode(alternative));
     mockOptions.append(label);
+  });
+}
+
+function renderMockMatching(current) {
+  current.targets.forEach((target, targetIndex) => {
+    const row = document.createElement("label");
+    row.className = "mock-option mock-match-row";
+    row.append(document.createTextNode(target));
+    const select = document.createElement("select");
+    select.dataset.targetIndex = targetIndex;
+    select.innerHTML = `<option value="">Choose an answer</option>`;
+    current.alternatives.forEach((alternative, alternativeIndex) => {
+      const option = document.createElement("option");
+      option.value = alternativeIndex;
+      option.textContent = alternative;
+      select.append(option);
+    });
+    row.append(select);
+    mockOptions.append(row);
   });
 }
 
@@ -99,6 +122,9 @@ function checkMockAnswer() {
     correct = selected.length === 1 && selected[0] === current.correct_answer;
   } else if (current.type === "multi_select") {
     correct = selected.length === current.correct_answers.length && selected.every((item) => current.correct_answers.includes(item));
+  } else if (current.matching) {
+    const matches = [...mockOptions.querySelectorAll("select")].map((select) => Number(select.value));
+    correct = matches.every((item, index) => item === current.correct_matches[index]);
   } else {
     correct = mockOrder.every((item, index) => item === current.correct_order[index]);
   }

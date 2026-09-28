@@ -1,52 +1,146 @@
 [
   {
-    "type": "multiple_choice",
-    "topic": "Financial management",
-    "question": "Which costing method is not permitted under IFRS?",
+    "type": "drag_and_drop",
+    "topic": "Users and permissions",
+    "question": "A company adds a user to Microsoft 365. Existing user groups do not have the required permission sets for newly added users. You need to assign a Dynamics 365 Business Central user group and permissions to the user and the company. Which five actions should you perform in sequence?",
     "alternatives": [
-      "FIFO",
-      "LIFO",
-      "Weighted average",
-      "Specific identification"
+      "Select Get New Users from Microsoft 365 / Update Users from Microsoft 365.",
+      "Create a user group.",
+      "Select the user from the user list.",
+      "Assign the user group to the user.",
+      "Assign the user to the company."
     ],
-    "explanation": "LIFO is not permitted under IFRS because it can leave inventory valued at older costs.",
-    "correct_answer": 1
+    "explanation": "First synchronize the user from Microsoft 365, then create the group, select the user, assign the group, and assign the company.",
+    "correct_order": [0, 1, 2, 3, 4]
   },
   {
-    "type": "multi_select",
-    "topic": "Posting setup",
-    "question": "Which two values help determine the G/L account used when posting a sales document?",
+    "type": "multiple_choice",
+    "topic": "Customers and credit",
+    "question": "A company uses Dynamics 365 Business Central. When users create sales documents, the system must display an alert that shows the customer's remaining credit and also notify the user if the customer has overdue payments. What should you do?",
     "alternatives": [
-      "Customer posting group",
-      "Product posting group",
-      "User password",
-      "Browser zoom level"
+      "Configure the Block Customer field.",
+      "Configure the Late Payment Predict extension.",
+      "Select Both Warnings in the Credit Warnings field.",
+      "Enable the Exact Cost Reversing Mandatory field."
     ],
-    "explanation": "The customer and product posting groups work together with the general posting setup to determine the account.",
-    "correct_answers": [0, 1]
+    "explanation": "The Credit Warnings field value Both Warnings displays both the remaining credit and overdue payment warnings.",
+    "correct_answer": 2
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Printing",
+    "question": "You configure a cloud-based printer in Dynamics 365 Business Central. Purchase orders printed by users must automatically print to the cloud-based printer. On which page should you create the setup record for the user, report, and printer combination?",
+    "alternatives": [
+      "Printer Selections",
+      "Printer Management",
+      "Report Layout Selection",
+      "Report Selection - Purchase",
+      "Document Sending Profiles"
+    ],
+    "explanation": "Printer Selections stores the user, report, and printer combination used for automatic printing.",
+    "correct_answer": 0
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Users and permissions",
+    "question": "You are implementing Dynamics 365 Business Central Online. Users must be added to Business Central for the first time. Which action should you use?",
+    "alternatives": [
+      "Get New Users from Microsoft 365",
+      "Create a new entry on the User Setup page",
+      "Update Users from Microsoft 365",
+      "Import User Groups"
+    ],
+    "explanation": "Update Users from Microsoft 365 imports users who have been added or changed in the Microsoft 365 Admin Center.",
+    "correct_answer": 2
   },
   {
     "type": "drag_and_drop",
-    "topic": "Posting groups",
-    "question": "Place each posting setup concept in the order it is evaluated for this simplified example.",
+    "topic": "Configuration packages",
+    "question": "You set up a new company for a customer. The customer provides an Excel file containing master data. You need to import the master data by using configuration packages. Which four actions should you perform in sequence?",
     "alternatives": [
-      "Product posting group: what is being sold",
-      "General posting setup: find the posting combination",
-      "G/L account: post the resulting entry"
+      "Export an Excel template and populate the data.",
+      "Create a configuration package.",
+      "Import a populated Excel template into the package data.",
+      "Apply the data."
     ],
-    "explanation": "The product is classified first, the posting setup resolves the combination, and the resulting G/L account receives the entry.",
-    "correct_order": [0, 1, 2]
+    "explanation": "Create and populate the Excel template, create the package, import the populated template into the package, and apply the data.",
+    "correct_order": [0, 1, 2, 3]
   },
   {
-    "type": "sequence",
-    "topic": "Dimensions",
-    "question": "Put these steps in the correct order when configuring a new dimension.",
-    "alternatives": [
-      "Create the dimension values",
-      "Create the dimension",
-      "Add the dimension to the required setup"
+    "type": "drag_and_drop",
+    "topic": "Approval workflows",
+    "question": "You are setting up approval workflows in Dynamics 365 Business Central. You need to configure approver limits. Match each requirement to the correct approver limit type.",
+    "targets": [
+      "Route approval requests to the approver defined in Approval User Setup, regardless of the amount.",
+      "Route approval requests to the approver defined in the Workflow Response, regardless of the amount.",
+      "Route approval requests to a user who can approve requests for the required amount."
     ],
-    "explanation": "Create the dimension before its values, then make it available through the relevant setup.",
-    "correct_order": [1, 0, 2]
+    "alternatives": [
+      "Direct approver",
+      "Specific approver",
+      "First Qualified approver",
+      "Approver Chain"
+    ],
+    "correct_matches": [0, 1, 2],
+    "explanation": "Direct approver uses Approval User Setup, Specific approver uses the Workflow Response, and First Qualified approver finds a user who can approve the amount.",
+    "matching": true
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Printing",
+    "question": "A company uses Dynamics 365 Business Central and wants to print financial statements by using a cloud-based printer. Which type of printer should you recommend?",
+    "alternatives": [
+      "Email",
+      "System",
+      "Client default",
+      "Server default"
+    ],
+    "explanation": "An Email printer type is used to send the financial statement through a cloud-based printing setup.",
+    "correct_answer": 0
+  },
+  {
+    "type": "multi_select",
+    "topic": "Companies and data migration",
+    "question": "You create a test instance of Dynamics 365 Business Central and enter transactions for testing. You create a production company in the same environment. You need to copy setup and master data from the test instance to production without copying transaction data. What are two possible ways to achieve the goal?",
+    "alternatives": [
+      "Use the Run Migration Now function from Cloud Migration Management.",
+      "Create and export a configuration package from the source company, then import it into the destination company.",
+      "Use the Copy Data from Company function from the Configuration Worksheet page.",
+      "Use the Copy function from the Companies page."
+    ],
+    "explanation": "Configuration packages and Copy Data from Company can transfer setup and master data without transferring transaction data.",
+    "correct_answers": [1, 2]
+  },
+  {
+    "type": "drag_and_drop",
+    "topic": "Company setup",
+    "question": "You are creating companies for multiple customers in the cloud-based version of Dynamics 365 Business Central by using the assisted setup guide. Match each company requirement to the correct template.",
+    "targets": [
+      "Create a company that has setup data and sample data.",
+      "Create a company that does not have setup data.",
+      "Create a blank company that has setup data but does not have sample data."
+    ],
+    "alternatives": [
+      "Create New",
+      "Evaluation",
+      "Production"
+    ],
+    "correct_matches": [1, 0, 2],
+    "explanation": "Evaluation includes setup and sample data, Create New has no setup data, and Production has setup data without sample data.",
+    "matching": true
+  },
+  {
+    "type": "multi_select",
+    "topic": "Opening balances",
+    "question": "You are implementing Dynamics 365 Business Central. The customer wants to upload starting entries for all master data through a general journal on the last day of the current month. Which three functions should you select?",
+    "alternatives": [
+      "Vendors Opening balance",
+      "G/L Accounts Opening balance",
+      "Calculate Inventory",
+      "Get Standard Journals",
+      "Customers Opening balance"
+    ],
+    "explanation": "The required functions are Vendors Opening balance, G/L Accounts Opening balance, and Customers Opening balance.",
+    "correct_answers": [0, 1, 4]
   }
 ]
