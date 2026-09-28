@@ -62,12 +62,23 @@
         <h2 id="mockQuestion"></h2>
         <div class="mock-options" id="mockOptions"></div>
         <p class="feedback" id="mockFeedback"></p>
-        <div class="controls">
-          <button id="checkMockBtn" type="button">Check answer</button>
-          <button id="prevMockBtn" type="button">Previous</button>
-          <button id="nextMockBtn" type="button">Next</button>
+        <div class="mock-controls">
+          <div class="controls">
+            <button id="checkMockBtn" type="button">Check answer</button>
+            <button id="prevMockBtn" type="button">Previous</button>
+            <button id="nextMockBtn" type="button">Next</button>
+          </div>
+          <button class="keyboard-help-button" id="keyboardHelpBtn" type="button">Keyboard operations</button>
         </div>
       </section>
+      <dialog id="keyboardHelpDialog" class="keyboard-help">
+        <h2>Keyboard operations</h2>
+        <p><kbd>1</kbd>-<kbd>9</kbd> select an answer option.</p>
+        <p><kbd>Enter</kbd> checks the answer.</p>
+        <p><kbd>Left Arrow</kbd>/<kbd>Right Arrow</kbd> move between questions.</p>
+        <p>Drag-and-drop actions still need to be placed with the pointer.</p>
+        <button id="closeKeyboardHelpBtn" type="button">Close</button>
+      </dialog>
     </main>
 
     <script src="app.js" defer></script>

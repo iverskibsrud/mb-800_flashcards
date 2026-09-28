@@ -40,6 +40,8 @@ class FlashcardApp:
 		self.mock_questions = load_json(mock_questions_file, [])
 		self.mock_index = 0
 		self.mock_answer_widgets = []
+		self.drag_source = None
+		self.drag_value = None
 
 		root.title("MB-800 Study Tool")
 		root.geometry("760x560")
@@ -95,6 +97,7 @@ class FlashcardApp:
 		root.bind("<a>", self.handle_add_shortcut)
 		root.bind("<r>", self.handle_reader_shortcut)
 		root.bind("<Escape>", self.handle_escape)
+		root.bind("<Key>", self.handle_mock_keyboard)
 		root.focus_set()
 
 		self.update_card()
@@ -118,9 +121,12 @@ class FlashcardApp:
 		self.mock_feedback.pack(fill="x", padx=28, pady=8)
 		controls = tk.Frame(self.mock_tab, bg="#f6f8fb")
 		controls.pack(fill="x", padx=28, pady=(4, 20))
-		tk.Button(controls, text="Check answer", command=self.check_mock_answer).pack(side="left")
-		tk.Button(controls, text="Previous", command=self.previous_mock_question).pack(side="right", padx=(8, 0))
-		tk.Button(controls, text="Next", command=self.next_mock_question).pack(side="right")
+		primary_controls = tk.Frame(controls, bg="#f6f8fb")
+		primary_controls.pack(fill="x")
+		tk.Button(primary_controls, text="Check answer", command=self.check_mock_answer).pack(side="left")
+		tk.Button(primary_controls, text="Previous", command=self.previous_mock_question).pack(side="right", padx=(8, 0))
+		tk.Button(primary_controls, text="Next", command=self.next_mock_question).pack(side="right")
+		tk.Button(controls, text="Keyboard operations", command=self.show_keyboard_help).pack(anchor="w", pady=(8, 0))
 
 	def render_mock_question(self):
 		for widget in self.mock_answers.winfo_children():
@@ -147,39 +153,103 @@ class FlashcardApp:
 			for number, alternative in enumerate(alternatives):
 				tk.Checkbutton(self.mock_answers, text=alternative, variable=self.mock_answer_widgets[number]).pack(anchor="w", pady=3)
 		elif question.get("matching"):
-			self.mock_answer_widgets = []
-			for target in question.get("targets", []):
-				row = tk.Frame(self.mock_answers, bg="#f6f8fb")
-				row.pack(fill="x", pady=4)
-				tk.Label(row, text=target, wraplength=430, justify="left", anchor="w", bg="#f6f8fb").pack(side="left", fill="x", expand=True)
-				answer = tk.StringVar()
-				ttk.Combobox(row, textvariable=answer, values=alternatives, state="readonly", width=28).pack(side="right")
-				self.mock_answer_widgets.append(answer)
+			self.render_mock_matching(question, alternatives)
 		else:
-			listbox = tk.Listbox(self.mock_answers, height=max(3, len(alternatives)), exportselection=False)
-			for alternative in alternatives:
-				listbox.insert(tk.END, alternative)
-			listbox.pack(side="left", fill="both", expand=True)
-			self.mock_answer_widgets = [listbox]
-			buttons = tk.Frame(self.mock_answers, bg="#f6f8fb")
-			buttons.pack(side="left", padx=10)
-			tk.Button(buttons, text="Move up", command=lambda: self.move_mock_item(-1)).pack(pady=3)
-			tk.Button(buttons, text="Move down", command=lambda: self.move_mock_item(1)).pack(pady=3)
+			self.render_mock_order(alternatives)
 		self.mock_feedback.config(text="")
 
-	def move_mock_item(self, direction):
-		listbox = self.mock_answer_widgets[0]
-		selection = listbox.curselection()
-		if not selection:
+	def bind_drag(self, widget):
+		widget.bind("<ButtonPress-1>", self.start_drag)
+		widget.bind("<ButtonRelease-1>", self.finish_drag)
+
+	def start_drag(self, event):
+		widget = event.widget
+		selection = widget.curselection()
+		if selection:
+			self.drag_source = widget
+			self.drag_value = widget.get(selection[0])
+
+	def finish_drag(self, event):
+		if not self.drag_value:
 			return
-		old_index = selection[0]
-		new_index = old_index + direction
-		if not 0 <= new_index < listbox.size():
+		target = self.root.winfo_containing(event.x_root, event.y_root)
+		if target == self.mock_order_answer:
+			selected_index = self.drag_source.curselection()[0]
+			insert_index = self.mock_order_answer.nearest(event.y)
+			if self.drag_source == self.mock_order_answer and selected_index < insert_index:
+				insert_index -= 1
+			self.drag_source.delete(selected_index)
+			self.mock_order_answer.insert(insert_index, self.drag_value)
+			self.animate_listbox_item(self.mock_order_answer, insert_index)
+		elif target == self.mock_order_source and self.drag_source == self.mock_order_answer:
+			selected_index = self.mock_order_answer.curselection()[0]
+			self.mock_order_answer.delete(selected_index)
+			self.mock_order_source.insert(tk.END, self.drag_value)
+			self.animate_listbox_item(self.mock_order_answer, self.mock_order_answer.size() - 1)
+		self.drag_source = None
+		self.drag_value = None
+
+	def render_mock_order(self, alternatives):
+		columns = tk.Frame(self.mock_answers, bg="#f6f8fb")
+		columns.pack(fill="both", expand=True)
+		left = tk.Frame(columns, bg="#f6f8fb")
+		left.pack(side="left", fill="both", expand=True, padx=(0, 8))
+		right = tk.Frame(columns, bg="#f6f8fb")
+		right.pack(side="left", fill="both", expand=True, padx=(8, 0))
+		tk.Label(left, text="Actions", font=("Arial", 11, "bold"), background="#f6f8fb").pack(anchor="w")
+		tk.Label(left, text="Drag an action to the answer area.", foreground="#6b7280", background="#f6f8fb").pack(anchor="w", pady=(2, 8))
+		tk.Label(right, text="Answer area", font=("Arial", 11, "bold"), background="#f6f8fb").pack(anchor="w")
+		tk.Label(right, text="Drop actions here in the correct order.", foreground="#6b7280", background="#f6f8fb").pack(anchor="w", pady=(2, 8))
+		self.mock_order_source = tk.Listbox(left, height=max(5, len(alternatives)), exportselection=False)
+		self.mock_order_answer = tk.Listbox(right, height=max(5, len(alternatives)), exportselection=False)
+		for alternative in alternatives:
+			self.mock_order_source.insert(tk.END, alternative)
+		self.mock_order_source.pack(fill="both", expand=True)
+		self.mock_order_answer.pack(fill="both", expand=True)
+		self.bind_drag(self.mock_order_source)
+		self.bind_drag(self.mock_order_answer)
+
+	def render_mock_matching(self, question, alternatives):
+		columns = tk.Frame(self.mock_answers, bg="#f6f8fb")
+		columns.pack(fill="both", expand=True)
+		left = tk.Frame(columns, bg="#f6f8fb")
+		left.pack(side="left", fill="both", expand=True, padx=(0, 8))
+		right = tk.Frame(columns, bg="#f6f8fb")
+		right.pack(side="left", fill="both", expand=True, padx=(8, 0))
+		tk.Label(left, text="Options", font=("Arial", 11, "bold"), background="#f6f8fb").pack(anchor="w")
+		tk.Label(left, text="Drag an option to its requirement.", foreground="#6b7280", background="#f6f8fb").pack(anchor="w", pady=(2, 8))
+		tk.Label(right, text="Answer area", font=("Arial", 11, "bold"), background="#f6f8fb").pack(anchor="w")
+		tk.Label(right, text="Drop one option into each requirement.", foreground="#6b7280", background="#f6f8fb").pack(anchor="w", pady=(2, 8))
+		self.mock_match_source = tk.Listbox(left, height=max(5, len(alternatives)), exportselection=False)
+		for alternative in alternatives:
+			self.mock_match_source.insert(tk.END, alternative)
+		self.mock_match_source.pack(fill="both", expand=True)
+		self.bind_drag(self.mock_match_source)
+		self.mock_match_values = [None] * len(question.get("targets", []))
+		self.mock_match_labels = []
+		for target_index, target in enumerate(question.get("targets", [])):
+			row = tk.Frame(right, bg="#ffffff", padx=6, pady=5)
+			row.pack(fill="x", pady=3)
+			tk.Label(row, text=target, wraplength=260, justify="left", anchor="w", background="#ffffff").pack(fill="x")
+			answer_label = tk.Label(row, text="Drop an option here", fg="#6b7280", anchor="w", background="#ffffff")
+			answer_label.pack(fill="x", pady=(4, 0))
+			answer_label.bind("<ButtonRelease-1>", lambda event, index=target_index: self.drop_match_option(index))
+			self.mock_match_labels.append(answer_label)
+
+	def drop_match_option(self, target_index):
+		if not self.drag_value or self.drag_source != self.mock_match_source:
 			return
-		value = listbox.get(old_index)
-		listbox.delete(old_index)
-		listbox.insert(new_index, value)
-		listbox.selection_set(new_index)
+		self.mock_match_source.delete(tk.ANCHOR)
+		self.mock_match_values[target_index] = self.drag_value
+		self.mock_match_labels[target_index].config(text=self.drag_value, fg="#102030")
+		self.mock_match_labels[target_index].config(background="#dff3df")
+		self.root.after(280, lambda: self.mock_match_labels[target_index].config(background="#ffffff"))
+		self.drag_source = None
+		self.drag_value = None
+
+	def animate_listbox_item(self, listbox, index):
+		listbox.itemconfig(index, background="#dff3df")
+		self.root.after(280, lambda: listbox.itemconfig(index, background="#ffffff"))
 
 	def check_mock_answer(self):
 		question = self.mock_questions[self.mock_index]
@@ -192,9 +262,9 @@ class FlashcardApp:
 			correct = set(answer) == set(question.get("correct_answers", []))
 		elif question.get("matching"):
 			answer = []
-			for variable in self.mock_answer_widgets:
+			for value in self.mock_match_values:
 				try:
-					answer.append(question.get("alternatives", []).index(variable.get()))
+					answer.append(question.get("alternatives", []).index(value))
 				except ValueError:
 					answer.append(-1)
 			correct = answer == question.get("correct_matches", [])
@@ -214,6 +284,32 @@ class FlashcardApp:
 		if self.mock_questions:
 			self.mock_index = (self.mock_index - 1) % len(self.mock_questions)
 			self.render_mock_question()
+
+	def show_keyboard_help(self):
+		messagebox.showinfo(
+			"Keyboard operations",
+			"1-9: select an answer option\n"
+			"Enter: check the answer\n"
+			"Left/Right arrows: move between questions\n"
+			"Drag-and-drop actions still need to be placed with the pointer.",
+		)
+
+	def handle_mock_keyboard(self, event):
+		if self.tabs.index(self.tabs.select()) != 1 or not self.mock_questions:
+			return
+		if event.keysym == "Right":
+			self.next_mock_question()
+		elif event.keysym == "Left":
+			self.previous_mock_question()
+		elif event.keysym == "Return":
+			self.check_mock_answer()
+		elif event.char.isdigit() and event.char != "0":
+			option_index = int(event.char) - 1
+			question_type = self.mock_questions[self.mock_index].get("type")
+			if question_type == "multiple_choice" and option_index < len(self.mock_answer_widgets):
+				self.mock_answer_widgets[0].set(option_index)
+			elif question_type == "multi_select" and option_index < len(self.mock_answer_widgets):
+				self.mock_answer_widgets[option_index].set(not self.mock_answer_widgets[option_index].get())
 
 	def show_mock_question_form(self):
 		form = tk.Toplevel(self.root)

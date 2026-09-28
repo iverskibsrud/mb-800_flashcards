@@ -21,9 +21,11 @@ const mockMeta = document.getElementById("mockMeta");
 const mockQuestion = document.getElementById("mockQuestion");
 const mockOptions = document.getElementById("mockOptions");
 const mockFeedback = document.getElementById("mockFeedback");
+const keyboardHelpDialog = document.getElementById("keyboardHelpDialog");
 let mockQuestions = [];
 let mockIndex = 0;
 let mockOrder = [];
+let mockDragValue = null;
 
 function setStudyTab(showMockExam) {
   flashcardsPanel.hidden = showMockExam;
@@ -67,43 +69,101 @@ function renderMockQuestion() {
 }
 
 function renderMockMatching(current) {
+  const columns = document.createElement("div");
+  columns.className = "mock-dnd-columns";
+  const source = document.createElement("div");
+  const answer = document.createElement("div");
+  source.className = "mock-dnd-side";
+  answer.className = "mock-dnd-side";
+  source.innerHTML = "<strong>Options</strong><span class=\"mock-dnd-hint\">Drag an option to a requirement.</span>";
+  answer.innerHTML = "<strong>Answer area</strong><span class=\"mock-dnd-hint\">Drop one option into each row.</span>";
+  current.alternatives.forEach((alternative, index) => {
+    const item = document.createElement("div");
+    item.className = "mock-option";
+    item.draggable = true;
+    item.dataset.dndItem = index;
+    item.textContent = alternative;
+    item.addEventListener("dragstart", () => { mockDragValue = index; });
+    source.append(item);
+  });
   current.targets.forEach((target, targetIndex) => {
-    const row = document.createElement("label");
+    const row = document.createElement("div");
     row.className = "mock-option mock-match-row";
     row.append(document.createTextNode(target));
-    const select = document.createElement("select");
-    select.dataset.targetIndex = targetIndex;
-    select.innerHTML = `<option value="">Choose an answer</option>`;
-    current.alternatives.forEach((alternative, alternativeIndex) => {
-      const option = document.createElement("option");
-      option.value = alternativeIndex;
-      option.textContent = alternative;
-      select.append(option);
+    row.dataset.targetIndex = targetIndex;
+    row.addEventListener("dragover", (event) => event.preventDefault());
+    row.addEventListener("drop", () => {
+      if (mockDragValue !== null) {
+        row.dataset.answer = mockDragValue;
+        row.querySelector(".mock-drop-value")?.remove();
+        const value = document.createElement("span");
+        value.className = "mock-drop-value";
+        value.textContent = current.alternatives[mockDragValue];
+        row.append(value);
+        animateMoved(row);
+      }
     });
-    row.append(select);
-    mockOptions.append(row);
+    answer.append(row);
   });
+  columns.append(source, answer);
+  mockOptions.append(columns);
 }
 
 function renderMockOrder(current) {
   mockOptions.replaceChildren();
-  mockOrder.forEach((alternativeIndex, position) => {
-    const row = document.createElement("div");
-    row.className = "mock-option mock-order-row";
-    row.textContent = `${position + 1}. ${current.alternatives[alternativeIndex]}`;
-    const up = document.createElement("button");
-    up.type = "button";
-    up.textContent = "Up";
-    up.disabled = position === 0;
-    up.addEventListener("click", () => moveMockOrder(position, -1));
-    const down = document.createElement("button");
-    down.type = "button";
-    down.textContent = "Down";
-    down.disabled = position === mockOrder.length - 1;
-    down.addEventListener("click", () => moveMockOrder(position, 1));
-    row.append(up, down);
-    mockOptions.append(row);
+  const columns = document.createElement("div");
+  columns.className = "mock-dnd-columns";
+  const source = document.createElement("div");
+  const answer = document.createElement("div");
+  source.className = "mock-dnd-side";
+  answer.className = "mock-dnd-side";
+  source.innerHTML = "<strong>Actions</strong><span class=\"mock-dnd-hint\">Drag actions to the answer area.</span>";
+  answer.innerHTML = "<strong>Answer area</strong><span class=\"mock-dnd-hint\">Drop actions here in the correct order.</span>";
+  source.dataset.dnd = "source";
+  answer.dataset.dnd = "answer";
+  answer.addEventListener("dragover", (event) => event.preventDefault());
+  const answerHint = answer.querySelector(".mock-dnd-hint");
+  const addDropZone = () => {
+    const zone = document.createElement("div");
+    zone.className = "mock-drop-zone";
+    zone.textContent = "Drop here";
+    zone.addEventListener("dragover", (event) => {
+      event.preventDefault();
+      zone.classList.add("is-drop-target");
+    });
+    zone.addEventListener("dragleave", () => zone.classList.remove("is-drop-target"));
+    zone.addEventListener("drop", (event) => {
+      event.preventDefault();
+      zone.classList.remove("is-drop-target");
+      if (mockDragValue === null) return;
+      const item = document.querySelector(`[data-dnd-item='${mockDragValue}']`);
+      if (item) {
+        answer.insertBefore(item, zone.nextSibling);
+        animateMoved(item);
+      }
+    });
+    return zone;
+  };
+  answer.append(answerHint, addDropZone());
+  current.alternatives.forEach((alternative, index) => {
+    const item = document.createElement("div");
+    item.className = "mock-option";
+    item.draggable = true;
+    item.dataset.dndItem = index;
+    item.textContent = alternative;
+    item.addEventListener("dragstart", () => { mockDragValue = index; });
+    source.append(item);
   });
+  answer.replaceChildren(answerHint);
+  current.alternatives.forEach(() => answer.append(addDropZone()));
+  columns.append(source, answer);
+  mockOptions.append(columns);
+}
+
+function animateMoved(element) {
+  element.classList.remove("is-moving");
+  void element.offsetWidth;
+  element.classList.add("is-moving");
 }
 
 function moveMockOrder(position, direction) {
@@ -123,10 +183,11 @@ function checkMockAnswer() {
   } else if (current.type === "multi_select") {
     correct = selected.length === current.correct_answers.length && selected.every((item) => current.correct_answers.includes(item));
   } else if (current.matching) {
-    const matches = [...mockOptions.querySelectorAll("select")].map((select) => Number(select.value));
+    const matches = [...mockOptions.querySelectorAll("[data-target-index]")].map((row) => Number(row.dataset.answer));
     correct = matches.every((item, index) => item === current.correct_matches[index]);
   } else {
-    correct = mockOrder.every((item, index) => item === current.correct_order[index]);
+    const order = [...mockOptions.querySelectorAll("[data-dnd='answer'] [data-dnd-item]")].map((item) => Number(item.dataset.dndItem));
+    correct = order.length === current.correct_order.length && order.every((item, index) => item === current.correct_order[index]);
   }
   mockFeedback.textContent = `${correct ? "Correct" : "Not quite"}. ${current.explanation}`;
   mockFeedback.className = `feedback ${correct ? "correct" : "incorrect"}`;
@@ -251,6 +312,8 @@ document.getElementById("clearAllBtn").addEventListener("click", () => setAllCat
 flashcardsTab.addEventListener("click", () => setStudyTab(false));
 mockExamTab.addEventListener("click", () => setStudyTab(true));
 document.getElementById("checkMockBtn").addEventListener("click", checkMockAnswer);
+document.getElementById("keyboardHelpBtn").addEventListener("click", () => keyboardHelpDialog.showModal());
+document.getElementById("closeKeyboardHelpBtn").addEventListener("click", () => keyboardHelpDialog.close());
 document.getElementById("nextMockBtn").addEventListener("click", () => {
   if (!mockQuestions.length) return;
   mockIndex = (mockIndex + 1) % mockQuestions.length;
@@ -263,6 +326,33 @@ document.getElementById("prevMockBtn").addEventListener("click", () => {
 });
 
 window.addEventListener("keydown", (event) => {
+  if (!mockExamPanel.hidden) {
+    if (event.code === "ArrowRight") {
+      event.preventDefault();
+      document.getElementById("nextMockBtn").click();
+      return;
+    }
+    if (event.code === "ArrowLeft") {
+      event.preventDefault();
+      document.getElementById("prevMockBtn").click();
+      return;
+    }
+    if (event.code === "Enter") {
+      if (document.activeElement.tagName !== "BUTTON") {
+        event.preventDefault();
+        checkMockAnswer();
+      }
+      return;
+    }
+    if (/^[1-9]$/.test(event.key)) {
+      const option = mockOptions.querySelectorAll("input")[Number(event.key) - 1];
+      if (option) {
+        option.checked = option.type === "radio" ? true : !option.checked;
+        option.focus();
+      }
+      return;
+    }
+  }
   if (event.code === "Space") {
     event.preventDefault();
     flipCard();

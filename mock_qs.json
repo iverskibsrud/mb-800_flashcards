@@ -8,10 +8,10 @@
       "Create a user group.",
       "Select the user from the user list.",
       "Assign the user group to the user.",
-      "Assign the user to the company."
+      "Assign the company to the user."
     ],
-    "explanation": "First synchronize the user from Microsoft 365, then create the group, select the user, assign the group, and assign the company.",
-    "correct_order": [0, 1, 2, 3, 4]
+    "explanation": "Business Central users are synchronized from Microsoft 365 before they can be managed in the Business Central Users page. After the user exists in Business Central, create the user group and add the required permission sets to that group. Finally, select the user and assign the group. The company assignment is intentionally a distractor here: it is not one of the required actions in this sequence.",
+    "correct_order": [0, 1, 2, 3]
   },
   {
     "type": "multiple_choice",
@@ -23,7 +23,7 @@
       "Select Both Warnings in the Credit Warnings field.",
       "Enable the Exact Cost Reversing Mandatory field."
     ],
-    "explanation": "The Credit Warnings field value Both Warnings displays both the remaining credit and overdue payment warnings.",
+    "explanation": "The Credit Warnings field on the customer controls which credit-related messages appear when users create sales documents. Selecting Both Warnings makes Business Central check both the customer's remaining credit and overdue customer ledger entries. Block Customer is used to prevent activity, while Late Payment Predict is a separate prediction feature and does not configure these two standard warnings.",
     "correct_answer": 2
   },
   {
@@ -37,7 +37,7 @@
       "Report Selection - Purchase",
       "Document Sending Profiles"
     ],
-    "explanation": "Printer Selections stores the user, report, and printer combination used for automatic printing.",
+    "explanation": "Printer Selections determines which printer Business Central uses for a particular user and report. A setup record can associate the purchase order report with the cloud-based printer, so printing a purchase order automatically uses that printer. Printer Management administers available printers, while Report Layout Selection controls the report layout rather than the physical or cloud printer destination.",
     "correct_answer": 0
   },
   {
@@ -50,7 +50,7 @@
       "Update Users from Microsoft 365",
       "Import User Groups"
     ],
-    "explanation": "Update Users from Microsoft 365 imports users who have been added or changed in the Microsoft 365 Admin Center.",
+    "explanation": "The Business Central user list is synchronized with Microsoft 365. Update Users from Microsoft 365 imports new users and refreshes changed user information after administrators make changes in the Microsoft 365 Admin Center. User Setup and User Groups configure Business Central behavior and permissions after the users have been imported; they do not perform the initial synchronization.",
     "correct_answer": 2
   },
   {
@@ -63,7 +63,7 @@
       "Import a populated Excel template into the package data.",
       "Apply the data."
     ],
-    "explanation": "Create and populate the Excel template, create the package, import the populated template into the package, and apply the data.",
+    "explanation": "Configuration packages use table and field definitions to move master data into a company. First export an Excel template and populate it with the customer's data. Then create the configuration package, import the completed workbook into the package data, review or validate the records, and apply the data. Importing directly into sales header and lines is not the configuration-package process described here.",
     "correct_order": [0, 1, 2, 3]
   },
   {
@@ -82,7 +82,7 @@
       "Approver Chain"
     ],
     "correct_matches": [0, 1, 2],
-    "explanation": "Direct approver uses Approval User Setup, Specific approver uses the Workflow Response, and First Qualified approver finds a user who can approve the amount.",
+    "explanation": "Direct approver routes the request to the approver specified in Approval User Setup. Specific approver routes it to the user named by the workflow response. First Qualified approver evaluates the approval limits and selects a user who is qualified to approve the requested amount. Approver Chain is used when approval should move through a chain of users rather than selecting the first qualified user.",
     "matching": true
   },
   {
@@ -95,7 +95,7 @@
       "Client default",
       "Server default"
     ],
-    "explanation": "An Email printer type is used to send the financial statement through a cloud-based printing setup.",
+    "explanation": "The Email printer type is appropriate when a report must be delivered through a cloud-based service rather than sent to a locally attached printer. Business Central can create the report output and send it through the configured email or cloud delivery path. System, Client default, and Server default refer to different local or server printing behaviors and do not meet this cloud-based financial-statement requirement.",
     "correct_answer": 0
   },
   {
@@ -108,7 +108,7 @@
       "Use the Copy Data from Company function from the Configuration Worksheet page.",
       "Use the Copy function from the Companies page."
     ],
-    "explanation": "Configuration packages and Copy Data from Company can transfer setup and master data without transferring transaction data.",
+    "explanation": "A configuration package can be exported from the test company and imported into the production company, allowing selected setup and master tables to be transferred without copying posted transactions. Copy Data from Company on the Configuration Worksheet provides another controlled way to copy configuration and master data. Cloud Migration Management is for migration scenarios, and the general Companies page Copy function does not provide the required transaction-data separation.",
     "correct_answers": [1, 2]
   },
   {
@@ -126,7 +126,7 @@
       "Production"
     ],
     "correct_matches": [1, 0, 2],
-    "explanation": "Evaluation includes setup and sample data, Create New has no setup data, and Production has setup data without sample data.",
+    "explanation": "The Evaluation template is intended for demonstrations and includes both setup data and sample data. Create New creates a blank company without the standard setup data. Production creates a blank operational company with the setup data needed for implementation but without demonstration sample data. Choosing the template based on the intended starting content avoids having to remove sample records from a production company.",
     "matching": true
   },
   {
@@ -140,7 +140,7 @@
       "Get Standard Journals",
       "Customers Opening balance"
     ],
-    "explanation": "The required functions are Vendors Opening balance, G/L Accounts Opening balance, and Customers Opening balance.",
+    "explanation": "Opening-balance functions create general-journal entries for the existing vendor balances, customer balances, and G/L account balances at the specified posting date. These functions preserve the subledger detail needed for accounts payable and accounts receivable while also establishing the general ledger opening amounts. Calculate Inventory is an inventory calculation function, and Get Standard Journals retrieves reusable journals rather than loading these three categories of starting balances.",
     "correct_answers": [0, 1, 4]
   }
 ]
