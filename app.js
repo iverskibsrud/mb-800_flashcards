@@ -17,6 +17,8 @@ const flashcardsPanel = document.getElementById("flashcardsPanel");
 const mockExamPanel = document.getElementById("mockExamPanel");
 const flashcardsTab = document.getElementById("flashcardsTab");
 const mockExamTab = document.getElementById("mockExamTab");
+const pageTitle = document.getElementById("pageTitle");
+const pageSubtitle = document.getElementById("pageSubtitle");
 const mockMeta = document.getElementById("mockMeta");
 const mockQuestion = document.getElementById("mockQuestion");
 const mockOptions = document.getElementById("mockOptions");
@@ -34,11 +36,16 @@ function setStudyTab(showMockExam) {
   mockExamTab.classList.toggle("active", showMockExam);
   flashcardsTab.setAttribute("aria-selected", String(!showMockExam));
   mockExamTab.setAttribute("aria-selected", String(showMockExam));
+  pageTitle.textContent = showMockExam ? "MB-800 ExamTopics" : "MB-800 Flashcards";
+  pageSubtitle.textContent = showMockExam ? "Practice questions and answers" : "Flashcards for review";
+  menuToggle.hidden = showMockExam;
+  if (showMockExam) setMenuOpen(false);
 }
 
 function renderMockQuestion() {
   const current = mockQuestions[mockIndex];
   mockOptions.replaceChildren();
+  document.querySelector(".mock-context-table")?.remove();
   mockFeedback.textContent = "";
   if (!current) {
     mockMeta.textContent = "No mock questions found.";
@@ -47,6 +54,7 @@ function renderMockQuestion() {
   }
   mockMeta.textContent = `Question ${mockIndex + 1} of ${mockQuestions.length} · ${current.topic} · ${current.type}`;
   mockQuestion.textContent = current.question;
+  if (current.context_table) renderMockContextTable(current.context_table);
   mockOrder = current.alternatives.map((_, index) => index);
   if (current.matching) {
     renderMockMatching(current);
@@ -66,6 +74,32 @@ function renderMockQuestion() {
     label.append(input, document.createTextNode(alternative));
     mockOptions.append(label);
   });
+}
+
+function renderMockContextTable(tableData) {
+  const table = document.createElement("table");
+  table.className = "mock-context-table";
+  const head = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+  tableData.headers.forEach((header) => {
+    const cell = document.createElement("th");
+    cell.scope = "col";
+    cell.textContent = header;
+    headerRow.append(cell);
+  });
+  head.append(headerRow);
+  const body = document.createElement("tbody");
+  tableData.rows.forEach((row) => {
+    const tableRow = document.createElement("tr");
+    row.forEach((value) => {
+      const cell = document.createElement("td");
+      cell.textContent = value;
+      tableRow.append(cell);
+    });
+    body.append(tableRow);
+  });
+  table.append(head, body);
+  mockQuestion.after(table);
 }
 
 function renderMockMatching(current) {
@@ -117,34 +151,11 @@ function renderMockOrder(current) {
   const answer = document.createElement("div");
   source.className = "mock-dnd-side";
   answer.className = "mock-dnd-side";
-  source.innerHTML = "<strong>Actions</strong><span class=\"mock-dnd-hint\">Drag actions to the answer area.</span>";
-  answer.innerHTML = "<strong>Answer area</strong><span class=\"mock-dnd-hint\">Drop actions here in the correct order.</span>";
+  source.innerHTML = "<strong>Action</strong><span class=\"mock-dnd-hint\">Drag an action into an answer space.</span>";
+  answer.innerHTML = "<strong>Answer</strong><span class=\"mock-dnd-hint\">Place each action in the correct numbered space.</span>";
   source.dataset.dnd = "source";
   answer.dataset.dnd = "answer";
   answer.addEventListener("dragover", (event) => event.preventDefault());
-  const answerHint = answer.querySelector(".mock-dnd-hint");
-  const addDropZone = () => {
-    const zone = document.createElement("div");
-    zone.className = "mock-drop-zone";
-    zone.textContent = "Drop here";
-    zone.addEventListener("dragover", (event) => {
-      event.preventDefault();
-      zone.classList.add("is-drop-target");
-    });
-    zone.addEventListener("dragleave", () => zone.classList.remove("is-drop-target"));
-    zone.addEventListener("drop", (event) => {
-      event.preventDefault();
-      zone.classList.remove("is-drop-target");
-      if (mockDragValue === null) return;
-      const item = document.querySelector(`[data-dnd-item='${mockDragValue}']`);
-      if (item) {
-        answer.insertBefore(item, zone.nextSibling);
-        animateMoved(item);
-      }
-    });
-    return zone;
-  };
-  answer.append(answerHint, addDropZone());
   current.alternatives.forEach((alternative, index) => {
     const item = document.createElement("div");
     item.className = "mock-option";
@@ -154,8 +165,42 @@ function renderMockOrder(current) {
     item.addEventListener("dragstart", () => { mockDragValue = index; });
     source.append(item);
   });
-  answer.replaceChildren(answerHint);
-  current.alternatives.forEach(() => answer.append(addDropZone()));
+  source.addEventListener("dragover", (event) => event.preventDefault());
+  source.addEventListener("drop", (event) => {
+    event.preventDefault();
+    if (mockDragValue === null) return;
+    const item = mockOptions.querySelector(`[data-dnd-item='${mockDragValue}']`);
+    if (item && item.parentElement !== source) {
+      source.append(item);
+      animateMoved(item);
+    }
+  });
+  current.alternatives.forEach((_, slotIndex) => {
+    const slot = document.createElement("div");
+    slot.className = "mock-answer-slot";
+    slot.dataset.slotIndex = slotIndex;
+    slot.innerHTML = `<span class="mock-slot-number">${slotIndex + 1}</span><span class="mock-slot-placeholder">Drop an action here</span>`;
+    slot.addEventListener("dragover", (event) => {
+      event.preventDefault();
+      slot.classList.add("is-drop-target");
+    });
+    slot.addEventListener("dragleave", () => slot.classList.remove("is-drop-target"));
+    slot.addEventListener("drop", (event) => {
+      event.preventDefault();
+      slot.classList.remove("is-drop-target");
+      if (mockDragValue === null) return;
+      const item = mockOptions.querySelector(`[data-dnd-item='${mockDragValue}']`);
+      if (!item) return;
+      const displacedItem = slot.querySelector("[data-dnd-item]");
+      if (displacedItem && displacedItem !== item) source.append(displacedItem);
+      item.remove();
+      slot.querySelector(".mock-slot-placeholder")?.remove();
+      slot.append(item);
+      mockOrder = [...answer.querySelectorAll("[data-dnd-item]")].map((entry) => Number(entry.dataset.dndItem));
+      animateMoved(item);
+    });
+    answer.append(slot);
+  });
   columns.append(source, answer);
   mockOptions.append(columns);
 }

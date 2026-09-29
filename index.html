@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MB-800 Flashcards</title>
+    <title>MB-800 Study Tool</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main class="app">
       <header class="app-header">
         <div>
-        <h1>MB-800 Flashcards</h1>
-        <p class="subtitle">Flashcards for review</p>
+        <h1 id="pageTitle">MB-800 Flashcards</h1>
+        <p class="subtitle" id="pageSubtitle">Flashcards for review</p>
         </div>
         <button class="menu-toggle" id="menuToggle" type="button" aria-controls="categoryMenu" aria-expanded="false">
           <span class="menu-icon" aria-hidden="true">☰</span>
@@ -21,7 +21,7 @@
 
       <nav class="tabs" aria-label="Study mode">
         <button class="tab active" id="flashcardsTab" type="button" aria-selected="true">Flashcards</button>
-        <button class="tab" id="mockExamTab" type="button" aria-selected="false">MB-800 Mock Exam</button>
+        <button class="tab" id="mockExamTab" type="button" aria-selected="false">ExamTopics Questions</button>
       </nav>
 
       <aside class="category-menu" id="categoryMenu" aria-label="Filter by category" hidden>
@@ -57,7 +57,7 @@
       </div>
 
       <section class="tab-panel mock-panel" id="mockExamPanel" hidden aria-live="polite">
-        <p class="label">Mock exam</p>
+        <p class="label">ExamTopics question</p>
         <p class="mock-meta" id="mockMeta">Loading questions...</p>
         <h2 id="mockQuestion"></h2>
         <div class="mock-options" id="mockOptions"></div>

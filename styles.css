@@ -130,6 +130,7 @@ h1 {
 .mock-dnd-side > strong {
   display: block;
   margin-bottom: 10px;
+  font-size: 1.05rem;
 }
 
 .mock-dnd-hint {
@@ -158,6 +159,47 @@ h1 {
   transform: scaleY(1.12);
 }
 
+.mock-answer-slot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  margin: 8px 0;
+  padding: 7px;
+  border: 1px dashed #aeb8c4;
+  border-radius: 8px;
+  background: #fbfcfe;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.mock-answer-slot.is-drop-target {
+  border-color: var(--accent);
+  background: #e8eefb;
+}
+
+.mock-slot-number {
+  display: grid;
+  flex: 0 0 28px;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e8eefb;
+  color: var(--accent-hover);
+  font-weight: 700;
+}
+
+.mock-slot-placeholder {
+  color: #7a8794;
+  font-size: 0.85rem;
+}
+
+.mock-answer-slot .mock-option {
+  flex: 1;
+  margin: 0;
+  background: #fff;
+}
+
 .mock-option {
   display: flex;
   gap: 10px;
@@ -169,6 +211,29 @@ h1 {
 
 .mock-option:hover {
   background: #f2f5f9;
+}
+
+.mock-context-table {
+  width: 100%;
+  margin: -2px 0 12px;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid var(--line);
+  font-size: 0.95rem;
+}
+
+.mock-context-table th,
+.mock-context-table td {
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.mock-context-table th {
+  background: #e8eefb;
+  color: var(--accent-hover);
+  font-weight: 700;
 }
 
 .mock-order-row {

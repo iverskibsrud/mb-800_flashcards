@@ -37,7 +37,7 @@
   },
   {
     "question": "Direct Posting",
-    "answer": "Bokføring direkte mot en konto via en journal. Noen kontoer styres av subledgers/reskontro."
+    "answer": "Man kan føre transaksjoner drirekte på en hovedbokskonto (G/L Account) uten å gå via en reskontro eller en annen modul."
   },
   {
     "question": "Reskontro",

@@ -397,13 +397,14 @@ class FlashcardApp:
 		self.instructions.pack_forget()
 		self.add_button.config(state="disabled")
 
-		self.add_form = tk.Frame(self.root, padx=40, pady=25)
+		form_background = "#f6f8fb"
+		self.add_form = tk.Frame(self.flashcard_tab, bg=form_background, padx=40, pady=25)
 		self.add_form.pack(expand=True, fill="both")
-		tk.Label(self.add_form, text="Add a flashcard", font=("Arial", 22, "bold")).pack(pady=(0, 20))
-		tk.Label(self.add_form, text="Question", anchor="w").pack(fill="x")
+		tk.Label(self.add_form, text="Add a flashcard", font=("Arial", 22, "bold"), bg=form_background).pack(pady=(0, 20))
+		tk.Label(self.add_form, text="Question", anchor="w", bg=form_background).pack(fill="x")
 		self.question_entry = tk.Entry(self.add_form, font=("Arial", 14))
 		self.question_entry.pack(fill="x", pady=(4, 14))
-		tk.Label(self.add_form, text="Answer", anchor="w").pack(fill="x")
+		tk.Label(self.add_form, text="Answer", anchor="w", bg=form_background).pack(fill="x")
 		self.answer_entry = tk.Entry(self.add_form, font=("Arial", 14))
 		self.answer_entry.pack(fill="x", pady=(4, 20))
 		tk.Button(
@@ -412,7 +413,7 @@ class FlashcardApp:
 			font=("Arial", 11),
 			command=self.add_card,
 		).pack()
-		tk.Label(self.add_form, text="Press Esc to return to testing", fg="#666666").pack(pady=14)
+		tk.Label(self.add_form, text="Press Esc to return to testing", fg="#666666", bg=form_background).pack(pady=14)
 		self.question_entry.focus_set()
 
 	def add_card(self):
