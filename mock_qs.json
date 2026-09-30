@@ -510,5 +510,179 @@
     "correct_matches": [0, 2, 1],
     "explanation": "Use Approval User Setup to assign the sales director and define the user's sales amount approval limit, including the $10,000 threshold. Use Workflow to select the sales document type and create the approval trigger and condition. Use Workflow User Group to define the users or sales items included in the approval workflow, so orders over the threshold are routed to the sales director.",
     "matching": true
+  },
+  {
+    "type": "hotspot",
+    "topic": "Customers",
+    "question": "A company uses Dynamics 365 Business Central. Configure a customer card to process payments through a bank account, bill a different customer for invoices, and print invoices in a specific language.",
+    "fields": [
+      {"label": "Process payments through a bank account", "options": ["Payment Terms Code", "Payment Method Code", "Preferred Bank Account"], "correct_answer": 1},
+      {"label": "Bill a different customer for invoices", "options": ["Contact name", "Bill-to customer", "Ship-to code"], "correct_answer": 1},
+      {"label": "Print invoices in a specific language", "options": ["Country/Region code", "Language code", "Responsibility center"], "correct_answer": 1}
+    ],
+    "explanation": "Payment Method Code controls how payments are processed, Bill-to Customer identifies the customer who receives the invoice, and Language Code controls the language used for customer documents."
+  },
+  {
+    "type": "hotspot",
+    "topic": "Cash receipt journals",
+    "question": "Configure a cash receipt journal batch so it uses a bank account by default and archives customer payment lines in posted journals.",
+    "fields": [
+      {"label": "Cash receipt journal batch must use a bank account", "options": ["Bank Account under Bal. Account Type", "G/L account under Bal. Account Type", "Customer under Bal. Account Type", "Vendor under Bal. Account Type"], "correct_answer": 1},
+      {"label": "Cash receipt customer payments must be archived in posted journals", "options": ["Posting No. Series", "Copy to Posted Jnl. Lines", "Suggest Balancing Amount", "Reason Code"], "correct_answer": 1}
+    ],
+    "explanation": "Set the balancing account type to G/L account for the bank account default, and enable Copy to Posted Jnl. Lines so posted cash receipt lines are retained in the posted journal."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "General ledger",
+    "question": "A finance manager creates a new G/L account and needs it included in the general journal reconciliation window. What should you do?",
+    "alternatives": ["Add the G/L account to the Bank Account Posting Group.", "Enable Direct Posting on the G/L account card.", "Enable the Reconciliation Account field on the G/L account card.", "Create a new payment reconciliation journal."],
+    "correct_answer": 2,
+    "explanation": "Enable Reconciliation Account on the G/L account card. This marks the account as relevant for reconciliation in the general journal reconciliation window."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Items",
+    "question": "An item has PCS as its base unit of measure and BOX as an additional unit. One BOX contains 20 PCS. What value should you enter for BOX on the Item Units of Measure page?",
+    "alternatives": ["Set Qty. per Unit of Measure for BOX to 0.05.", "Set Qty. per Unit of Measure for BOX to 20.", "Set Qty. per Unit of Measure for PCS to 0.05.", "Set Qty. per Unit of Measure for PCS to 20."],
+    "correct_answer": 1,
+    "explanation": "The quantity per unit of measure for BOX is 20 because one BOX represents 20 base units, or PCS."
+  },
+  {
+    "type": "sequence",
+    "topic": "Company setup",
+    "question": "You need to duplicate a company based on an existing Dynamics 365 Business Central company. Which four actions should you perform in sequence?",
+    "alternatives": ["Open the Companies page.", "Select a company to copy.", "Select the Copy function.", "Add the new company name.", "Open the data migration task.", "Select tables to copy.", "Use the New function."],
+    "correct_order": [0, 1, 2, 3],
+    "explanation": "Open the Companies page, select the source company, choose Copy, and provide the new company name."
+  },
+  {
+    "type": "sequence",
+    "topic": "Configuration packages",
+    "question": "A client provides an Excel file containing vendor master data and vendor bank account details. Import both by using a configuration package. Which four actions should you perform in sequence?",
+    "alternatives": ["Import one Excel template that contains vendor and vendor bank account data.", "Import two separate Excel files into the package, one for vendor data and one for bank account data.", "Define the Vendor table as a parent in Parent Table ID for VendorBankAccount.", "Create a configuration package.", "Define the VendorBankAccount table as a parent in Parent Table ID.", "Select Apply package on the header."],
+    "correct_order": [3, 0, 2, 5],
+    "explanation": "Create the configuration package, import the single workbook containing both related tables, define Vendor as the parent of VendorBankAccount, and apply the package."
+  },
+  {
+    "type": "multi_select",
+    "topic": "Purchase prices",
+    "question": "A company plans to use multiple unit prices for the same items from different vendors. In which two locations can you configure purchase prices?",
+    "alternatives": ["Purchase order", "Resource prices", "Vendor card", "Customer card", "Item card"],
+    "correct_answers": [2, 4],
+    "explanation": "Purchase prices can be maintained for a vendor and item, so the Vendor card and Item card are the applicable locations."
+  },
+  {
+    "type": "hotspot",
+    "topic": "Dimensions",
+    "question": "Select the value posting type for each dimension requirement in Dynamics 365 Business Central.",
+    "fields": [
+      {"label": "Allow the user to change the default dimension value for the account type in a transaction", "options": ["Code Mandatory", "Same Code", "No Code"], "correct_answer": 2},
+      {"label": "Prevent the user from posting a transaction without a dimension value for the account type", "options": ["Code Mandatory", "Same Code", "No Code"], "correct_answer": 0},
+      {"label": "Ensure that Business Central only accepts the default dimension value set for the account type", "options": ["Code Mandatory", "Same Code", "No Code"], "correct_answer": 1}
+    ],
+    "explanation": "No Code allows the default value to be changed, Code Mandatory requires a value, and Same Code requires the specified default value to be used."
+  },
+  {
+    "type": "matching",
+    "topic": "Opening balances",
+    "question": "Match each opening balance to the Business Central component used to import it.",
+    "targets": ["Item", "Bank", "Customer"],
+    "alternatives": ["General journal", "Bank account reconciliation", "Item journal"],
+    "correct_matches": [2, 1, 0],
+    "explanation": "Use the Item journal for item opening quantities and values, Bank account reconciliation for bank opening balances, and the General journal for customer opening balances."
+  },
+  {
+    "type": "sequence",
+    "topic": "Configuration packages",
+    "question": "Most vendors use a foreign currency for opening balances. The balancing account is preselected on the journal batch. Import vendor opening balances by using configuration packages. Which four actions should you perform in sequence?",
+    "alternatives": ["Select fields in this order: Account Type, Account No., Posting Date, Document No., Description, Amount (LCY), Currency, and Amount.", "Import the Excel file and validate the relationship. Then apply the data and post to the general journal.", "Select fields in this order: Account Type, Account No., Posting Date, Document No., Description, Amount, Amount (LCY), and Currency.", "Import from Excel and then post to the general journal.", "Export to Excel from the configuration package and populate the data.", "Select fields in this order: Account Type, Account No., Posting Date, Document No., Description, Currency Code, Amount, and Amount (LCY).", "Create a configuration package for table 81 Gen. Journal Line."],
+    "correct_order": [6, 4, 5, 1],
+    "explanation": "Create a package for Gen. Journal Line, export and populate the Excel template, include Currency Code in the processing order for foreign-currency balances, then import, validate, apply, and post the journal."
+  },
+  {
+    "type": "sequence",
+    "topic": "Dimensions",
+    "question": "A company recently restructured and has only a few posted entries. Which three actions should you perform to change the Global Dimensions?",
+    "alternatives": ["Update Global Dimensions in parallel order.", "Select Parallel Processing on the Change Global Dimensions page.", "Select new dimension codes in the dimension fields.", "Update Global Dimensions in sequential order.", "On General Ledger Setup, select Change Global Dimensions."],
+    "correct_order": [4, 3, 2],
+    "explanation": "Open Change Global Dimensions from General Ledger Setup, run the update in sequential order because there are few posted entries, and select the new dimension codes."
+  },
+  {
+    "type": "hotspot",
+    "topic": "Case study: Customers and dimensions",
+    "question": "Northwind Traders identifies customers by market type and requires all revenue postings to reference a market. Configure retail store customer cards to track revenue by market.",
+    "fields": [
+      {"label": "Assign the dimension code", "options": ["Market", "Location", "Department", "Product Category"], "correct_answer": 0},
+      {"label": "Assign the dimension value code", "options": ["Sales", "Retail", "Treats", "Breeder"], "correct_answer": 0},
+      {"label": "Select a value posting", "options": ["Blank", "No code", "Same code", "Code mandatory"], "correct_answer": 2}
+    ],
+    "explanation": "Use the Market dimension, assign the Sales value shown for the retail customer setup, and select Same code so the default market value is retained on postings."
+  },
+  {
+    "type": "matching",
+    "topic": "Approval workflows",
+    "question": "A purchase order approval workflow must send an approval request when a purchase order is created, require approval for amounts of $600 or more, and notify users immediately. Match each use case to the area to configure.",
+    "targets": ["Activate the notification when a new purchase order is created.", "Configure the approval limit for purchase orders.", "Allow the user to receive notifications immediately."],
+    "alternatives": ["Approval User Setup", "Notification Schedule", "Workflow User Group", "Workflow Notification Setup"],
+    "correct_matches": [3, 0, 1],
+    "explanation": "Workflow Notification Setup activates workflow notifications, Approval User Setup contains approval limits, and Notification Schedule controls when notifications are delivered."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Users and permissions",
+    "question": "A user has CustomerMgmt with Insert permission set to Yes for the Customer table and ReceivablesMgmt with Insert permission set to Blank. What is the outcome?",
+    "alternatives": ["The Yes option will allow a user to create a new customer.", "The permission set order will allow a user to create a new customer.", "The Blank option will allow a user to create a new customer."],
+    "correct_answer": 0,
+    "explanation": "Permissions from assigned permission sets are cumulative. The Yes permission grants insert access even though another permission set leaves Insert blank."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Opening balances",
+    "question": "You need to transfer opening balances data into Business Central. Solution: Import the data by using comma-separated values (CSV) files. Does the solution meet the goal?",
+    "alternatives": ["Yes", "No"],
+    "correct_answer": 0,
+    "explanation": "Yes. CSV files are a supported way to prepare and import opening-balance data through the applicable Business Central import process."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Opening balances",
+    "question": "You need to transfer opening balances data into Business Central. Solution: Use RapidStart Services to import the data. Does the solution meet the goal?",
+    "alternatives": ["Yes", "No"],
+    "correct_answer": 0,
+    "explanation": "Yes. RapidStart Services supports company configuration and importing initial data, including opening-balance data."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Opening balances",
+    "question": "You need to transfer opening balances data into Business Central. Solution: Perform data migration by using the Data migration assisted setup wizard. Does the solution meet the goal?",
+    "alternatives": ["Yes", "No"],
+    "correct_answer": 1,
+    "explanation": "No. The Data migration assisted setup wizard is intended primarily for migrating master data. Opening balances require journal or opening-balance import processes."
+  },
+  {
+    "type": "matching",
+    "topic": "Users and permissions",
+    "question": "A specific group of operating users must access only a particular set of customer data. Which pages should you configure?",
+    "targets": ["Create security rules that grant users the required access.", "Assign the predefined security rule sets to the requested users."],
+    "alternatives": ["User Card", "Profiles (Roles)", "Permission Sets", "Microsoft 365 admin center"],
+    "correct_matches": [2, 0],
+    "explanation": "Create or maintain the security rules on Permission Sets, then assign the predefined permission sets to users from the User Card."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Opening balances",
+    "question": "You need to transfer opening balances data into Business Central. Solution: Transfer balances by using the Copy Company function. Does the solution meet the goal?",
+    "alternatives": ["Yes", "No"],
+    "correct_answer": 1,
+    "explanation": "No. Copy Company copies the entire company data rather than transferring only the opening balances."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Microsoft Teams integration",
+    "question": "The finance manager must search for contacts and share Business Central records in Teams. You need to install the Business Central app in Teams. What should you do first?",
+    "alternatives": ["Select Share on Attachment Documents in Business Central.", "Search for Teams App Centralized Deployment in Business Central.", "Add a Planner tab to a team channel.", "Manage apps in the Business Central admin center."],
+    "correct_answer": 3,
+    "explanation": "First manage apps in the Business Central admin center. This is where the Business Central app for Teams is centrally managed and deployed."
   }
 ]
