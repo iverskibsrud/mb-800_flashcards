@@ -47,6 +47,7 @@
             <button id="checkMockBtn" type="button">Check answer</button>
             <button id="prevMockBtn" type="button">Previous</button>
             <button id="nextMockBtn" type="button">Next</button>
+            <button id="explanationBtn" type="button" hidden>Explanation</button>
           </div>
           <button class="keyboard-help-button" id="keyboardHelpBtn" type="button">Keyboard operations</button>
         </div>
@@ -58,6 +59,11 @@
         <p><kbd>Left Arrow</kbd>/<kbd>Right Arrow</kbd> move between questions.</p>
         <p>Drag-and-drop actions still need to be placed with the pointer.</p>
         <button id="closeKeyboardHelpBtn" type="button">Close</button>
+      </dialog>
+      <dialog id="explanationDialog" class="explanation-dialog">
+        <h2>Explanation</h2>
+        <p id="explanationContent"></p>
+        <button id="closeExplanationBtn" type="button">Close</button>
       </dialog>
     </main>
 

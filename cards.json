@@ -266,5 +266,9 @@
   {
     "question": "Recurring journal",
     "answer": "Generell kladd med spesifikke felt for å håndtere transaksjoner man ofte gjør med få eller ingen endringer. Ex.: Leie, subscriptions, strøm osv."
+  },
+  {
+    "question": "Memo",
+    "answer": "Nota"
   }
 ]

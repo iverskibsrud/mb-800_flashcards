@@ -18,6 +18,9 @@ const mockMeta = document.getElementById("mockMeta");
 const mockQuestion = document.getElementById("mockQuestion");
 const mockOptions = document.getElementById("mockOptions");
 const mockFeedback = document.getElementById("mockFeedback");
+const explanationBtn = document.getElementById("explanationBtn");
+const explanationDialog = document.getElementById("explanationDialog");
+const explanationContent = document.getElementById("explanationContent");
 const keyboardHelpDialog = document.getElementById("keyboardHelpDialog");
 let mockQuestions = [];
 let mockIndex = 0;
@@ -40,6 +43,9 @@ function renderMockQuestion() {
   mockOptions.replaceChildren();
   document.querySelector(".mock-context-table")?.remove();
   mockFeedback.textContent = "";
+  explanationBtn.hidden = true;
+  explanationContent.textContent = "";
+  if (explanationDialog.open) explanationDialog.close();
   if (!current) {
     mockMeta.textContent = "No mock questions found.";
     mockQuestion.textContent = "Add questions to mock_qs.json to begin.";
@@ -109,6 +115,8 @@ function clearAnswerState() {
   });
   mockFeedback.textContent = "";
   mockFeedback.className = "feedback";
+  explanationBtn.hidden = true;
+  explanationContent.textContent = "";
 }
 
 function renderMockContextTable(tableData) {
@@ -285,8 +293,10 @@ function checkMockAnswer() {
       select.classList.toggle("is-incorrect", !isCorrect);
     });
   }
-  mockFeedback.textContent = `${correct ? "Correct" : "Not quite"}. ${current.explanation}`;
+  mockFeedback.textContent = `${correct ? "Correct" : "Not quite"}.`;
   mockFeedback.className = `feedback ${correct ? "correct" : "incorrect"}`;
+  explanationContent.textContent = current.explanation;
+  explanationBtn.hidden = false;
 }
 
 function render() {
@@ -363,6 +373,8 @@ document.getElementById("shuffleBtn").addEventListener("click", shuffleCard);
 flashcardsTab.addEventListener("click", () => setStudyTab(false));
 mockExamTab.addEventListener("click", () => setStudyTab(true));
 document.getElementById("checkMockBtn").addEventListener("click", checkMockAnswer);
+explanationBtn.addEventListener("click", () => explanationDialog.showModal());
+document.getElementById("closeExplanationBtn").addEventListener("click", () => explanationDialog.close());
 document.getElementById("keyboardHelpBtn").addEventListener("click", () => keyboardHelpDialog.showModal());
 document.getElementById("closeKeyboardHelpBtn").addEventListener("click", () => keyboardHelpDialog.close());
 document.getElementById("nextMockBtn").addEventListener("click", () => {
@@ -378,6 +390,11 @@ document.getElementById("prevMockBtn").addEventListener("click", () => {
 
 window.addEventListener("keydown", (event) => {
   if (!mockExamPanel.hidden) {
+    if (event.key.toLowerCase() === "e" && !explanationBtn.hidden) {
+      event.preventDefault();
+      explanationDialog.showModal();
+      return;
+    }
     if (event.code === "ArrowRight") {
       event.preventDefault();
       document.getElementById("nextMockBtn").click();

@@ -350,6 +350,28 @@ h1 {
   color: var(--text);
 }
 
+.explanation-dialog {
+  width: min(620px, calc(100% - 36px));
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 22px;
+  color: var(--text);
+}
+
+.explanation-dialog::backdrop {
+  background: rgba(16, 32, 48, 0.28);
+}
+
+.explanation-dialog h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.explanation-dialog p {
+  margin-bottom: 20px;
+  line-height: 1.55;
+}
+
 .keyboard-help::backdrop {
   background: rgba(16, 32, 48, 0.28);
 }
