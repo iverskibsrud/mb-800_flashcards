@@ -2,17 +2,12 @@ let allCards = [];
 let cards = [];
 let index = 0;
 let showingAnswer = false;
-let selectedCategories = new Set();
 const storageKey = "mb800_flashcards_cards";
 
 const card = document.getElementById("card");
 const cardLabel = document.getElementById("cardLabel");
 const cardContent = document.getElementById("cardContent");
 const meta = document.getElementById("meta");
-const menuToggle = document.getElementById("menuToggle");
-const categoryMenu = document.getElementById("categoryMenu");
-const categoryList = document.getElementById("categoryList");
-const menuBackdrop = document.getElementById("menuBackdrop");
 const flashcardsPanel = document.getElementById("flashcardsPanel");
 const mockExamPanel = document.getElementById("mockExamPanel");
 const flashcardsTab = document.getElementById("flashcardsTab");
@@ -38,8 +33,6 @@ function setStudyTab(showMockExam) {
   mockExamTab.setAttribute("aria-selected", String(showMockExam));
   pageTitle.textContent = showMockExam ? "MB-800 ExamTopics" : "MB-800 Flashcards";
   pageSubtitle.textContent = showMockExam ? "Practice questions and answers" : "Flashcards for review";
-  menuToggle.hidden = showMockExam;
-  if (showMockExam) setMenuOpen(false);
 }
 
 function renderMockQuestion() {
@@ -53,11 +46,15 @@ function renderMockQuestion() {
     return;
   }
   mockMeta.textContent = `Question ${mockIndex + 1} of ${mockQuestions.length} · ${current.topic} · ${current.type}`;
-  mockQuestion.textContent = current.question;
+  mockQuestion.textContent = current.question.replace(" Solution:", "\n\nSolution:");
   if (current.context_table) renderMockContextTable(current.context_table);
-  mockOrder = current.alternatives.map((_, index) => index);
+  mockOrder = (current.alternatives ?? []).map((_, index) => index);
   if (current.matching) {
     renderMockMatching(current);
+    return;
+  }
+  if (current.type === "hotspot") {
+    renderMockHotspot(current);
     return;
   }
   if (current.type === "drag_and_drop" || current.type === "sequence") {
@@ -71,9 +68,47 @@ function renderMockQuestion() {
     input.type = current.type === "multi_select" ? "checkbox" : "radio";
     input.name = "mock-answer";
     input.value = index;
+    input.addEventListener("change", clearAnswerState);
     label.append(input, document.createTextNode(alternative));
     mockOptions.append(label);
   });
+}
+
+function renderMockHotspot(current) {
+  const hotspot = document.createElement("div");
+  hotspot.className = "mock-hotspot";
+  current.fields.forEach((field, index) => {
+    const label = document.createElement("label");
+    label.className = "mock-hotspot-field";
+    label.append(document.createTextNode(field.label));
+    const select = document.createElement("select");
+    select.className = "mock-hotspot-select";
+    select.dataset.hotspotIndex = index;
+    select.addEventListener("change", clearAnswerState);
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "Select an answer";
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    select.append(placeholder);
+    field.options.forEach((option, optionIndex) => {
+      const choice = document.createElement("option");
+      choice.value = optionIndex;
+      choice.textContent = option;
+      select.append(choice);
+    });
+    label.append(select);
+    hotspot.append(label);
+  });
+  mockOptions.append(hotspot);
+}
+
+function clearAnswerState() {
+  mockOptions.querySelectorAll(".is-correct, .is-incorrect").forEach((element) => {
+    element.classList.remove("is-correct", "is-incorrect");
+  });
+  mockFeedback.textContent = "";
+  mockFeedback.className = "feedback";
 }
 
 function renderMockContextTable(tableData) {
@@ -230,50 +265,28 @@ function checkMockAnswer() {
   } else if (current.matching) {
     const matches = [...mockOptions.querySelectorAll("[data-target-index]")].map((row) => Number(row.dataset.answer));
     correct = matches.every((item, index) => item === current.correct_matches[index]);
+  } else if (current.type === "hotspot") {
+    const selected = [...mockOptions.querySelectorAll("[data-hotspot-index]")].map((select) => select.value === "" ? null : Number(select.value));
+    correct = selected.length === current.fields.length && selected.every((item, index) => item === current.fields[index].correct_answer);
   } else {
     const order = [...mockOptions.querySelectorAll("[data-dnd='answer'] [data-dnd-item]")].map((item) => Number(item.dataset.dndItem));
     correct = order.length === current.correct_order.length && order.every((item, index) => item === current.correct_order[index]);
   }
+  if (current.type === "multi_select") {
+    mockOptions.querySelectorAll(".mock-option").forEach((option, index) => {
+      option.classList.toggle("is-correct", current.correct_answers.includes(index));
+      option.classList.toggle("is-incorrect", !current.correct_answers.includes(index));
+    });
+  }
+  if (current.type === "hotspot") {
+    mockOptions.querySelectorAll("[data-hotspot-index]").forEach((select, index) => {
+      const isCorrect = Number(select.value) === current.fields[index].correct_answer;
+      select.classList.toggle("is-correct", isCorrect);
+      select.classList.toggle("is-incorrect", !isCorrect);
+    });
+  }
   mockFeedback.textContent = `${correct ? "Correct" : "Not quite"}. ${current.explanation}`;
   mockFeedback.className = `feedback ${correct ? "correct" : "incorrect"}`;
-}
-
-function renderCategoryOptions(categories) {
-  categoryList.replaceChildren();
-  categories.forEach((category) => {
-    const label = document.createElement("label");
-    label.className = "category-option";
-    label.innerHTML = `<input type="checkbox" value="${category}"><span>${category}</span>`;
-    const checkbox = label.querySelector("input");
-    checkbox.checked = selectedCategories.has(category);
-    checkbox.addEventListener("change", updateSelectedCategories);
-    categoryList.append(label);
-  });
-}
-
-function updateSelectedCategories() {
-  selectedCategories = new Set(
-    [...categoryList.querySelectorAll("input:checked")].map((input) => input.value),
-  );
-  cards = selectedCategories.size
-    ? allCards.filter((item) => selectedCategories.has(item.category))
-    : allCards;
-  index = 0;
-  showingAnswer = false;
-  render();
-}
-
-function setAllCategories(selected) {
-  categoryList.querySelectorAll("input").forEach((input) => {
-    input.checked = selected;
-  });
-  updateSelectedCategories();
-}
-
-function setMenuOpen(isOpen) {
-  categoryMenu.hidden = !isOpen;
-  menuBackdrop.hidden = !isOpen;
-  menuToggle.setAttribute("aria-expanded", String(isOpen));
 }
 
 function render() {
@@ -288,9 +301,7 @@ function render() {
   card.classList.toggle("answer", showingAnswer);
   cardLabel.textContent = showingAnswer ? "Answer" : "Question";
   cardContent.textContent = showingAnswer ? current.answer : current.question;
-  meta.textContent = selectedCategories.size
-    ? `Card ${index + 1} of ${cards.length} · ${selectedCategories.size} ${selectedCategories.size === 1 ? "category" : "categories"}`
-    : `Card ${index + 1} of ${cards.length} · All categories`;
+  meta.textContent = `Card ${index + 1} of ${cards.length}`;
 }
 
 function nextCard() {
@@ -349,11 +360,6 @@ document.getElementById("nextBtn").addEventListener("click", nextCard);
 document.getElementById("prevBtn").addEventListener("click", previousCard);
 document.getElementById("flipBtn").addEventListener("click", flipCard);
 document.getElementById("shuffleBtn").addEventListener("click", shuffleCard);
-menuToggle.addEventListener("click", () => setMenuOpen(categoryMenu.hidden));
-document.getElementById("closeMenu").addEventListener("click", () => setMenuOpen(false));
-menuBackdrop.addEventListener("click", () => setMenuOpen(false));
-document.getElementById("selectAllBtn").addEventListener("click", () => setAllCategories(true));
-document.getElementById("clearAllBtn").addEventListener("click", () => setAllCategories(false));
 flashcardsTab.addEventListener("click", () => setStudyTab(false));
 mockExamTab.addEventListener("click", () => setStudyTab(true));
 document.getElementById("checkMockBtn").addEventListener("click", checkMockAnswer);
@@ -412,9 +418,6 @@ fetch("cards.json")
   .then((response) => response.json())
   .then((data) => {
     allCards = loadStoredCards() ?? data;
-    const categories = [...new Set(allCards.map((item) => item.category))].sort((a, b) => a.localeCompare(b, "no"));
-    selectedCategories = new Set(categories);
-    renderCategoryOptions(categories);
     cards = allCards;
     render();
   })

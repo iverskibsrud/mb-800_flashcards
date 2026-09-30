@@ -306,5 +306,209 @@
     ],
     "explanation": "Set the role as the default user profile, make it available in Role Explorer, and disable personalization for the profile. Disabling a user is unrelated to role-center configuration.",
     "correct_answers": [0, 2, 4]
+  },
+  {
+    "type": "matching",
+    "topic": "Users and permissions",
+    "question": "You need to configure security for Dynamics 365 Business Central objects. Which permission or set of permissions is allowed for each type of object?",
+    "targets": ["Table", "Page", "Table data", "System"],
+    "alternatives": ["Read, Insert, Modify, and Delete", "Execute"],
+    "correct_matches": [1, 1, 0, 1],
+    "explanation": "Tables, pages, and system objects use Execute permissions, while table data uses Read, Insert, Modify, and Delete permissions.",
+    "matching": true
+  },
+  {
+    "type": "hotspot",
+    "topic": "Approval workflows",
+    "question": "You are implementing Dynamics 365 Business Central. The accounting manager wants to set up a complete Purchase Document Approval system with an approval hierarchy. Which hierarchy setup should be used for each limit?",
+    "context_table": {
+      "headers": ["Requirement", "Details"],
+      "rows": [
+        ["Sara processes purchase orders", "Any purchase order that Sara processes must be approved."],
+        ["Michelle's approval limit", "Michelle can approve purchase orders up to $10,000."],
+        ["Shawn's approval limit", "Shawn can approve purchase orders up to $50,000."],
+        ["Remy's approval limit", "Purchase orders above $50,000 must be approved by Remy."]
+      ]
+    },
+    "fields": [
+      {"label": "Unlimited", "options": ["Remy as Approval user with no approver", "Remy as Approval user with Shawn as approver", "Shawn as Approval user with Michelle as approver", "Michelle as Approval user with Shawn as approver"], "correct_answer": 0},
+      {"label": "Purchase orders up to $50,000", "options": ["Remy as Approval user with no approver", "Remy as Approval user with Shawn as approver", "Shawn as Approval user with Remy as approver", "Shawn as Approval user with no approver"], "correct_answer": 2},
+      {"label": "Purchase orders up to $10,000", "options": ["Michelle as Approval user with no approver", "Michelle as Approval user with Shawn as approver", "Shawn as Approval user with Remy as approver", "Sara as Approval user with no approver"], "correct_answer": 1},
+      {"label": "Everything must be approved", "options": ["Sara as Approval user with no approver", "Sara as Approval user with Michelle as approver", "Michelle as Approval user with Shawn as approver", "Michelle as Approval user with Remy as approver"], "correct_answer": 1}
+    ],
+    "explanation": "The approval chain is Sara to Michelle for all purchase orders, then Shawn for amounts above $10,000, and Remy for amounts above $50,000.",
+    "type_label": "Hotspot"
+  },
+  {
+    "type": "multi_select",
+    "topic": "Configuration packages",
+    "question": "You are implementing Dynamics 365 Business Central Online for a company migrating from a previous version of Business Central. You need to migrate historical financial information from the previous fiscal year, including all analytical information, by using a configuration package. Which three steps should you use?",
+    "alternatives": ["Create a configuration package and select the appropriate table.", "Export the table to Excel, add dimension information, and import the updated Excel table.", "Select Dimensions as Columns and include all dimension fields in the configuration package.", "Export the configuration package.", "Assign a data template to the configuration package."],
+    "correct_answers": [0, 1, 2],
+    "explanation": "Create the package, include dimensions as columns, and use Excel to add the dimension information before importing it.",
+    "type_label": "Multi-select"
+  },
+  {
+    "type": "multi_select",
+    "topic": "General journals",
+    "question": "You are configuring Dynamics 365 Business Central. You have a file containing balances for all G/L accounts as of December 31, 2018. You import the data into a General Journal batch and enable Force Doc. Balance. When you attempt to post the batch, an Out of balance error displays. Which three actions should you perform?",
+    "alternatives": ["Ensure lines balance by posting date.", "Ensure lines balance by gen. posting type.", "Ensure lines balance by amount.", "Ensure lines balance by document number.", "Ensure lines balance by dimension set ID."],
+    "correct_answers": [0, 2, 3],
+    "explanation": "With Force Doc. Balance, entries must balance by posting date, amount, and document number.",
+    "type_label": "Multi-select"
+  },
+  {
+    "type": "sequence",
+    "topic": "Dimensions",
+    "question": "Some dimension value combinations are not allowed when posting purchase transactions. In which order should you set up dimension combinations?",
+    "alternatives": ["Open the Dimensions Combinations page.", "Select the dimensions combination and set the option to Limited.", "Open the Dimension Value Combinations page.", "Select the dimension value combinations and set the option to Blocked."],
+    "correct_order": [0, 1, 2, 3],
+    "explanation": "First limit the selected dimension combinations, then open the value combinations and block the disallowed values."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Printing",
+    "question": "You are configuring default reports and layouts in Dynamics 365 Business Central. You must add new data items to the report and change the layout associated with the default Purchase Order report. A developer creates and deploys a new report object that includes the new data items and layout. Solution: On the Report Selection - Service page, set Usage to Order and update the Report ID to reflect the new report object. Does the solution meet the goal?",
+    "alternatives": ["Yes", "No"],
+    "correct_answer": 1,
+    "explanation": "No. Purchase orders are configured on Report Selection - Purchase, not Report Selection - Service."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Printing",
+    "question": "You are configuring default reports and layouts in Dynamics 365 Business Central. You must add new data items to the report and change the layout associated with the default Purchase Order report. A developer creates and deploys a new report object that includes the new data items and layout. Solution: On the Report Selection - Purchase page, set Usage to Order and update the Report ID to reflect the new report object. Does the solution meet the goal?",
+    "alternatives": ["Yes", "No"],
+    "correct_answer": 0,
+    "explanation": "Yes. Report Selection - Purchase with Usage set to Order controls the default Purchase Order report."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Printing",
+    "question": "You are configuring default reports and layouts in Dynamics 365 Business Central. You must add new data items to the report and change the layout associated with the default Purchase Order report. A developer creates and deploys a new report object that includes the new data items and layout. Is selecting the report on Custom Report Layouts and using Update Layout enough to make it the default Purchase Order report?",
+    "alternatives": ["Yes", "No"],
+    "correct_answer": 1,
+    "explanation": "Updating a custom layout does not change the default report object. The purchase report selection must be updated."
+  },
+  {
+    "type": "hotspot",
+    "topic": "Users and permissions",
+    "question": "You need to create a new salesperson with the same permissions as other salespeople. How should you configure the system?",
+    "fields": [
+      {"label": "Add a new user", "options": ["Add a user to User Setup from Business Central", "Add a user to User Settings from Business Central", "Update users from Microsoft 365", "Select New on the Users page from Business Central"], "correct_answer": 2},
+      {"label": "Assign user permissions", "options": ["Apply indirect permissions to a user", "Apply effective permissions to a user", "Assign user to a User Group"], "correct_answer": 2}
+    ],
+    "explanation": "Import the user from Microsoft 365, then assign the user to the appropriate User Group.",
+    "type_label": "Hotspot"
+  },
+  {
+    "type": "hotspot",
+    "topic": "Company setup",
+    "question": "You need to customize sales invoice printouts so the customer city appears before the postal code and the company logo appears to the right of the address. Where should you configure each requirement?",
+    "fields": [
+      {"label": "Display the customer city and then the postal code", "options": ["Location Code in Company Information", "Local Address Format in General Ledger Setup", "Local Cont. Addr. Format in General Ledger Setup", "Require Country/Region Code in Address in General Ledger Setup"], "correct_answer": 1},
+      {"label": "Display the company logo to the right of the customer address", "options": ["Company Information", "General Ledger Setup", "Sales & Receivables Setup", "Purchases & Payables Setup"], "correct_answer": 0}
+    ],
+    "explanation": "Local Address Format controls the printed address order, and Company Information stores the company picture or logo.",
+    "type_label": "Hotspot"
+  },
+  {
+    "type": "sequence",
+    "topic": "Personalization",
+    "question": "A user moves to another department. Which three actions remove all personalizations from the user's profile?",
+    "alternatives": ["Select the line for a page personalization and select Delete.", "Select User Settings and select the related link.", "Navigate to the User Page Personalizations page.", "Open the User Settings card.", "Select Clear Personalized Pages."],
+    "correct_order": [1, 2, 4],
+    "explanation": "Open User Settings, navigate to the user's page personalizations, and select Clear Personalized Pages."
+  },
+  {
+    "type": "hotspot",
+    "topic": "Approval workflows",
+    "question": "A company creates blanket purchase orders from inbound documents sent to Dynamics 365 Business Central by purchasing agents. When a new blanket purchase order is created with a certain item, the system must send a procurement supervisor a request to approve it, and purchase orders must not be posted until approval. Which workflow components should you configure?",
+    "fields": [
+      {"label": "Lock the record for newly created blanket purchase orders", "options": ["Incoming Documents", "Power Automate flows", "Security filters", "Business Central workflows"], "correct_answer": 3},
+      {"label": "Assign the security command that locks the purchase order", "options": ["When Event", "Then Response", "On Condition", "Trigger"], "correct_answer": 1},
+      {"label": "Assign the items that trigger locking of the purchase order", "options": ["When Event", "Then Response", "On Condition", "Trigger"], "correct_answer": 0}
+    ],
+    "explanation": "Use a Business Central workflow. The response performs the lock, and the event identifies when the workflow is triggered for the item.",
+    "type_label": "Hotspot"
+  },
+  {
+    "type": "matching",
+    "topic": "Posting setup",
+    "question": "You need to create posting details for master data. Which setting should you use for each requirement?",
+    "targets": ["Item", "Vendor", "Customer"],
+    "alternatives": ["G/L Account", "General Prod. Posting Group", "General Bus. Posting Group"],
+    "correct_matches": [1, 2, 2],
+    "explanation": "Items use General Product Posting Groups. Vendors and customers use General Business Posting Groups.",
+    "matching": true
+  },
+  {
+    "type": "sequence",
+    "topic": "Users and permissions",
+    "question": "A bookkeeper has the D365 ACCOUNTANTS permission set. Create a view-only permission set for an auditor. Which actions should you perform in sequence?",
+    "alternatives": ["On the User Groups page select the D365 ACCOUNTANTS code.", "On the Permission Sets page select the D365 ACCOUNTANTS permission set.", "Use the Copy Permission Sets function.", "Assign a new permission set name to AUDIT.", "Edit the permissions for permission set AUDIT.", "Set Insert, Modify, and Delete permissions to No for all permission lines."],
+    "correct_order": [0, 1, 2, 3, 4, 5],
+    "explanation": "Select the source group and permission set, copy it as AUDIT, then remove Insert, Modify, and Delete permissions from the copied set."
+  },
+  {
+    "type": "hotspot",
+    "topic": "General journals",
+    "question": "A company uses Dynamics 365 Business Central with ADM, PROD, and SALES departments set up as dimensions. AP clerks enter building-material purchase invoices without dimensions. Monthly building expenses vary between $5,000 and $7,000, and allocation is required at the end of each month. How should you configure the recurring general journal?",
+    "context_table": {
+      "headers": ["Department", "Allocation"],
+      "rows": [["PROD", "50 percent"], ["SALES", "25 percent"], ["ADM", "25 percent"]]
+    },
+    "fields": [
+      {"label": "Select recurring method", "options": ["F Fixed", "V Variable", "RF Reversing Fixed", "BD Balance by Dimension"], "correct_answer": 3},
+      {"label": "Set up recurring frequency", "options": ["1M", "1D", "CM-1D", "1D+1M-1D"], "correct_answer": 3},
+      {"label": "Set up amount field", "options": ["$5,000", "0", "-$5,000", "$7,000"], "correct_answer": 2}
+    ],
+    "explanation": "Balance by Dimension allocates the balance, the frequency runs on the last day of each month, and the source amount is reversed with -$5,000.",
+    "type_label": "Hotspot"
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Printing",
+    "question": "You are configuring default reports and layouts in Dynamics 365 Business Central. You must add new data items to the report and change the layout associated with the default Purchase Order report. A developer creates and deploys a new report object that includes the new data items and layout. Solution: On the Report Layout Selection page, select the new report object, set the value to Custom Layout, and select the updated layout. Does the solution meet the goal?",
+    "alternatives": ["Yes", "No"],
+    "correct_answer": 1,
+    "explanation": "Report Layout Selection changes the layout, but Report Selection - Purchase must select the default report object."
+  },
+  {
+    "type": "matching",
+    "topic": "Personalization",
+    "question": "Which approach should you use to meet each Dynamics 365 Business Central UI requirement?",
+    "targets": ["UI changes apply only at the user level.", "UI changes apply to all users in the environment and user-produced extensions.", "UI changes apply only to the specified Role Center."],
+    "alternatives": ["Personalize", "Customize", "Design"],
+    "correct_matches": [0, 2, 1],
+    "explanation": "Personalize applies changes to one user, Design applies changes broadly including extensions, and Customize applies changes to a Role Center.",
+    "matching": true
+  },
+  {
+    "type": "matching",
+    "topic": "Approval workflows",
+    "question": "Two finance managers exist, but only one must approve each purchase order. Which page should you use for each configuration requirement?",
+    "targets": ["Create and enable a purchase order approval workflow.", "Set up the relevant sequence for approval managers.", "Enable parallel approval for two managers."],
+    "alternatives": ["Workflow", "Workflow User Group", "Workflow Category", "Approval User Setup"],
+    "correct_matches": [0, 3, 1],
+    "explanation": "Workflow creates and enables the process, Approval User Setup defines manager sequence and limits, and Workflow User Group controls parallel approval membership.",
+    "matching": true
+  },
+  {
+    "type": "sequence",
+    "topic": "Security filters",
+    "question": "Salespeople must see only sales orders they create. Which four actions should you perform in sequence?",
+    "alternatives": ["Select the Security Filter column in the Sales Header row.", "Enter Salesperson/Purchase Code in User Setup.", "Enter the Salesperson code.", "Select the field number for the Salesperson code.", "Select the Permission set and select Permissions.", "Enter Sales Responsibility Center."],
+    "correct_order": [4, 0, 3, 2],
+    "explanation": "Open Permissions for the permission set, select the Sales Header security filter, choose the Salesperson Code field, and enter the salesperson code."
+  },
+  {
+    "type": "matching",
+    "topic": "Approval workflows",
+    "question": "A sales order above $10,000 must be approved by the sales director. Which page should you use for each requirement?",
+    "targets": ["Sales amount approval limit for users", "Sales document type for approval", "Sales items in documents for approval"],
+    "alternatives": ["Approval User Setup", "Workflow User Group", "Workflow"],
+    "correct_matches": [0, 2, 1],
+    "explanation": "Approval User Setup defines amount limits, Workflow defines the sales document type, and Workflow User Group defines the sales items and approvers.",
+    "matching": true
   }
 ]
