@@ -17,39 +17,61 @@
 
       <nav class="tabs" aria-label="Study mode">
         <button class="tab active" id="flashcardsTab" type="button" aria-selected="true">Flashcards</button>
-        <button class="tab" id="mockExamTab" type="button" aria-selected="false">ExamTopics Questions</button>
+        <button class="tab" id="termSearchTab" type="button" aria-selected="false">Term Searcher</button>
+        <button class="tab" id="mockExamTab" type="button" aria-selected="false">Test Questions</button>
       </nav>
 
       <div class="tab-panel" id="flashcardsPanel">
       <section class="card" id="card" aria-live="polite">
         <p class="label" id="cardLabel">Question</p>
-        <p class="content" id="cardContent">Loading…</p>
+        <div class="content" id="cardContent">Loading…</div>
       </section>
 
-      <section class="controls">
-        <button id="prevBtn" type="button">Previous</button>
-        <button id="flipBtn" type="button">Flip</button>
-        <button id="nextBtn" type="button">Next</button>
-        <button id="shuffleBtn" type="button">Shuffle</button>
-      </section>
+      <details class="action-menu">
+        <summary>Actions</summary>
+        <div class="menu-items">
+          <button id="prevBtn" type="button">Previous</button>
+          <button id="flipBtn" type="button">Flip</button>
+          <button id="nextBtn" type="button">Next</button>
+          <button id="shuffleBtn" type="button">Shuffle</button>
+        </div>
+      </details>
 
       <p class="meta" id="meta"></p>
       </div>
 
+      <section class="tab-panel search-panel" id="termSearchPanel" hidden aria-live="polite">
+        <h2>Term Searcher</h2>
+        <label class="search-field" for="termSearchInput">
+          <span>Search for a word</span>
+          <input id="termSearchInput" type="search" placeholder="Type a word..." />
+        </label>
+        <p class="search-meta" id="termSearchMeta">Type a word to find matching flashcards.</p>
+        <div class="term-search-results" id="termSearchResults"></div>
+      </section>
+
       <section class="tab-panel mock-panel" id="mockExamPanel" hidden aria-live="polite">
-        <p class="label">ExamTopics question</p>
+        <p class="label">Test question</p>
         <p class="mock-meta" id="mockMeta">Loading questions...</p>
-        <h2 id="mockQuestion"></h2>
+        <div class="test-mode-bar">
+          <p class="test-progress" id="testProgress" hidden></p>
+        </div>
+        <button class="case-study-button" id="caseStudyBtn" type="button" hidden>Case study</button>
+        <div class="mock-question-content" id="mockQuestion"></div>
         <div class="mock-options" id="mockOptions"></div>
         <p class="feedback" id="mockFeedback"></p>
         <div class="mock-controls">
-          <div class="controls">
-            <button id="checkMockBtn" type="button">Check answer</button>
-            <button id="prevMockBtn" type="button">Previous</button>
-            <button id="nextMockBtn" type="button">Next</button>
-            <button id="explanationBtn" type="button" hidden>Explanation</button>
-          </div>
-          <button class="keyboard-help-button" id="keyboardHelpBtn" type="button">Keyboard operations</button>
+          <details class="action-menu">
+            <summary>Actions</summary>
+            <div class="menu-items">
+              <button id="testModeBtn" type="button">Test mode</button>
+              <button id="checkMockBtn" type="button">Check answer</button>
+              <button id="prevMockBtn" type="button">Previous</button>
+              <button id="nextMockBtn" type="button">Next</button>
+              <button id="explanationBtn" type="button" hidden>Explanation</button>
+              <button class="keyboard-help-button" id="keyboardHelpBtn" type="button">Keyboard operations</button>
+            </div>
+          </details>
         </div>
       </section>
       <dialog id="keyboardHelpDialog" class="keyboard-help">
@@ -57,13 +79,35 @@
         <p><kbd>1</kbd>-<kbd>9</kbd> select an answer option.</p>
         <p><kbd>Enter</kbd> checks the answer.</p>
         <p><kbd>Left Arrow</kbd>/<kbd>Right Arrow</kbd> move between questions.</p>
+        <p><kbd>T</kbd> switches to the next tab.</p>
         <p>Drag-and-drop actions still need to be placed with the pointer.</p>
         <button id="closeKeyboardHelpBtn" type="button">Close</button>
       </dialog>
       <dialog id="explanationDialog" class="explanation-dialog">
         <h2>Explanation</h2>
-        <p id="explanationContent"></p>
+        <div id="explanationContent"></div>
         <button id="closeExplanationBtn" type="button">Close</button>
+      </dialog>
+      <dialog id="caseStudyDialog" class="case-study-dialog">
+        <h2>Case study</h2>
+        <div class="case-study-content" id="caseStudyContent"></div>
+        <button id="closeCaseStudyBtn" type="button">Close</button>
+      </dialog>
+      <dialog id="testSetupDialog" class="test-dialog">
+        <h2>Start test mode</h2>
+        <form method="dialog" id="testSetupForm">
+          <label for="testQuestionCount">How many questions do you want to answer?</label>
+          <input id="testQuestionCount" type="number" min="1" value="20" required />
+          <div class="dialog-actions">
+            <button value="cancel" type="submit">Cancel</button>
+            <button id="startTestBtn" value="start" type="submit">Start test</button>
+          </div>
+        </form>
+      </dialog>
+      <dialog id="testResultDialog" class="test-dialog">
+        <h2>Test complete</h2>
+        <div id="testResultContent"></div>
+        <button id="closeTestResultBtn" type="button">Close</button>
       </dialog>
     </main>
 

@@ -11,7 +11,13 @@
       "Assign the company to the user."
     ],
     "explanation": "Business Central users are synchronized from Microsoft 365 before they can be managed in the Business Central Users page. After the user exists in Business Central, create the user group and add the required permission sets to that group. Finally, select the user and assign the group. The company assignment is intentionally a distractor here: it is not one of the required actions in this sequence.",
-    "correct_order": [0, 1, 2, 3, 4]
+    "correct_order": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
   },
   {
     "type": "multiple_choice",
@@ -64,7 +70,12 @@
       "Apply the data."
     ],
     "explanation": "Configuration packages use table and field definitions to move master data into a company. First export an Excel template and populate it with the customer's data. Then create the configuration package, import the completed workbook into the package data, review or validate the records, and apply the data. Importing directly into sales header and lines is not the configuration-package process described here.",
-    "correct_order": [0, 1, 2, 3]
+    "correct_order": [
+      0,
+      1,
+      2,
+      3
+    ]
   },
   {
     "type": "drag_and_drop",
@@ -81,7 +92,11 @@
       "First Qualified approver",
       "Approver Chain"
     ],
-    "correct_matches": [0, 1, 2],
+    "correct_matches": [
+      0,
+      1,
+      2
+    ],
     "explanation": "Direct approver routes the request to the approver specified in Approval User Setup. Specific approver routes it to the user named by the workflow response. First Qualified approver evaluates the approval limits and selects a user who is qualified to approve the requested amount. Approver Chain is used when approval should move through a chain of users rather than selecting the first qualified user.",
     "matching": true
   },
@@ -109,7 +124,10 @@
       "Use the Copy function from the Companies page."
     ],
     "explanation": "A configuration package can be exported from the test company and imported into the production company, allowing selected setup and master tables to be transferred without copying posted transactions. Copy Data from Company on the Configuration Worksheet provides another controlled way to copy configuration and master data. Cloud Migration Management is for migration scenarios, and the general Companies page Copy function does not provide the required transaction-data separation.",
-    "correct_answers": [1, 2]
+    "correct_answers": [
+      1,
+      2
+    ]
   },
   {
     "type": "drag_and_drop",
@@ -125,7 +143,11 @@
       "Evaluation",
       "Production"
     ],
-    "correct_matches": [1, 0, 2],
+    "correct_matches": [
+      1,
+      0,
+      2
+    ],
     "explanation": "The Evaluation template is intended for demonstrations and includes both setup data and sample data. Create New creates a blank company without the standard setup data. Production creates a blank operational company with the setup data needed for implementation but without demonstration sample data. Choosing the template based on the intended starting content avoids having to remove sample records from a production company.",
     "matching": true
   },
@@ -141,19 +163,43 @@
       "Customers Opening balance"
     ],
     "explanation": "Opening-balance functions create general-journal entries for the existing vendor balances, customer balances, and G/L account balances at the specified posting date. These functions preserve the subledger detail needed for accounts payable and accounts receivable while also establishing the general ledger opening amounts. Calculate Inventory is an inventory calculation function, and Get Standard Journals retrieves reusable journals rather than loading these three categories of starting balances.",
-    "correct_answers": [0, 1, 4]
+    "correct_answers": [
+      0,
+      1,
+      4
+    ]
   },
   {
     "type": "multiple_choice",
     "topic": "Approval workflows",
     "question": "You are setting up and testing a workflow with approval hierarchy in Dynamics 365 Business Central. In Approval User Setup, you configure the following users. The workflow uses the approver limit type Approver Chain. User1 creates a purchase order for $1,100 and sends an approval request. Which set of actions occurs?",
     "context_table": {
-      "headers": ["User", "Approval limit", "Comments"],
+      "headers": [
+        "User",
+        "Approval limit",
+        "Comments"
+      ],
       "rows": [
-        ["User1", "$500", ""],
-        ["User2", "$1,000", ""],
-        ["User3", "$5,000", ""],
-        ["User4", "", "User4 is configured as a direct approver for User1."]
+        [
+          "User1",
+          "$500",
+          ""
+        ],
+        [
+          "User2",
+          "$1,000",
+          ""
+        ],
+        [
+          "User3",
+          "$5,000",
+          ""
+        ],
+        [
+          "User4",
+          "",
+          "User4 is configured as a direct approver for User1."
+        ]
       ]
     },
     "alternatives": [
@@ -179,7 +225,12 @@
       "Select the Prepare action."
     ],
     "explanation": "Open General Ledger Setup, start Change Global Dimensions, select the replacement dimension, and then run the process. In Sequential mode, sign out and back in after the process so the changed global dimension is available to the session.",
-    "correct_order": [3, 1, 4, 0]
+    "correct_order": [
+      3,
+      1,
+      4,
+      0
+    ]
   },
   {
     "type": "multiple_choice",
@@ -211,7 +262,12 @@
       "User Personalization",
       "Users and User Groups"
     ],
-    "correct_matches": [2, 1, 3, 0],
+    "correct_matches": [
+      2,
+      1,
+      3,
+      0
+    ],
     "explanation": "User Personalization assigns a role center to a user. Profile (Role) defines active profiles. Users and User Groups can restrict users to their assigned companies, while Permission Sets and Permissions control table and record access.",
     "matching": true
   },
@@ -230,7 +286,11 @@
       "Notification Setup",
       "Workflow Response Options"
     ],
-    "correct_matches": [0, 2, 1],
+    "correct_matches": [
+      0,
+      2,
+      1
+    ],
     "explanation": "Approval User Setup identifies approval administrators. Notification Setup controls how approval notifications are delivered, and Notification Schedule controls their frequency.",
     "matching": true
   },
@@ -246,7 +306,11 @@
       "Add the user to the Profile card."
     ],
     "explanation": "Profiles can be assigned through a user's User Personalization record, through a User Group, or by accepting the default profile. The User card and Profile card are not the applicable assignment locations in this question.",
-    "correct_answers": [0, 1, 3]
+    "correct_answers": [
+      0,
+      1,
+      3
+    ]
   },
   {
     "type": "multi_select",
@@ -259,7 +323,10 @@
       "Run the Email setup assisted setup tool."
     ],
     "explanation": "Outbound email can be configured through SMTP Mail Setup or the Email setup assisted setup guide. The Business Inbox and email logging guides do not configure outbound document email.",
-    "correct_answers": [0, 3]
+    "correct_answers": [
+      0,
+      3
+    ]
   },
   {
     "type": "multiple_choice",
@@ -289,7 +356,11 @@
       "RapidStart Services",
       "Configuration Questionnaire"
     ],
-    "correct_matches": [0, 2, 1],
+    "correct_matches": [
+      0,
+      2,
+      1
+    ],
     "explanation": "Assisted Setup creates the initial company components. A Configuration Questionnaire organizes setup tasks in order and lets you mark them complete. RapidStart Services templates existing data and applies it to the new company.",
     "matching": true
   },
@@ -305,36 +376,104 @@
       "On the Profiles (Role) page, select the profile and select the Disable Personalization option."
     ],
     "explanation": "Set the role as the default user profile, make it available in Role Explorer, and disable personalization for the profile. Disabling a user is unrelated to role-center configuration.",
-    "correct_answers": [0, 2, 4]
+    "correct_answers": [
+      0,
+      2,
+      4
+    ]
   },
   {
     "type": "matching",
     "topic": "Users and permissions",
     "question": "You need to configure security for Dynamics 365 Business Central objects. Which permission or set of permissions is allowed for each type of object?",
-    "targets": ["Table", "Page", "Table data", "System"],
-    "alternatives": ["Read, Insert, Modify, and Delete", "Execute"],
-    "correct_matches": [1, 1, 0, 1],
+    "targets": [
+      "Table",
+      "Page",
+      "Table data",
+      "System"
+    ],
+    "alternatives": [
+      "Read, Insert, Modify, and Delete",
+      "Execute"
+    ],
+    "correct_matches": [
+      1,
+      1,
+      0,
+      1
+    ],
     "explanation": "Business Central separates permission to access an object from permission to manipulate its data. Tables, pages, and system objects are assigned Execute permission, while the Table data object receives Read, Insert, Modify, and Delete permissions. The table-data permissions control whether records can be viewed, created, changed, or removed.",
     "matching": true
   },
   {
     "type": "hotspot",
     "topic": "Approval workflows",
-    "question": "You are implementing Dynamics 365 Business Central. The accounting manager wants to set up a complete Purchase Document Approval system with an approval hierarchy. Which hierarchy setup should be used for each limit?",
+    "question": "You are implementing Dynamics 365 Business Central. The accounting manager wants to set up a complete Purchase Document Approval system with an approval hierarchy. Configure each limit as follows:\n- Unlimited\n- Purchase orders up to $50,000\n- Purchase orders up to $10,000\n- Everything must be approved.",
     "context_table": {
-      "headers": ["Requirement", "Details"],
+      "headers": [
+        "Requirement",
+        "Details"
+      ],
       "rows": [
-        ["Sara processes purchase orders", "Any purchase order that Sara processes must be approved."],
-        ["Michelle's approval limit", "Michelle can approve purchase orders up to $10,000."],
-        ["Shawn's approval limit", "Shawn can approve purchase orders up to $50,000."],
-        ["Remy's approval limit", "Purchase orders above $50,000 must be approved by Remy."]
+        [
+          "Sara processes purchase orders",
+          "Any purchase order that Sara processes must be approved."
+        ],
+        [
+          "Michelle's approval limit",
+          "Michelle can approve purchase orders up to $10,000."
+        ],
+        [
+          "Shawn's approval limit",
+          "Shawn can approve purchase orders up to $50,000."
+        ],
+        [
+          "Remy's approval limit",
+          "Purchase orders above $50,000 must be approved by Remy."
+        ]
       ]
     },
     "fields": [
-      {"label": "Unlimited", "options": ["Remy as Approval user with no approver", "Remy as Approval user with Shawn as approver", "Shawn as Approval user with Michelle as approver", "Michelle as Approval user with Shawn as approver"], "correct_answer": 0},
-      {"label": "Purchase orders up to $50,000", "options": ["Remy as Approval user with no approver", "Remy as Approval user with Shawn as approver", "Shawn as Approval user with Remy as approver", "Shawn as Approval user with no approver"], "correct_answer": 2},
-      {"label": "Purchase orders up to $10,000", "options": ["Michelle as Approval user with no approver", "Michelle as Approval user with Shawn as approver", "Shawn as Approval user with Remy as approver", "Sara as Approval user with no approver"], "correct_answer": 1},
-      {"label": "Everything must be approved", "options": ["Sara as Approval user with no approver", "Sara as Approval user with Michelle as approver", "Michelle as Approval user with Shawn as approver", "Michelle as Approval user with Remy as approver"], "correct_answer": 1}
+      {
+        "label": "Unlimited",
+        "options": [
+          "Remy as Approval user with no approver",
+          "Remy as Approval user with Shawn as approver",
+          "Shawn as Approval user with Michelle as approver",
+          "Michelle as Approval user with Shawn as approver"
+        ],
+        "correct_answer": 0
+      },
+      {
+        "label": "Purchase orders up to $50,000",
+        "options": [
+          "Remy as Approval user with no approver",
+          "Remy as Approval user with Shawn as approver",
+          "Shawn as Approval user with Remy as approver",
+          "Shawn as Approval user with no approver"
+        ],
+        "correct_answer": 2
+      },
+      {
+        "label": "Purchase orders up to $10,000",
+        "options": [
+          "Michelle as Approval user with no approver",
+          "Michelle as Approval user with Shawn as approver",
+          "Shawn as Approval user with Remy as approver",
+          "Sara as Approval user with no approver"
+        ],
+        "correct_answer": 1
+      },
+      {
+        "label": "Everything must be approved",
+        "options": [
+          "Sara as Approval user with no approver",
+          "Sara as Approval user with Michelle as approver",
+          "Michelle as Approval user with Shawn as approver",
+          "Michelle as Approval user with Remy as approver"
+        ],
+        "correct_answer": 1
+      }
     ],
     "explanation": "Configure the hierarchy so Sara's purchase orders require approval from Michelle. Michelle can approve up to $10,000; requests above that limit move to Shawn, whose limit is $50,000; requests above $50,000 move to Remy. Therefore Remy has no approver above him, Shawn has Remy as approver, Michelle has Shawn as approver, and Sara has Michelle as approver.",
     "type_label": "Hotspot"
@@ -343,8 +482,18 @@
     "type": "multi_select",
     "topic": "Configuration packages",
     "question": "You are implementing Dynamics 365 Business Central Online for a company migrating from a previous version of Business Central. You need to migrate historical financial information from the previous fiscal year, including all analytical information, by using a configuration package. Which three steps should you use?",
-    "alternatives": ["Create a configuration package and select the appropriate table.", "Export the table to Excel, add dimension information, and import the updated Excel table.", "Select Dimensions as Columns and include all dimension fields in the configuration package.", "Export the configuration package.", "Assign a data template to the configuration package."],
-    "correct_answers": [0, 1, 2],
+    "alternatives": [
+      "Create a configuration package and select the appropriate table.",
+      "Export the table to Excel, add dimension information, and import the updated Excel table.",
+      "Select Dimensions as Columns and include all dimension fields in the configuration package.",
+      "Export the configuration package.",
+      "Assign a data template to the configuration package."
+    ],
+    "correct_answers": [
+      0,
+      1,
+      2
+    ],
     "explanation": "Create a configuration package and select the appropriate table first. Select Dimensions as Columns and include all dimension fields so analytical information can be represented. Export the table to Excel, add or adjust the dimension information in the workbook, and import the updated Excel table. Exporting the package or assigning a data template does not perform this analytical-data migration.",
     "type_label": "Multi-select"
   },
@@ -352,8 +501,18 @@
     "type": "multi_select",
     "topic": "General journals",
     "question": "You are configuring Dynamics 365 Business Central. You have a file containing balances for all G/L accounts as of December 31, 2018. You import the data into a General Journal batch and enable Force Doc. Balance. When you attempt to post the batch, an Out of balance error displays. Which three actions should you perform?",
-    "alternatives": ["Ensure lines balance by posting date.", "Ensure lines balance by gen. posting type.", "Ensure lines balance by amount.", "Ensure lines balance by document number.", "Ensure lines balance by dimension set ID."],
-    "correct_answers": [0, 2, 3],
+    "alternatives": [
+      "Ensure lines balance by posting date.",
+      "Ensure lines balance by gen. posting type.",
+      "Ensure lines balance by amount.",
+      "Ensure lines balance by document number.",
+      "Ensure lines balance by dimension set ID."
+    ],
+    "correct_answers": [
+      0,
+      2,
+      3
+    ],
     "explanation": "Force Doc. Balance requires journal entries to balance within each document grouping. Check that lines balance by posting date, that total debits and credits balance by amount, and that each document number balances independently. Gen. posting type and dimension set ID are not the criteria that resolve this Out of balance error.",
     "type_label": "Multi-select"
   },
@@ -361,15 +520,28 @@
     "type": "sequence",
     "topic": "Dimensions",
     "question": "Some dimension value combinations are not allowed when posting purchase transactions. In which order should you set up dimension combinations?",
-    "alternatives": ["Open the Dimensions Combinations page.", "Select the dimensions combination and set the option to Limited.", "Open the Dimension Value Combinations page.", "Select the dimension value combinations and set the option to Blocked."],
-    "correct_order": [0, 1, 2, 3],
+    "alternatives": [
+      "Open the Dimensions Combinations page.",
+      "Select the dimensions combination and set the option to Limited.",
+      "Open the Dimension Value Combinations page.",
+      "Select the dimension value combinations and set the option to Blocked."
+    ],
+    "correct_order": [
+      0,
+      1,
+      2,
+      3
+    ],
     "explanation": "Open the Dimensions Combinations page and select the relevant dimension combination, then set it to Limited. Next open the Dimension Value Combinations page, select the combinations that must not be used for purchase postings, and set them to Blocked. Limited dimension combinations define where values are controlled; Blocked value combinations prevent the specific invalid combination."
   },
   {
     "type": "multiple_choice",
     "topic": "Printing",
     "question": "You are configuring default reports and layouts in Dynamics 365 Business Central. You must add new data items to the report and change the layout associated with the default Purchase Order report. A developer creates and deploys a new report object that includes the new data items and layout. Solution: On the Report Selection - Service page, set Usage to Order and update the Report ID to reflect the new report object. Does the solution meet the goal?",
-    "alternatives": ["Yes", "No"],
+    "alternatives": [
+      "Yes",
+      "No"
+    ],
     "correct_answer": 1,
     "explanation": "No. The Report Selection - Service page controls service-related reports, so changing its Usage to Order does not change the Purchase Order report. Purchase orders are controlled on Report Selection - Purchase, where the Order usage entry must reference the new report ID."
   },
@@ -377,7 +549,10 @@
     "type": "multiple_choice",
     "topic": "Printing",
     "question": "You are configuring default reports and layouts in Dynamics 365 Business Central. You must add new data items to the report and change the layout associated with the default Purchase Order report. A developer creates and deploys a new report object that includes the new data items and layout. Solution: On the Report Selection - Purchase page, set Usage to Order and update the Report ID to reflect the new report object. Does the solution meet the goal?",
-    "alternatives": ["Yes", "No"],
+    "alternatives": [
+      "Yes",
+      "No"
+    ],
     "correct_answer": 0,
     "explanation": "Yes. The Report Selection - Purchase page is the correct page for purchase documents. Set Usage to Order and replace the Report ID with the deployed report object. Business Central will then use that report as the system default when printing purchase orders."
   },
@@ -385,17 +560,37 @@
     "type": "multiple_choice",
     "topic": "Printing",
     "question": "You are configuring default reports and layouts in Dynamics 365 Business Central. You must add new data items to the report and change the layout associated with the default Purchase Order report. A developer creates and deploys a new report object that includes the new data items and layout. Is selecting the report on Custom Report Layouts and using Update Layout enough to make it the default Purchase Order report?",
-    "alternatives": ["Yes", "No"],
+    "alternatives": [
+      "Yes",
+      "No"
+    ],
     "correct_answer": 1,
     "explanation": "No. Custom Report Layouts and Update Layout change or refresh the design associated with a report, but they do not select which report object is the default for a document. The Report Selection - Purchase page must be updated with the new report ID for the Order usage."
   },
   {
     "type": "hotspot",
     "topic": "Users and permissions",
-    "question": "You need to create a new salesperson with the same permissions as other salespeople. How should you configure the system?",
+    "question": "You need to create a new salesperson with the same permissions as other salespeople. Configure the system as follows:\n- Add a new user\n- Assign user permissions",
     "fields": [
-      {"label": "Add a new user", "options": ["Add a user to User Setup from Business Central", "Add a user to User Settings from Business Central", "Update users from Microsoft 365", "Select New on the Users page from Business Central"], "correct_answer": 2},
-      {"label": "Assign user permissions", "options": ["Apply indirect permissions to a user", "Apply effective permissions to a user", "Assign user to a User Group"], "correct_answer": 2}
+      {
+        "label": "Add a new user",
+        "options": [
+          "Add a user to User Setup from Business Central",
+          "Add a user to User Settings from Business Central",
+          "Update users from Microsoft 365",
+          "Select New on the Users page from Business Central"
+        ],
+        "correct_answer": 2
+      },
+      {
+        "label": "Assign user permissions",
+        "options": [
+          "Apply indirect permissions to a user",
+          "Apply effective permissions to a user",
+          "Assign user to a User Group"
+        ],
+        "correct_answer": 2
+      }
     ],
     "explanation": "Users are created or refreshed in Business Central by choosing Update users from Microsoft 365 after the account exists in the Microsoft 365 admin center. The synchronization imports user information and license assignments. After the user is available in Business Central, assign the user to the User Group used by the other salespeople so the same permission sets are inherited.",
     "type_label": "Hotspot"
@@ -403,10 +598,28 @@
   {
     "type": "hotspot",
     "topic": "Company setup",
-    "question": "You need to customize sales invoice printouts so the customer city appears before the postal code and the company logo appears to the right of the address. Where should you configure each requirement?",
+    "question": "You need to customize sales invoice printouts so the customer city appears before the postal code and the company logo appears to the right of the address. Configure each requirement as follows:\n- Display the customer city and then the postal code\n- Display the company logo to the right of the customer address",
     "fields": [
-      {"label": "Display the customer city and then the postal code", "options": ["Location Code in Company Information", "Local Address Format in General Ledger Setup", "Local Cont. Addr. Format in General Ledger Setup", "Require Country/Region Code in Address in General Ledger Setup"], "correct_answer": 1},
-      {"label": "Display the company logo to the right of the customer address", "options": ["Company Information", "General Ledger Setup", "Sales & Receivables Setup", "Purchases & Payables Setup"], "correct_answer": 0}
+      {
+        "label": "Display the customer city and then the postal code",
+        "options": [
+          "Location Code in Company Information",
+          "Local Address Format in General Ledger Setup",
+          "Local Cont. Addr. Format in General Ledger Setup",
+          "Require Country/Region Code in Address in General Ledger Setup"
+        ],
+        "correct_answer": 1
+      },
+      {
+        "label": "Display the company logo to the right of the customer address",
+        "options": [
+          "Company Information",
+          "General Ledger Setup",
+          "Sales & Receivables Setup",
+          "Purchases & Payables Setup"
+        ],
+        "correct_answer": 0
+      }
     ],
     "explanation": "Set Local Address Format on the General Ledger Setup page to City+Post Code so the customer city appears before the postal code on printouts. Store the company logo in the Picture field on the Company Information page; the invoice report can then place that company picture beside the address. The other setup pages do not control these two printout details.",
     "type_label": "Hotspot"
@@ -415,18 +628,55 @@
     "type": "sequence",
     "topic": "Personalization",
     "question": "A user moves to another department. Which three actions remove all personalizations from the user's profile?",
-    "alternatives": ["Select the line for a page personalization and select Delete.", "Select User Settings and select the related link.", "Navigate to the User Page Personalizations page.", "Open the User Settings card.", "Select Clear Personalized Pages."],
-    "correct_order": [1, 2, 4],
+    "alternatives": [
+      "Select the line for a page personalization and select Delete.",
+      "Select User Settings and select the related link.",
+      "Navigate to the User Page Personalizations page.",
+      "Open the User Settings card.",
+      "Select Clear Personalized Pages."
+    ],
+    "correct_order": [
+      1,
+      2,
+      4
+    ],
     "explanation": "Open User Settings and select the related link for the user's personalization records. Navigate to the User Page Personalizations page, then choose Clear Personalized Pages. This removes the user's page customizations in one operation; deleting a single selected personalization would not guarantee that all personalized pages are removed."
   },
   {
     "type": "hotspot",
     "topic": "Approval workflows",
-    "question": "A company creates blanket purchase orders from inbound documents sent to Dynamics 365 Business Central by purchasing agents. When a new blanket purchase order is created with a certain item, the system must send a procurement supervisor a request to approve it, and purchase orders must not be posted until approval. Which workflow components should you configure?",
+    "question": "A company creates blanket purchase orders from inbound documents sent to Dynamics 365 Business Central by purchasing agents. When a new blanket purchase order is created with a certain item, the system must send a procurement supervisor a request to approve it, and purchase orders must not be posted until approval. Configure the workflow components as follows:\n- Lock the record for newly created blanket purchase orders\n- Assign the security command that locks the purchase order\n- Assign the items that trigger locking of the purchase order",
     "fields": [
-      {"label": "Lock the record for newly created blanket purchase orders", "options": ["Incoming Documents", "Power Automate flows", "Security filters", "Business Central workflows"], "correct_answer": 3},
-      {"label": "Assign the security command that locks the purchase order", "options": ["When Event", "Then Response", "On Condition", "Trigger"], "correct_answer": 1},
-      {"label": "Assign the items that trigger locking of the purchase order", "options": ["When Event", "Then Response", "On Condition", "Trigger"], "correct_answer": 0}
+      {
+        "label": "Lock the record for newly created blanket purchase orders",
+        "options": [
+          "Incoming Documents",
+          "Power Automate flows",
+          "Security filters",
+          "Business Central workflows"
+        ],
+        "correct_answer": 3
+      },
+      {
+        "label": "Assign the security command that locks the purchase order",
+        "options": [
+          "When Event",
+          "Then Response",
+          "On Condition",
+          "Trigger"
+        ],
+        "correct_answer": 1
+      },
+      {
+        "label": "Assign the items that trigger locking of the purchase order",
+        "options": [
+          "When Event",
+          "Then Response",
+          "On Condition",
+          "Trigger"
+        ],
+        "correct_answer": 0
+      }
     ],
     "explanation": "Box 1: Use Business Central workflows. Change management introduces a managed workflow that locks purchase orders after they are approved; the orders cannot be changed until a change request workflow is started. A workflow represents a business process: it defines how a document flows through the system and who must complete a task or approve a document. Box 2: Then Response is the workflow section that specifies what happens next, including the response that locks the purchase order. Box 3: When Event is where the trigger is selected, such as a master data record changing, a journal line being created, an incoming document being created or released, or approval of a document being requested. The On Condition section filters the event, for example to the specified item. In summary, the event starts the workflow, the condition limits when it applies, and the response performs the next action.",
     "type_label": "Hotspot"
@@ -435,9 +685,21 @@
     "type": "matching",
     "topic": "Posting setup",
     "question": "You need to create posting details for master data. Which setting should you use for each requirement?",
-    "targets": ["Item", "Vendor", "Customer"],
-    "alternatives": ["G/L Account", "General Prod. Posting Group", "General Bus. Posting Group"],
-    "correct_matches": [1, 2, 1],
+    "targets": [
+      "Item",
+      "Vendor",
+      "Customer"
+    ],
+    "alternatives": [
+      "G/L Account",
+      "General Prod. Posting Group",
+      "General Bus. Posting Group"
+    ],
+    "correct_matches": [
+      1,
+      2,
+      1
+    ],
     "explanation": "Assign General Prod. Posting Group to an item or resource to describe what is sold or purchased and to determine the related G/L accounts. Assign General Bus. Posting Group to a vendor or customer to describe who the company buys from or sells to. Therefore the item uses the product group, while both the vendor and customer use the business group.",
     "matching": true
   },
@@ -445,22 +707,79 @@
     "type": "sequence",
     "topic": "Users and permissions",
     "question": "A bookkeeper has the D365 ACCOUNTANTS permission set. Create a view-only permission set for an auditor. Which actions should you perform in sequence?",
-    "alternatives": ["On the User Groups page select the D365 ACCOUNTANTS code.", "On the Permission Sets page select the D365 ACCOUNTANTS permission set.", "Use the Copy Permission Sets function.", "Assign a new permission set name to AUDIT.", "Edit the permissions for permission set AUDIT.", "Set Insert, Modify, and Delete permissions to No for all permission lines."],
-    "correct_order": [0, 1, 2, 3, 4, 5],
+    "alternatives": [
+      "On the User Groups page select the D365 ACCOUNTANTS code.",
+      "On the Permission Sets page select the D365 ACCOUNTANTS permission set.",
+      "Use the Copy Permission Sets function.",
+      "Assign a new permission set name to AUDIT.",
+      "Edit the permissions for permission set AUDIT.",
+      "Set Insert, Modify, and Delete permissions to No for all permission lines."
+    ],
+    "correct_order": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
     "explanation": "On User Groups, select the D365 ACCOUNTANTS code, then open its D365 ACCOUNTANTS permission set. Use Copy Permission Sets to create a separate set, name the copy AUDIT, and edit the AUDIT permissions. Set Insert, Modify, and Delete to No on every permission line while retaining Read and Execute access, giving the auditor the bookkeeper's view of the data without write access."
   },
   {
     "type": "hotspot",
     "topic": "General journals",
-    "question": "A company uses Dynamics 365 Business Central with ADM, PROD, and SALES departments set up as dimensions. AP clerks enter building-material purchase invoices without dimensions. Monthly building expenses vary between $5,000 and $7,000, and allocation is required at the end of each month. How should you configure the recurring general journal?",
+    "question": "A company uses Dynamics 365 Business Central with ADM, PROD, and SALES departments set up as dimensions. AP clerks enter building-material purchase invoices without dimensions. Monthly building expenses vary between $5,000 and $7,000, and allocation is required at the end of each month. Configure the recurring general journal as follows:\n- Select recurring method\n- Set up recurring frequency\n- Set up amount field",
     "context_table": {
-      "headers": ["Department", "Allocation"],
-      "rows": [["PROD", "50 percent"], ["SALES", "25 percent"], ["ADM", "25 percent"]]
+      "headers": [
+        "Department",
+        "Allocation"
+      ],
+      "rows": [
+        [
+          "PROD",
+          "50 percent"
+        ],
+        [
+          "SALES",
+          "25 percent"
+        ],
+        [
+          "ADM",
+          "25 percent"
+        ]
+      ]
     },
     "fields": [
-      {"label": "Select recurring method", "options": ["F Fixed", "V Variable", "RF Reversing Fixed", "BD Balance by Dimension"], "correct_answer": 3},
-      {"label": "Set up recurring frequency", "options": ["1M", "1D", "CM-1D", "1D+1M-1D"], "correct_answer": 3},
-      {"label": "Set up amount field", "options": ["$5,000", "0", "-$5,000", "$7,000"], "correct_answer": 2}
+      {
+        "label": "Select recurring method",
+        "options": [
+          "F Fixed",
+          "V Variable",
+          "RF Reversing Fixed",
+          "BD Balance by Dimension"
+        ],
+        "correct_answer": 3
+      },
+      {
+        "label": "Set up recurring frequency",
+        "options": [
+          "1M",
+          "1D",
+          "CM-1D",
+          "1D+1M-1D"
+        ],
+        "correct_answer": 3
+      },
+      {
+        "label": "Set up amount field",
+        "options": [
+          "$5,000",
+          "0",
+          "-$5,000",
+          "$7,000"
+        ],
+        "correct_answer": 2
+      }
     ],
     "explanation": "Choose BD (Balance by Dimension) so the journal allocates the balance across PROD, SALES, and ADM using the dimension percentages. Use 1D+1M-1D as the recurring frequency, which posts on the last day of each month. Enter -$5,000 in the amount field so the original building-expense balance is reversed and allocated through the recurring journal rather than posting a fixed amount each month.",
     "type_label": "Hotspot"
@@ -469,7 +788,10 @@
     "type": "multiple_choice",
     "topic": "Printing",
     "question": "You are configuring default reports and layouts in Dynamics 365 Business Central. You must add new data items to the report and change the layout associated with the default Purchase Order report. A developer creates and deploys a new report object that includes the new data items and layout. Solution: On the Report Layout Selection page, select the new report object, set the value to Custom Layout, and select the updated layout. Does the solution meet the goal?",
-    "alternatives": ["Yes", "No"],
+    "alternatives": [
+      "Yes",
+      "No"
+    ],
     "correct_answer": 1,
     "explanation": "No. Report Layout Selection can choose Custom Layout and associate the updated layout with a report, but it does not make the report object the default Purchase Order report. The default document report must also be selected by report ID on Report Selection - Purchase for the Order usage."
   },
@@ -477,9 +799,21 @@
     "type": "matching",
     "topic": "Personalization",
     "question": "Which approach should you use to meet each Dynamics 365 Business Central UI requirement?",
-    "targets": ["UI changes apply only at the user level.", "UI changes apply to all users in the environment and user-produced extensions.", "UI changes apply only to the specified Role Center."],
-    "alternatives": ["Personalize", "Customize", "Design"],
-    "correct_matches": [0, 2, 1],
+    "targets": [
+      "UI changes apply only at the user level.",
+      "UI changes apply to all users in the environment and user-produced extensions.",
+      "UI changes apply only to the specified Role Center."
+    ],
+    "alternatives": [
+      "Personalize",
+      "Customize",
+      "Design"
+    ],
+    "correct_matches": [
+      0,
+      2,
+      1
+    ],
     "explanation": "Use Personalize when changes must apply only to the current user. Use Design when UI changes must apply to all users in the environment and be available to extensions produced by the user. Use Customize when changes should apply only to the specified Role Center. These approaches differ by the scope at which the UI change is stored and applied.",
     "matching": true
   },
@@ -487,9 +821,22 @@
     "type": "matching",
     "topic": "Approval workflows",
     "question": "Two finance managers exist, but only one must approve each purchase order. Which page should you use for each configuration requirement?",
-    "targets": ["Create and enable a purchase order approval workflow.", "Set up the relevant sequence for approval managers.", "Enable parallel approval for two managers."],
-    "alternatives": ["Workflow", "Workflow User Group", "Workflow Category", "Approval User Setup"],
-    "correct_matches": [0, 3, 1],
+    "targets": [
+      "Create and enable a purchase order approval workflow.",
+      "Set up the relevant sequence for approval managers.",
+      "Enable parallel approval for two managers."
+    ],
+    "alternatives": [
+      "Workflow",
+      "Workflow User Group",
+      "Workflow Category",
+      "Approval User Setup"
+    ],
+    "correct_matches": [
+      0,
+      3,
+      1
+    ],
     "explanation": "Use the Workflow page to create and enable the purchase order approval workflow. Use Approval User Setup to define the approval users, their limits, and the relevant sequence. Use Workflow User Group when two managers must be included for parallel approval; for this requirement, only one manager is required to approve each purchase order, so parallel approval is not needed.",
     "matching": true
   },
@@ -497,38 +844,104 @@
     "type": "sequence",
     "topic": "Security filters",
     "question": "Salespeople must see only sales orders they create. Which four actions should you perform in sequence?",
-    "alternatives": ["Select the Security Filter column in the Sales Header row.", "Enter Salesperson/Purchase Code in User Setup.", "Enter the Salesperson code.", "Select the field number for the Salesperson code.", "Select the Permission set and select Permissions.", "Enter Sales Responsibility Center."],
-    "correct_order": [4, 0, 3, 2],
+    "alternatives": [
+      "Select the Security Filter column in the Sales Header row.",
+      "Enter Salesperson/Purchase Code in User Setup.",
+      "Enter the Salesperson code.",
+      "Select the field number for the Salesperson code.",
+      "Select the Permission set and select Permissions.",
+      "Enter Sales Responsibility Center."
+    ],
+    "correct_order": [
+      4,
+      0,
+      3,
+      2
+    ],
     "explanation": "First open the required permission set and choose Permissions. In the Sales Header row, select the Security Filter column, select the field number for the Salesperson Code field, and enter the salesperson code as the filter value. This record-level filter limits the user's Sales Header records to orders with that salesperson code; User Setup and Sales Responsibility Center are not the required sequence for this restriction."
   },
   {
     "type": "matching",
     "topic": "Approval workflows",
     "question": "A sales order above $10,000 must be approved by the sales director. Which page should you use for each requirement?",
-    "targets": ["Sales amount approval limit for users", "Sales document type for approval", "Sales items in documents for approval"],
-    "alternatives": ["Approval User Setup", "Workflow User Group", "Workflow"],
-    "correct_matches": [0, 2, 1],
+    "targets": [
+      "Sales amount approval limit for users",
+      "Sales document type for approval",
+      "Sales items in documents for approval"
+    ],
+    "alternatives": [
+      "Approval User Setup",
+      "Workflow User Group",
+      "Workflow"
+    ],
+    "correct_matches": [
+      0,
+      2,
+      1
+    ],
     "explanation": "Use Approval User Setup to assign the sales director and define the user's sales amount approval limit, including the $10,000 threshold. Use Workflow to select the sales document type and create the approval trigger and condition. Use Workflow User Group to define the users or sales items included in the approval workflow, so orders over the threshold are routed to the sales director.",
     "matching": true
   },
   {
     "type": "hotspot",
     "topic": "Customers",
-    "question": "A company uses Dynamics 365 Business Central. Configure a customer card to process payments through a bank account, bill a different customer for invoices, and print invoices in a specific language.",
+    "question": "A company uses Dynamics 365 Business Central. Configure a customer card to do the following:\n- Process payments through a bank account\n- Bill a different customer for invoices\n- Print invoices in a specific language.",
     "fields": [
-      {"label": "Process payments through a bank account", "options": ["Payment Terms Code", "Payment Method Code", "Preferred Bank Account"], "correct_answer": 1},
-      {"label": "Bill a different customer for invoices", "options": ["Contact name", "Bill-to customer", "Ship-to code"], "correct_answer": 1},
-      {"label": "Print invoices in a specific language", "options": ["Country/Region code", "Language code", "Responsibility center"], "correct_answer": 1}
+      {
+        "label": "Process payments through a bank account",
+        "options": [
+          "Payment Terms Code",
+          "Payment Method Code",
+          "Preferred Bank Account"
+        ],
+        "correct_answer": 1
+      },
+      {
+        "label": "Bill a different customer for invoices",
+        "options": [
+          "Contact name",
+          "Bill-to customer",
+          "Ship-to code"
+        ],
+        "correct_answer": 1
+      },
+      {
+        "label": "Print invoices in a specific language",
+        "options": [
+          "Country/Region code",
+          "Language code",
+          "Responsibility center"
+        ],
+        "correct_answer": 1
+      }
     ],
     "explanation": "Payment Method Code controls how payments are processed, Bill-to Customer identifies the customer who receives the invoice, and Language Code controls the language used for customer documents."
   },
   {
     "type": "hotspot",
     "topic": "Cash receipt journals",
-    "question": "Configure a cash receipt journal batch so it uses a bank account by default and archives customer payment lines in posted journals.",
+    "question": "Configure a cash receipt journal batch as follows:\n- Cash receipt journal batch must use a bank account\n- Cash receipt customer payments must be archived in posted journals",
     "fields": [
-      {"label": "Cash receipt journal batch must use a bank account", "options": ["Bank Account under Bal. Account Type", "G/L account under Bal. Account Type", "Customer under Bal. Account Type", "Vendor under Bal. Account Type"], "correct_answer": 1},
-      {"label": "Cash receipt customer payments must be archived in posted journals", "options": ["Posting No. Series", "Copy to Posted Jnl. Lines", "Suggest Balancing Amount", "Reason Code"], "correct_answer": 1}
+      {
+        "label": "Cash receipt journal batch must use a bank account",
+        "options": [
+          "Bank Account under Bal. Account Type",
+          "G/L account under Bal. Account Type",
+          "Customer under Bal. Account Type",
+          "Vendor under Bal. Account Type"
+        ],
+        "correct_answer": 1
+      },
+      {
+        "label": "Cash receipt customer payments must be archived in posted journals",
+        "options": [
+          "Posting No. Series",
+          "Copy to Posted Jnl. Lines",
+          "Suggest Balancing Amount",
+          "Reason Code"
+        ],
+        "correct_answer": 1
+      }
     ],
     "explanation": "Set the balancing account type to G/L account for the bank account default, and enable Copy to Posted Jnl. Lines so posted cash receipt lines are retained in the posted journal."
   },
@@ -536,7 +949,12 @@
     "type": "multiple_choice",
     "topic": "General ledger",
     "question": "A finance manager creates a new G/L account and needs it included in the general journal reconciliation window. What should you do?",
-    "alternatives": ["Add the G/L account to the Bank Account Posting Group.", "Enable Direct Posting on the G/L account card.", "Enable the Reconciliation Account field on the G/L account card.", "Create a new payment reconciliation journal."],
+    "alternatives": [
+      "Add the G/L account to the Bank Account Posting Group.",
+      "Enable Direct Posting on the G/L account card.",
+      "Enable the Reconciliation Account field on the G/L account card.",
+      "Create a new payment reconciliation journal."
+    ],
     "correct_answer": 2,
     "explanation": "Enable Reconciliation Account on the G/L account card. This marks the account as relevant for reconciliation in the general journal reconciliation window."
   },
@@ -544,7 +962,12 @@
     "type": "multiple_choice",
     "topic": "Items",
     "question": "An item has PCS as its base unit of measure and BOX as an additional unit. One BOX contains 20 PCS. What value should you enter for BOX on the Item Units of Measure page?",
-    "alternatives": ["Set Qty. per Unit of Measure for BOX to 0.05.", "Set Qty. per Unit of Measure for BOX to 20.", "Set Qty. per Unit of Measure for PCS to 0.05.", "Set Qty. per Unit of Measure for PCS to 20."],
+    "alternatives": [
+      "Set Qty. per Unit of Measure for BOX to 0.05.",
+      "Set Qty. per Unit of Measure for BOX to 20.",
+      "Set Qty. per Unit of Measure for PCS to 0.05.",
+      "Set Qty. per Unit of Measure for PCS to 20."
+    ],
     "correct_answer": 1,
     "explanation": "The quantity per unit of measure for BOX is 20 because one BOX represents 20 base units, or PCS."
   },
@@ -552,70 +975,192 @@
     "type": "sequence",
     "topic": "Company setup",
     "question": "You need to duplicate a company based on an existing Dynamics 365 Business Central company. Which four actions should you perform in sequence?",
-    "alternatives": ["Open the Companies page.", "Select a company to copy.", "Select the Copy function.", "Add the new company name.", "Open the data migration task.", "Select tables to copy.", "Use the New function."],
-    "correct_order": [0, 1, 2, 3],
+    "alternatives": [
+      "Open the Companies page.",
+      "Select a company to copy.",
+      "Select the Copy function.",
+      "Add the new company name.",
+      "Open the data migration task.",
+      "Select tables to copy.",
+      "Use the New function."
+    ],
+    "correct_order": [
+      0,
+      1,
+      2,
+      3
+    ],
     "explanation": "Open the Companies page, select the source company, choose Copy, and provide the new company name."
   },
   {
     "type": "sequence",
     "topic": "Configuration packages",
     "question": "A client provides an Excel file containing vendor master data and vendor bank account details. Import both by using a configuration package. Which four actions should you perform in sequence?",
-    "alternatives": ["Import one Excel template that contains vendor and vendor bank account data.", "Import two separate Excel files into the package, one for vendor data and one for bank account data.", "Define the Vendor table as a parent in Parent Table ID for VendorBankAccount.", "Create a configuration package.", "Define the VendorBankAccount table as a parent in Parent Table ID.", "Select Apply package on the header."],
-    "correct_order": [3, 0, 2, 5],
+    "alternatives": [
+      "Import one Excel template that contains vendor and vendor bank account data.",
+      "Import two separate Excel files into the package, one for vendor data and one for bank account data.",
+      "Define the Vendor table as a parent in Parent Table ID for VendorBankAccount.",
+      "Create a configuration package.",
+      "Define the VendorBankAccount table as a parent in Parent Table ID.",
+      "Select Apply package on the header."
+    ],
+    "correct_order": [
+      3,
+      0,
+      2,
+      5
+    ],
     "explanation": "Create the configuration package, import the single workbook containing both related tables, define Vendor as the parent of VendorBankAccount, and apply the package."
   },
   {
     "type": "multi_select",
     "topic": "Purchase prices",
     "question": "A company plans to use multiple unit prices for the same items from different vendors. In which two locations can you configure purchase prices?",
-    "alternatives": ["Purchase order", "Resource prices", "Vendor card", "Customer card", "Item card"],
-    "correct_answers": [2, 4],
+    "alternatives": [
+      "Purchase order",
+      "Resource prices",
+      "Vendor card",
+      "Customer card",
+      "Item card"
+    ],
+    "correct_answers": [
+      2,
+      4
+    ],
     "explanation": "Purchase prices can be maintained for a vendor and item, so the Vendor card and Item card are the applicable locations."
   },
   {
     "type": "hotspot",
     "topic": "Dimensions",
-    "question": "Select the value posting type for each dimension requirement in Dynamics 365 Business Central.",
+    "question": "A client plans to implement Dynamics 365 Business Central. You need to configure the system. Which value posting type should you use? To answer, select the appropriate options in the answer area.",
     "fields": [
-      {"label": "Allow the user to change the default dimension value for the account type in a transaction", "options": ["Code Mandatory", "Same Code", "No Code"], "correct_answer": 2},
-      {"label": "Prevent the user from posting a transaction without a dimension value for the account type", "options": ["Code Mandatory", "Same Code", "No Code"], "correct_answer": 0},
-      {"label": "Ensure that Business Central only accepts the default dimension value set for the account type", "options": ["Code Mandatory", "Same Code", "No Code"], "correct_answer": 1}
+      {
+        "label": "Allow the user to change the default dimension value for the account type in a transaction",
+        "options": [
+          "Code Mandatory",
+          "Same Code",
+          "No Code"
+        ],
+        "correct_answer": 2
+      },
+      {
+        "label": "Prevent the user from posting a transaction without a dimension value for the account type",
+        "options": [
+          "Code Mandatory",
+          "Same Code",
+          "No Code"
+        ],
+        "correct_answer": 0
+      },
+      {
+        "label": "Ensure that Business Central only accepts the default dimension value set for the account type",
+        "options": [
+          "Code Mandatory",
+          "Same Code",
+          "No Code"
+        ],
+        "correct_answer": 1
+      }
     ],
     "explanation": "No Code allows the default value to be changed, Code Mandatory requires a value, and Same Code requires the specified default value to be used."
   },
   {
     "type": "matching",
+    "matching": true,
     "topic": "Opening balances",
-    "question": "Match each opening balance to the Business Central component used to import it.",
-    "targets": ["Item", "Bank", "Customer"],
-    "alternatives": ["General journal", "Bank account reconciliation", "Item journal"],
-    "correct_matches": [2, 1, 0],
+    "question": "Match each opening balance to the Business Central component used to import it. Use the following mapping:\n- Item\n- Bank\n- Customer",
+    "targets": [
+      "Item",
+      "Bank",
+      "Customer"
+    ],
+    "alternatives": [
+      "General journal",
+      "Bank account reconciliation",
+      "Item journal"
+    ],
+    "correct_matches": [
+      2,
+      1,
+      0
+    ],
     "explanation": "Use the Item journal for item opening quantities and values, Bank account reconciliation for bank opening balances, and the General journal for customer opening balances."
   },
   {
     "type": "sequence",
     "topic": "Configuration packages",
     "question": "Most vendors use a foreign currency for opening balances. The balancing account is preselected on the journal batch. Import vendor opening balances by using configuration packages. Which four actions should you perform in sequence?",
-    "alternatives": ["Select fields in this order: Account Type, Account No., Posting Date, Document No., Description, Amount (LCY), Currency, and Amount.", "Import the Excel file and validate the relationship. Then apply the data and post to the general journal.", "Select fields in this order: Account Type, Account No., Posting Date, Document No., Description, Amount, Amount (LCY), and Currency.", "Import from Excel and then post to the general journal.", "Export to Excel from the configuration package and populate the data.", "Select fields in this order: Account Type, Account No., Posting Date, Document No., Description, Currency Code, Amount, and Amount (LCY).", "Create a configuration package for table 81 Gen. Journal Line."],
-    "correct_order": [6, 4, 5, 1],
+    "alternatives": [
+      "Select fields in this order: Account Type, Account No., Posting Date, Document No., Description, Amount (LCY), Currency, and Amount.",
+      "Import the Excel file and validate the relationship. Then apply the data and post to the general journal.",
+      "Select fields in this order: Account Type, Account No., Posting Date, Document No., Description, Amount, Amount (LCY), and Currency.",
+      "Import from Excel and then post to the general journal.",
+      "Export to Excel from the configuration package and populate the data.",
+      "Select fields in this order: Account Type, Account No., Posting Date, Document No., Description, Currency Code, Amount, and Amount (LCY).",
+      "Create a configuration package for table 81 Gen. Journal Line."
+    ],
+    "correct_order": [
+      6,
+      4,
+      5,
+      1
+    ],
     "explanation": "Create a package for Gen. Journal Line, export and populate the Excel template, include Currency Code in the processing order for foreign-currency balances, then import, validate, apply, and post the journal."
   },
   {
     "type": "sequence",
     "topic": "Dimensions",
     "question": "A company recently restructured and has only a few posted entries. Which three actions should you perform to change the Global Dimensions?",
-    "alternatives": ["Update Global Dimensions in parallel order.", "Select Parallel Processing on the Change Global Dimensions page.", "Select new dimension codes in the dimension fields.", "Update Global Dimensions in sequential order.", "On General Ledger Setup, select Change Global Dimensions."],
-    "correct_order": [4, 3, 2],
+    "alternatives": [
+      "Update Global Dimensions in parallel order.",
+      "Select Parallel Processing on the Change Global Dimensions page.",
+      "Select new dimension codes in the dimension fields.",
+      "Update Global Dimensions in sequential order.",
+      "On General Ledger Setup, select Change Global Dimensions."
+    ],
+    "correct_order": [
+      4,
+      3,
+      2
+    ],
     "explanation": "Open Change Global Dimensions from General Ledger Setup, run the update in sequential order because there are few posted entries, and select the new dimension codes."
   },
   {
     "type": "hotspot",
     "topic": "Case study: Customers and dimensions",
-    "question": "Northwind Traders identifies customers by market type and requires all revenue postings to reference a market. Configure retail store customer cards to track revenue by market.",
+    "question": "You need to configure retail store customer cards to track revenue by market. Which configuration should you use? To answer, select the appropriate option in the answer area.",
+    "case_study": "Question 52 of 307\n\nHOTSPOT\n\nCase study\n\nThis is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\n\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\n\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\n\nTo start the case study\n\n• - To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.\n\nBackground\n\n• - Northwind Traders is an independent, family-owned business. The company distributes natural pet products in the Northwest region of the country/region. Products are purchased directly from manufacturers and distributed by using its own fleet of trucks. When the company started, deliveries were within a three-hour radius of the warehouse. Due to regional growth, current deliveries require drivers to stay overnight on some routes. The company plans to open a second warehouse to expand the region and eliminate overnights for route drivers. The company also plans to hire a second group of employees to run operations in this new location. The finance and accounting teams will remain in the original location.\n\nThe company uses a third-party system for financials and order management. The finance department stated that the company’s fiscal year begins on July 1 and ends on June 30. The mm/dd/yyyy date format is used.\n\nAs part of the expansion, the owner plans to upgrade to an ERP system and use Business Central to fulfill the company requirements and manage growth.\n\nCurrent environment\n\nOrders\n\n• Orders are emailed to customer service and manually keyed into the inventory system.\n\nPricing and discounts\n\n• Customer pricing is determined by the customer market type. Customer market types are Retail, Veterinarian, and Breeder. Each customer is associated with only one market type.\n• Vendors offer monthly promotions to customers by item, brand, or item category.\n• Invoices should show each customer’s base price, the discount amount, and the net price.\n\nAccounts payable\n\n• The company wants to expand vendor payment options in the new system.\n\nRequirement\n\nCustomers\n\n• The sales team must be able to do the following:\n• o Quickly set up new customers with the proper settings based on customer type.\n• o Identify customers by market type. Customer posting groups will be used to identify which market the customer belongs to.\n• Base price is determined by the customer market type.\n• The sales department should receive a warning when entering the order if a customer is over their credit limit.\n\nSales\n\n• Customer discounts are offered for specific time frames by item, brand, or product category. Discounts should be added to sales lines automatically.\n• Discounts must post to a unique general ledger (G/L) account.\n• The business needs to be able to track revenue by location, market, and product category dimensions. Locations 100 and 200 will be set as default dimensions on the two warehouse locations. Food, treats, toys, and supplies are the required product categories, which will be set as default dimensions on the item cards. Each customer card will have a default market dimension.\n• The sales manager wants to delete canceled orders and automatically archive them.\n\nWarehouse\n\n• Orders will be fulfilled from two possible warehouse locations.\n• Product will be transferred between locations by using transfer orders.\n\nSales invoices\n\n• Invoices will be posted after delivery.\n• Invoices will be emailed to the customer.\n• The sales department must be able to quickly correct posted invoices for the following scenarios:\n• o Posted invoices that have not been paid.\n• o Posted invoices that have been paid.\n• o Posted invoices created from sales orders.\n• o Posted invoices not created from sales orders.\n\nAccounting\n\n• The finance department requires that the company has 12 monthly accounting periods per fiscal year.\n• Finance department users must be able to reconcile the accounts receivable (AR) subledger to the G/L account at month end.\n• AR department users need the ability to settle and close invoices when customers take payment discounts after the payment discount date has passed. AR users should be allowed to accept or reject the payment tolerance.\n• Accounts payable (AP) department users must be able to pay vendors by electronic funds transfer (EFT) and use a payment journal batch named EFT to process payments.\n• When viewing G/L entries, the finance and accounting teams must be able to see debits and credits instead of a positive or negative amount.\n• The company needs to be able to track expenses by department and location. The departments are sales, operations, and administration.\n• AR must be able to correct cash application entries.\n\nIssues\n\nPayment application\n\n• Customers may have several stores that are responsible for their own orders and payments.\n• Occasionally, AR clerks mistakenly apply payments to the incorrect customer invoice.\n\nInvoicing\n\n• When items are delivered, customers refuse the items for reasons such as damaged or wrong item.\n• After the invoices are posted, they must be corrected, which is time-consuming.\n\nWarehouse\n\n• The sales department and warehouse managers must have visibility into products that are in the process of being transferred between locations.\n\nAccounts\n\n• Customer accounts are difficult to view by market type.\n• The finance team does not have the ability to report revenue by customer type.\n\nAccounting\n\n• AR users often find variances between the AR subledger and G/L account.\n• Customers often take the payment discount after the payment discount date has passed, leaving open invoices for small amounts.\n• The AP department is unable to pay vendors by EFT in the current system.\n• Finance and accounting team members have trouble validating postings when they use only the amounts field on G/L entries.\n• The finance department is unable to run financial reports by market. All revenue postings must reference a market.\n\nYou need to configure retail store customer cards to track revenue by market. Which configuration should you use? To answer, select the appropriate option in the answer area.",
     "fields": [
-      {"label": "Assign the dimension code", "options": ["Market", "Location", "Department", "Product Category"], "correct_answer": 0},
-      {"label": "Assign the dimension value code", "options": ["Sales", "Retail", "Treats", "Breeder"], "correct_answer": 0},
-      {"label": "Select a value posting", "options": ["Blank", "No code", "Same code", "Code mandatory"], "correct_answer": 2}
+      {
+        "label": "Assign the dimension code",
+        "options": [
+          "Market",
+          "Location",
+          "Department",
+          "Product Category"
+        ],
+        "correct_answer": 0
+      },
+      {
+        "label": "Assign the dimension value code",
+        "options": [
+          "Sales",
+          "Retail",
+          "Treats",
+          "Breeder"
+        ],
+        "correct_answer": 0
+      },
+      {
+        "label": "Select a value posting",
+        "options": [
+          "Blank",
+          "No code",
+          "Same code",
+          "Code mandatory"
+        ],
+        "correct_answer": 2
+      }
     ],
     "explanation": "Use the Market dimension, assign the Sales value shown for the retail customer setup, and select Same code so the default market value is retained on postings."
   },
@@ -623,16 +1168,56 @@
     "type": "matching",
     "topic": "Approval workflows",
     "question": "A purchase order approval workflow must send an approval request when a purchase order is created, require approval for amounts of $600 or more, and notify users immediately. Match each use case to the area to configure.",
-    "targets": ["Activate the notification when a new purchase order is created.", "Configure the approval limit for purchase orders.", "Allow the user to receive notifications immediately."],
-    "alternatives": ["Approval User Setup", "Notification Schedule", "Workflow User Group", "Workflow Notification Setup"],
-    "correct_matches": [3, 0, 1],
+    "matching": true,
+    "targets": [
+      "Activate the notification when a new purchase order is created.",
+      "Configure the approval limit for purchase orders.",
+      "Allow the user to receive notifications immediately."
+    ],
+    "alternatives": [
+      "Approval User Setup",
+      "Notification Schedule",
+      "Workflow User Group",
+      "Workflow Notification Setup"
+    ],
+    "correct_matches": [
+      3,
+      0,
+      1
+    ],
     "explanation": "Workflow Notification Setup activates workflow notifications, Approval User Setup contains approval limits, and Notification Schedule controls when notifications are delivered."
   },
   {
     "type": "multiple_choice",
     "topic": "Users and permissions",
-    "question": "A user has CustomerMgmt with Insert permission set to Yes for the Customer table and ReceivablesMgmt with Insert permission set to Blank. What is the outcome?",
-    "alternatives": ["The Yes option will allow a user to create a new customer.", "The permission set order will allow a user to create a new customer.", "The Blank option will allow a user to create a new customer."],
+    "question": "You assign the following permission sets to a Users permissions.\n\n{{context_table}}\n\nYou need to determine how the system handles the user's permissions.\nWhat is the outcome of the user permission configuration?",
+    "context_table": {
+      "headers": [
+        "Permission set",
+        "Object type",
+        "Object ID",
+        "Insert permission"
+      ],
+      "rows": [
+        [
+          "CustomerMgmt",
+          "Table data",
+          "18 (Customer)",
+          "Yes"
+        ],
+        [
+          "ReceivablesMgmt",
+          "Table data",
+          "18 (Customer)",
+          "Blank"
+        ]
+      ]
+    },
+    "alternatives": [
+      "The Yes option will allow a user to create a new customer.",
+      "The permission set order will allow a user to create a new customer.",
+      "The Blank option will allow a user to create a new customer."
+    ],
     "correct_answer": 0,
     "explanation": "Permissions from assigned permission sets are cumulative. The Yes permission grants insert access even though another permission set leaves Insert blank."
   },
@@ -640,7 +1225,10 @@
     "type": "multiple_choice",
     "topic": "Opening balances",
     "question": "You need to transfer opening balances data into Business Central. Solution: Import the data by using comma-separated values (CSV) files. Does the solution meet the goal?",
-    "alternatives": ["Yes", "No"],
+    "alternatives": [
+      "Yes",
+      "No"
+    ],
     "correct_answer": 0,
     "explanation": "Yes. CSV files are a supported way to prepare and import opening-balance data through the applicable Business Central import process."
   },
@@ -648,7 +1236,10 @@
     "type": "multiple_choice",
     "topic": "Opening balances",
     "question": "You need to transfer opening balances data into Business Central. Solution: Use RapidStart Services to import the data. Does the solution meet the goal?",
-    "alternatives": ["Yes", "No"],
+    "alternatives": [
+      "Yes",
+      "No"
+    ],
     "correct_answer": 0,
     "explanation": "Yes. RapidStart Services supports company configuration and importing initial data, including opening-balance data."
   },
@@ -656,7 +1247,10 @@
     "type": "multiple_choice",
     "topic": "Opening balances",
     "question": "You need to transfer opening balances data into Business Central. Solution: Perform data migration by using the Data migration assisted setup wizard. Does the solution meet the goal?",
-    "alternatives": ["Yes", "No"],
+    "alternatives": [
+      "Yes",
+      "No"
+    ],
     "correct_answer": 1,
     "explanation": "No. The Data migration assisted setup wizard is intended primarily for migrating master data. Opening balances require journal or opening-balance import processes."
   },
@@ -664,16 +1258,30 @@
     "type": "matching",
     "topic": "Users and permissions",
     "question": "A specific group of operating users must access only a particular set of customer data. Which pages should you configure?",
-    "targets": ["Create security rules that grant users the required access.", "Assign the predefined security rule sets to the requested users."],
-    "alternatives": ["User Card", "Profiles (Roles)", "Permission Sets", "Microsoft 365 admin center"],
-    "correct_matches": [2, 0],
+    "targets": [
+      "Create security rules that grant users the required access.",
+      "Assign the predefined security rule sets to the requested users."
+    ],
+    "alternatives": [
+      "User Card",
+      "Profiles (Roles)",
+      "Permission Sets",
+      "Microsoft 365 admin center"
+    ],
+    "correct_matches": [
+      2,
+      0
+    ],
     "explanation": "Create or maintain the security rules on Permission Sets, then assign the predefined permission sets to users from the User Card."
   },
   {
     "type": "multiple_choice",
     "topic": "Opening balances",
     "question": "You need to transfer opening balances data into Business Central. Solution: Transfer balances by using the Copy Company function. Does the solution meet the goal?",
-    "alternatives": ["Yes", "No"],
+    "alternatives": [
+      "Yes",
+      "No"
+    ],
     "correct_answer": 1,
     "explanation": "No. Copy Company copies the entire company data rather than transferring only the opening balances."
   },
@@ -681,7 +1289,12 @@
     "type": "multiple_choice",
     "topic": "Microsoft Teams integration",
     "question": "The finance manager must search for contacts and share Business Central records in Teams. You need to install the Business Central app in Teams. What should you do first?",
-    "alternatives": ["Select Share on Attachment Documents in Business Central.", "Search for Teams App Centralized Deployment in Business Central.", "Add a Planner tab to a team channel.", "Manage apps in the Business Central admin center."],
+    "alternatives": [
+      "Select Share on Attachment Documents in Business Central.",
+      "Search for Teams App Centralized Deployment in Business Central.",
+      "Add a Planner tab to a team channel.",
+      "Manage apps in the Business Central admin center."
+    ],
     "correct_answer": 3,
     "explanation": "First manage apps in the Business Central admin center. This is where the Business Central app for Teams is centrally managed and deployed."
   }

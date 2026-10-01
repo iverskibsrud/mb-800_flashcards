@@ -270,5 +270,41 @@
   {
     "question": "Memo",
     "answer": "Nota"
+  },
+  {
+    "question": "General journal reconciliation window",
+    "answer": "Et vindu som brukes til å avstemme (reconcile) posteringer i en kladd mot banktransaksjoner eller avstemmingskontoer. For at en hovedbokskonto skal vises i General Journal Reconciliation window, må feltet Reconciliation Account aktiveres på G/L-kontoen."
+  },
+  {
+    "question": "Opening balances",
+    "answer": "Saldoene til kontoene ved starten av en regnskapsperiode"
+  },
+  {
+    "question": "Dimension Code",
+    "answer": "Dimensjonskoden for dimensjonen. Hvis dimensjonen for eksempel er prosjekt, vil dimensjonskoden være \"PROJECT\"."
+  },
+  {
+    "question": "Dimension Value Code",
+    "answer": "Koden for dimensjonsverdiene. Dersom dimensjonen er PROJECT, så vil dimensjonsverdiene være ABAR eller AFLASK."
+  },
+  {
+    "question": "Value Posting",
+    "answer": "Value Posting bestemmer hvor strengt BC skal håndheve en dimensjon. Alternativene er ofte 'Blank', 'Code Mandatory', 'Same Code', 'No Code'. Blank = Ingen restriksjoner, som betyr at brukeren både kan legge inn verdi og la den stå tom. Code Mandatory = brukeren må legge til dimensjonsverdi. Same Code = Brukeren må legge til en bestemt verdi. For eksempel må man ofte bruke DEPARTMENT=SALES på noen hovedbokskontoer. No Code = Ingen verdi er tillatt."
+  },
+  {
+    "question": "Approval User Setup",
+    "answer": "Hvem som kan godkjenne hva, og hvem de rapporterer til."
+  },
+  {
+    "question": "Notification Schedule",
+    "answer": "Bestemmer når BC skal sende varsler om godkjenningsoppgaver."
+  },
+  {
+    "question": "Workflow User Group",
+    "answer": "Samling brukere som skal delta i en workflow."
+  },
+  {
+    "question": "Workflow Notification Setup",
+    "answer": "Hvordan brukere skal varsles når en workflow krever handling."
   }
 ]
