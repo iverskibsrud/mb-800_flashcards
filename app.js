@@ -38,6 +38,8 @@ const testSetupForm = document.getElementById("testSetupForm");
 const testQuestionCount = document.getElementById("testQuestionCount");
 const testResultDialog = document.getElementById("testResultDialog");
 const testResultContent = document.getElementById("testResultContent");
+const feedbackBtn = document.getElementById("feedbackBtn");
+const feedbackDialog = document.getElementById("feedbackDialog");
 let mockQuestions = [];
 let mockIndex = 0;
 let mockOrder = [];
@@ -152,15 +154,22 @@ function setStudyTab(tabNameOrShowMock) {
   saveStudyState();
 }
 
+function getCaseStudyText(current) {
+  if (current?.case_study) return current.case_study;
+  if (!current?.case_study_id) return "";
+  return mockQuestions.find((question) => question.case_study_id === current.case_study_id)?.case_study ?? "";
+}
+
 function renderMockQuestion() {
   const current = mockQuestions[mockIndex];
+  const caseStudyText = getCaseStudyText(current);
   mockOptions.replaceChildren();
   document.querySelector(".mock-context-table")?.remove();
   mockFeedback.textContent = "";
   mockFeedback.className = "feedback";
   explanationBtn.hidden = true;
   explanationContent.textContent = "";
-  caseStudyBtn.hidden = !current?.case_study;
+  caseStudyBtn.hidden = !caseStudyText;
   caseStudyContent.textContent = "";
   if (caseStudyDialog.open) caseStudyDialog.close();
   if (explanationDialog.open) explanationDialog.close();
@@ -188,8 +197,8 @@ function renderMockQuestion() {
   } else {
     mockQuestion.innerHTML = formatDisplayMarkup(questionText);
   }
-  if (current.case_study) {
-    caseStudyContent.innerHTML = formatDisplayMarkup(current.case_study);
+  if (caseStudyText) {
+    caseStudyContent.innerHTML = formatDisplayMarkup(caseStudyText);
   }
   saveStudyState();
   if (current.context_table && !questionText.includes(contextMarker)) renderMockContextTable(current.context_table);
@@ -465,7 +474,15 @@ function startTestMode() {
   testAnswered = 0;
   testCorrect = 0;
   testResults = [];
-  testQuestionOrder = Array.from({ length: testTarget }, (_, position) => (mockIndex + position) % mockQuestions.length);
+  const shuffledQuestionIndexes = Array.from({ length: mockQuestions.length }, (_, questionIndex) => questionIndex);
+  for (let position = shuffledQuestionIndexes.length - 1; position > 0; position -= 1) {
+    const swapPosition = Math.floor(Math.random() * (position + 1));
+    [shuffledQuestionIndexes[position], shuffledQuestionIndexes[swapPosition]] = [
+      shuffledQuestionIndexes[swapPosition],
+      shuffledQuestionIndexes[position],
+    ];
+  }
+  testQuestionOrder = shuffledQuestionIndexes.slice(0, testTarget);
   mockIndex = testQuestionOrder[0];
   testMode = true;
   setStudyTab("mockExam");
@@ -668,6 +685,8 @@ document.getElementById("closeTestResultBtn").addEventListener("click", () => {
   testMode = false;
   renderMockQuestion();
 });
+feedbackBtn.addEventListener("click", () => feedbackDialog.showModal());
+document.getElementById("closeFeedbackBtn").addEventListener("click", () => feedbackDialog.close());
 document.getElementById("nextMockBtn").addEventListener("click", () => {
   if (!mockQuestions.length) return;
   if (testMode) {

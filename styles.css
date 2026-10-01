@@ -24,6 +24,28 @@ body {
   color: var(--text);
 }
 
+.feedback-fab {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.35rem;
+  line-height: 1;
+  box-shadow: 0 5px 14px rgba(16, 32, 48, 0.2);
+}
+
+.feedback-fab:hover {
+  background: var(--accent-hover);
+}
+
 .app {
   position: relative;
   width: min(900px, 92vw);
@@ -499,6 +521,26 @@ h1 {
 .test-dialog h3 {
   margin: 18px 0 8px;
   font-size: 1rem;
+}
+
+.feedback-dialog {
+  width: min(420px, calc(100% - 36px));
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 22px;
+  color: var(--text);
+}
+
+.feedback-dialog::backdrop {
+  background: rgba(16, 32, 48, 0.28);
+}
+
+.feedback-dialog h2 {
+  margin-top: 0;
+}
+
+.feedback-dialog p {
+  line-height: 1.55;
 }
 
 .test-dialog p,

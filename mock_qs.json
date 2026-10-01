@@ -1258,6 +1258,7 @@
     "type": "matching",
     "topic": "Users and permissions",
     "question": "A specific group of operating users must access only a particular set of customer data. Which pages should you configure?",
+    "matching": true,
     "targets": [
       "Create security rules that grant users the required access.",
       "Assign the predefined security rule sets to the requested users."
@@ -1297,5 +1298,398 @@
     ],
     "correct_answer": 3,
     "explanation": "First manage apps in the Business Central admin center. This is where the Business Central app for Teams is centrally managed and deployed."
+  },
+  {
+    "type": "drag_and_drop",
+    "topic": "Users and permissions",
+    "question": "A company adds a user to Microsoft 365.\n\nExisting security groups do not have the required permission sets for newly added users.\n\nYou need to assign a Dynamics 365 Business Central security group and permissions to the user and the company.\n\nWhich five actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.",
+    "alternatives": [
+      "Pull the Security Group in Business Central.",
+      "Assign the user to the company.",
+      "Create a Microsoft 365 Security Group.",
+      "Assign permissions to a security group.",
+      "Assign the company to the user.",
+      "Select Get New Users from Microsoft 365 / Update Users from Microsoft 365."
+    ],
+    "correct_order": [
+      1,
+      5,
+      2,
+      0,
+      3
+    ],
+    "explanation": "Assign the user to the company, synchronize users from Microsoft 365, create the security group, pull it into Business Central, and assign permissions to the group."
+  },
+  {
+    "type": "sequence",
+    "topic": "Number series",
+    "question": "A manufacturer uses Dynamics 365 Business Central.\n\nThe company has the following item types:\n• Raw Materials\n• Work-in-progress (WIP)\n• Finished Goods\n\nDifferent prefixes are used for item numbers to identify these item types.\n\nThe company requires the following system setup:\n• Use a unique number series for each item type.\n• No. Series must be selectable when creating manual items.\n• Implement automatic number assignment.\n\nYou need to configure the system.\n\nIn which order should you perform the actions? To answer, move all actions from the list of actions to the answer area and arrange them in the correct order.",
+    "alternatives": [
+      "Enable the ability to use default numbers.",
+      "Create a number series.",
+      "Create relationships between the number series.",
+      "Set the default number series on the Inventory Setup page."
+    ],
+    "correct_order": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "explanation": "Create the number series, create relationships between them, enable manual selection of default numbers, and set the default series on Inventory Setup."
+  },
+  {
+    "type": "sequence",
+    "topic": "Power Automate integration",
+    "question": "A company uses Business Central and plans to automate its processes by using Power Automate.\n\nThe company finance manager wants to restrict access to Power Automate features. Only trained users must be able to create and run instant flows in Business Central.\n\nYou need to set up access control for specific users.\n\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.",
+    "alternatives": [
+      "As an administrator, agree to the integration notice on the Privacy Notices Status page on behalf of all users or allow users to decide themselves.",
+      "Validate that authorized users have the Automate Action permission.",
+      "Add the system permission Allow Action Automate (ID 9630) to the assigned permissions sets.",
+      "As an administrator, disagree to the integration notice on the Privacy Notices Status page on behalf of all users.",
+      "Remove the system permission Allow Action Automate (ID 9630) from the assigned permissions sets."
+    ],
+    "correct_order": [
+      3,
+      2,
+      1
+    ],
+    "explanation": "Disagree to the integration notice on behalf of all users, add the Allow Action Automate permission, and validate that authorized users have the Automate Action permission."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Opening balances",
+    "question": "You need to transfer opening balances data into the system.\nSolution: Use a configuration package to import the data.\nDoes the solution meet the goal?",
+    "alternatives": [
+      "Yes",
+      "No"
+    ],
+    "correct_answer": 0,
+    "explanation": "Using a configuration package to import data is a straightforward and effective method for transferring opening balances into the system."
+  },
+  {
+    "type": "hotspot",
+    "topic": "Case study: Fabrikam integrations",
+    "case_study_id": "fabrikam-65-67",
+    "question": "You need to recommend integration solutions to fulfill the company requirements.\nWhich Microsoft integration aligns with each requirement? To answer, select the appropriate options in the answer area.",
+    "case_study": "This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.\n\nTo answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.\n\nAt the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.\n\nTo start the case study\n\nTo display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. When you are ready to answer a question, click the Question button to return to the question.\n\nBackground\n\nFabrikam, Inc., is a manufacturer of products for the gift industry. The company plans to implement Business Central as its new enterprise resource planning (ERP) system. The company sells to two types of customers: wholesale and retail. Retail customers order at special events and online. Wholesale customers send in orders by email.\n\nCurrent Environment\n\nOrder processing\n\n• The company uses a purchase order (PO) workflow for any PO over $500.\n• The system has been fully configured for sales order prepayments and will check for a prepayment invoice at posting.\n• Customers can special order products with a prepayment that is due on receipt.\n\nInvoicing\n\n• Wholesale customer payment terms are net 30, with a 2% discount if paid within 10 days.\n• Retail customer payment terms are payable on receipt or shipment.\n\nReporting\n\n• The company uses headcount (number of employees) and square footage for statistical accounts.\n\nIntegrations\n\nThe company currently uses Outlook, Excel, Word, and Teams to communicate internally and externally with customers and vendors.\n\nRequirements\n\nOrder processing\n\n• The company must be able to combine multiple purchase receipts into one vendor invoice.\n• Posted vendor invoices must be reverted when damages are reported or a product is returned to the vendor.\n• Fully invoiced POs must not appear on the PO list page.\n• Customer prepayments vary based on customer relationship. Special orders from new customers have a 25% prepayment. Established customers have only a 15% prepayment.\n• The company must be able to approve POs by email without opening Business Central.\n• Customers often reorder the same items with similar quantities. The system must be configured to ask the user if recurring lines should be added to sales orders.\n\nInvoicing\n\n• Customer revenue must be posted to separate general ledger (G/L) accounts based on customer type. The G/L account must have subcategories for wholesale and retail revenue.\n• Accounts receivable must be posted to separate G/L accounts based on customer type. The G/L account must have subcategories for wholesale and retail accounts receivable.\n• Currently, inventory is sold at a cost based on purchase and sales over a period.\n\nReporting\n\n• Financial reports must include statistical accounts.\n• The financial report structure must map to account categories.\n\nIntegrations\n\nThe company requires the following integration capabilities:\n• Create sales orders while collaborating with customers by email.\n• Edit customer information while messaging the sales team in a group chat.\n• Communicate a brochure to all customers at once about a sales campaign.\n\nGeneral ledger posting accounts\n\n• Retail Receivables = 13100\n• Wholesale Receivables = 13200\n• Payment Discount = 54800\n• Retail Sales = 44100\n• Wholesale Sales = 44200\n• Sales Prepayments = 22160\n\nIssues\n\n• Order entry takes too long for wholesale customers.\n• Vendors ship partial orders but send one monthly invoice. The company is unable to associate one invoice with multiple POs in the current environment.\n• Inventory reconciliation was difficult in the company's old system because it allowed users to sell more inventory than was physically available.\n• Users must log in to the system to provide workflow approvals.",
+    "fields": [
+      {
+        "label": "Customer email collaboration",
+        "options": [
+          "Business Central Outlook add-in",
+          "Business Central app for Teams",
+          "Word template",
+          "Power Automate"
+        ],
+        "correct_answer": 0
+      },
+      {
+        "label": "Sales team collaboration",
+        "options": [
+          "Business Central Outlook add-in",
+          "Business Central app for Teams",
+          "Word template",
+          "Power Automate"
+        ],
+        "correct_answer": 1
+      },
+      {
+        "label": "Customer notifications for sales campaign",
+        "options": [
+          "Business Central Outlook add-in",
+          "Business Central app for Teams",
+          "Word template",
+          "Power Automate"
+        ],
+        "correct_answer": 3
+      }
+    ],
+    "explanation": "Use the Business Central Outlook add-in for customer email collaboration, the Business Central app for Teams for sales team collaboration, and Power Automate for customer notifications."
+  },
+  {
+    "type": "multi_select",
+    "topic": "Case study: Fabrikam workflows",
+    "case_study_id": "fabrikam-65-67",
+    "question": "You need to configure workflows to meet the order processing requirements of the company.\nWhich two solutions should you use? Each correct answer presents part of the solution.",
+    "alternatives": [
+      "Create a purchase order approval workflow.",
+      "Use Business Central as the engine for the workflow.",
+      "Use Power Automate as the engine for the workflow.",
+      "Create a purchase invoice approval workflow."
+    ],
+    "correct_answers": [
+      0,
+      2
+    ],
+    "explanation": "Create a purchase order approval workflow and use Power Automate as the workflow engine so users can approve POs by email."
+  },
+  {
+    "type": "matching",
+    "matching": true,
+    "topic": "Case study: Fabrikam financial reports",
+    "case_study_id": "fabrikam-65-67",
+    "question": "You need to create financial reports per company reporting requirements.\nWhich report configuration should you use to add the report descriptions to financial reports? To answer, move the appropriate report configurations to the correct report descriptions. You may use each report configuration once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content.",
+    "targets": [
+      "Headcount",
+      "Square Footage",
+      "Income, Retail",
+      "Accounts Receivables, Wholesale"
+    ],
+    "alternatives": [
+      "Row definition",
+      "Column definition",
+      "Financial Report page",
+      "G/L account categories"
+    ],
+    "correct_matches": [
+      1,
+      1,
+      0,
+      3
+    ],
+    "explanation": "Statistical accounts use column definitions, income uses a row definition, and account categories provide the wholesale receivables grouping."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Units of measure",
+    "question": "You are setting up a new company for a customer.\nThe customer wants to sell items in boxes and pallets, but refer to the items as pieces. Each box contains 12 pieces. Each pallet contains 144 pieces. You need to assign the unit of measures to items.\nHow should you assign the unit of measures?",
+    "alternatives": [
+      "Create Box as a base unit of measure. Add Pieces as an item unit of measure with the quantity per unit set to 0.08333.",
+      "Create Pallet as a base unit of measure. Add Pieces as an item unit of measure with the quantity per unit set to 0.0069.",
+      "Create Pallet as a base unit of measure. Add Box as an item unit of measure with the quantity per unit set to 0.08333.",
+      "Create Pieces as a base unit of measure. Add Pallet as an item unit of measure with the quantity per unit set to 144."
+    ],
+    "correct_answer": 3,
+    "explanation": "Pieces is the base unit, and one pallet contains 144 pieces."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Page inspection",
+    "question": "A company uses Dynamics 365 Business Central. Functional users at the company must learn the data model behind pages to assist with troubleshooting. You need to explain what users can inspect by using the Page Inspection pane.\nSolution: View performance information on installed extensions that affect the selected page or its source table.\nDoes the solution meet the goal?",
+    "alternatives": [
+      "Yes",
+      "No"
+    ],
+    "correct_answer": 1,
+    "explanation": "No. The described extension performance information is not the requested Page Inspection capability."
+  },
+  {
+    "type": "multi_select",
+    "topic": "Outbound email",
+    "question": "A customer is using Dynamics 365 Business Central. The customer is currently sending quotes and invoices using postal services. The customer wants to begin sending quotes and invoices by email directly from Business Central.\nYou need to configure outbound email.\nWhat are two possible ways to achieve the goal? Each correct answer presents a complete solution.",
+    "alternatives": [
+      "Run the Set up your Business Inbox in Outlook assisted setup tool.",
+      "Run the Email setup assisted setup tool.",
+      "Run the Set up email logging assisted setup tool.",
+      "Configure Email Accounts options."
+    ],
+    "correct_answers": [
+      1,
+      3
+    ],
+    "explanation": "Use the Email setup assisted setup tool or configure Email Accounts options."
+  },
+  {
+    "type": "matching",
+    "matching": true,
+    "topic": "Company setup",
+    "question": "A company is implementing Dynamics 365 Business Central. You need to create a new company that is configured similarly to an existing company. The existing company has data that must be used as a template for the new company.\nWhich tools should you use? To answer, drag the appropriate tools to the correct requirements. Each tool may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.",
+    "targets": [
+      "Create the first essential data components of a company, such as the company name.",
+      "Run a series of setup tasks in a specific order and manually mark the tasks as completed once the tasks are finished.",
+      "Template the existing data and apply the template to the new company in a single process."
+    ],
+    "alternatives": [
+      "Assisted Setup",
+      "Configuration package",
+      "Configuration Questionnaire"
+    ],
+    "correct_matches": [
+      0,
+      2,
+      1
+    ],
+    "explanation": "Use Assisted Setup for initial company components, Configuration Questionnaire for ordered setup tasks, and a Configuration package to template and apply existing data."
+  },
+  {
+    "type": "multi_select",
+    "topic": "User activity",
+    "question": "A company uses Business Central. The company requires the ability to track user logins. You need to configure the system so administrators can monitor user activities.\nWhich two actions should you perform? Each correct answer presents part of the solution.\nNOTE: Each correct selection is worth one point",
+    "alternatives": [
+      "Configure User Setup.",
+      "Enable time registration in General Ledger setup.",
+      "Manage the Sessions page in the admin center.",
+      "Access the User Time Register page."
+    ],
+    "correct_answers": [
+      0,
+      1
+    ],
+    "explanation": "Configure User Setup and enable time registration in General Ledger setup."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Units of measure",
+    "question": "You are setting up a new company for a customer. The customer wants to sell items in boxes and pallets, but refer to the items as pieces. Each box contains 12 pieces. Each pallet contains 144 pieces. You need to assign the unit of measures to items.\nHow should you assign the unit of measures?",
+    "alternatives": [
+      "Create Boxes as an item unit of measure with a quantity per unit of measure set to 1.",
+      "Create Pieces as a base unit of measure. Add Box as an item unit of measure with the quantity per unit set to 12.",
+      "Create Pallet as a base unit of measure. Add Pieces as an item unit of measure with the quantity per unit set to 0.0069.",
+      "Create Box as a base unit of measure. Add Pallet as an item unit of measure with the quantity per unit set to 12."
+    ],
+    "correct_answer": 1,
+    "explanation": "Pieces is the base unit of measure and one box contains 12 pieces."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Number series",
+    "question": "A company is implementing Dynamics 365 Business Central. The company must be able to assign transactions to unique and sequential numbers. Some transactions require multiple number series that can be used interchangeably. You need to configure number series to meet the requirements.\nWhat should you do?",
+    "alternatives": [
+      "Define number series codes on journal templates.",
+      "Create relationships between number series.",
+      "Enable transaction tracking.",
+      "Set up approval workflows."
+    ],
+    "correct_answer": 1,
+    "explanation": "Create relationships between number series so they can be used interchangeably."
+  },
+  {
+    "type": "matching",
+    "matching": true,
+    "topic": "Outlook integration",
+    "question": "A company is implementing Dynamics 365 Business Central. The customer service team communicates daily with the customers by using Outlook.\nThe customer service team requires the following functionality in Outlook:\n• Look up a business contact in Business Central when composing an email.\n• Create a sales quote and send it back to a customer without leaving Outlook.\n• Open a document in Business Central from the document number mentioned in an incoming email.\nYou recommend that the team install the Business Central add-in for Outlook.\nYou need to recommend which add-in options the customer service team should use to meet the requirements.\nWhich options should you recommend? To answer, move the appropriate options to the correct functions. You may use each option once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content.",
+    "targets": [
+      "Look up Business Central contacts when composing email.",
+      "Create and send a sales quote without leaving Outlook.",
+      "Open a document mentioned in an incoming email."
+    ],
+    "alternatives": [
+      "Contact insights",
+      "Document Link",
+      "Sync with Microsoft",
+      "Incoming Documents"
+    ],
+    "correct_matches": [
+      0,
+      0,
+      1
+    ],
+    "explanation": "Contact insights supports contact lookup and sales-quote collaboration, while Document Link opens a document mentioned in an incoming email."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Outbound email",
+    "question": "A company uses Business Central. A finance manager must ensure compliance with accounting standards by accurately recording financial transactions based on the document date and the posting date. You need to configure the system to synchronize document dates and posting dates on purchase documents.\nWhat should you configure?",
+    "alternatives": [
+      "Purchases & Payables Setup",
+      "Feature Management page",
+      "General Ledger setup",
+      "Document Sending Profiles"
+    ],
+    "correct_answer": 0,
+    "explanation": "Configure Purchases & Payables Setup."
+  },
+  {
+    "type": "hotspot",
+    "topic": "Workflow notifications",
+    "question": "A company is implementing Dynamics 365 Business Central. The purchase manager plans to implement workflows for purchase order and vendor approvals. The workflows must be able to send notifications for new records and approval requests instantly by email. All users require the same notification setup.\nYou need to set up the workflow notifications.\nWhich configurations should you use? To answer, select the appropriate options in the answer area.",
+    "fields": [
+      {
+        "label": "Use the same notification setup for all users.",
+        "options": [
+          "My notifications",
+          "Workflow notification setup",
+          "Change notification settings",
+          "Notification setup on approval users"
+        ],
+        "correct_answer": 1
+      },
+      {
+        "label": "Send notifications for new records and approval requests.",
+        "options": [
+          "Notification type",
+          "Notification method",
+          "Notification schedule"
+        ],
+        "correct_answer": 0
+      }
+    ],
+    "explanation": "Use Workflow notification setup for the common setup and Notification type for new-record and approval-request notifications."
+  },
+  {
+    "type": "hotspot",
+    "topic": "Audit and notification setup",
+    "question": "You are configuring Dynamics 365 Business Central for a company.\nThe chief financial officer requires the following system functionality.\n• Visibility into who creates or changes data without having the Change Log activated\n• Automatic email alerts for changes to critical setup fields\n• Visibility into who modifies the Business Central environment\nYou need to configure the system to meet the requirements.\nWhich areas should you configure? To answer, select the appropriate options in the answer area.",
+    "fields": [
+      {
+        "label": "Identify who created a record and when.",
+        "options": [
+          "Page Inspection",
+          "Field Monitoring setup",
+          "Azure Monitor telemetry"
+        ],
+        "correct_answer": 1
+      },
+      {
+        "label": "Enable notification of changes in business-critical data.",
+        "options": [
+          "Page Inspection",
+          "Field Monitoring setup",
+          "Microsoft 365 admin center"
+        ],
+        "correct_answer": 1
+      },
+      {
+        "label": "Define the email account for field-change notifications.",
+        "options": [
+          "SMTP account",
+          "No email account",
+          "Current User Email",
+          "Exchange Online Account"
+        ],
+        "correct_answer": 0
+      },
+      {
+        "label": "Check who modified the Business Central environment.",
+        "options": [
+          "Azure Portal",
+          "Microsoft 365 admin center",
+          "Power Platform admin center",
+          "Business Central admin center"
+        ],
+        "correct_answer": 3
+      }
+    ],
+    "explanation": "Use Field Monitoring setup for record and field changes, an SMTP account for field-change email notifications, and Business Central admin center for environment changes."
+  },
+  {
+    "type": "multi_select",
+    "topic": "Email accounts",
+    "question": "A manufacturing company uses Dynamics 365 Business Central. The company MUST be able to send sales documents and purchase orders to customers and vendors. You need to set up email accounts to provide email access to users.\nWhich two actions should you perform? Each correct answer presents part of the solution.\nNOTE: Each correct selection is worth one point.",
+    "alternatives": [
+      "Assign email accounts based on the scenarios for which they are required.",
+      "Delegate which partner admins can use the tenant email account.",
+      "Set a limit on the number of messages an account user can send.",
+      "Specify who can view messages sent from other users."
+    ],
+    "correct_answers": [
+      0,
+      3
+    ],
+    "explanation": "Assign email accounts for the required scenarios and specify who can view messages sent from other users."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Payment reconciliation",
+    "question": "A company uses Dynamics 365 Business Central to manage receivables. You must import a series of payments from a bank account and automatically match the payments against similar ledger entries already entered in Business Central. You need to import and apply the payments to the ledger entries that are automatically matched by the system.\nWhich form should you use?",
+    "alternatives": [
+      "Payment services",
+      "Payment Application Rules",
+      "Payment Reconciliation Journal",
+      "Payment Registration"
+    ],
+    "correct_answer": 2,
+    "explanation": "Use the Payment Reconciliation Journal to import bank payments and automatically match them with ledger entries."
   }
 ]

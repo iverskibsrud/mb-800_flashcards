@@ -225,7 +225,7 @@
   },
   {
     "question": "Receivables",
-    "answer": "Kundefordringer. Når vi selger en gjenstand/tjeneste, så bokføres salgsfakturaen. Kunden skylder oss nå penger (fordring). Dette ligger i Accounts Receivable til kunden betaler."
+    "answer": "Fordringer = Penger virksomheten har krav på å få inn av andre. Ex.: Iver bruker kredittkortet for å kjøpe en ny sykkelhjelm til 10.000 kr. Kredittbanken bokfører da en økt salgsinntekt og kundefordringer på 10k."
   },
   {
     "question": "Cash Receipt Journal",
@@ -306,5 +306,17 @@
   {
     "question": "Workflow Notification Setup",
     "answer": "Hvordan brukere skal varsles når en workflow krever handling."
+  },
+  {
+    "question": "Payables",
+    "answer": "Det motsatte av receivables. Når Iver kjøper en sykkelhjelm til 10k, har han payables på 10k til Kredittbanken. Selv om han ikke har betalt, så skylder han kredittbanken den summen."
+  },
+  {
+    "question": "RapidStart Services",
+    "answer": "Verktøy for å sette opp nye selskaper i BC, konfigurere applikasjonen, og for å importere initiell balanse i systemet."
+  },
+  {
+    "question": "Data Migration Assisted Setup Wizard",
+    "answer": "Setup Wizard for å sette opp masterdata, som kunder, leverandører og items."
   }
 ]
