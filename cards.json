@@ -318,5 +318,57 @@
   {
     "question": "Data Migration Assisted Setup Wizard",
     "answer": "Setup Wizard for å sette opp masterdata, som kunder, leverandører og items."
+  },
+  {
+    "question": "Is it possible to create relationships between number series?",
+    "answer": "Yes"
+  },
+  {
+    "question": "Contact Insights",
+    "answer": "Outlook-tillegg som viser informasjon fra BC directe inn i en e-post eller kalenderavtale. Når man åpner en e-post fra en kunde eller leverandør, kan Outlook slå opp kontakten i BC og vise relevant informasjon."
+  },
+  {
+    "question": "Document Link (Document View)",
+    "answer": "Gjør dokumentnumre i en e-post klikkbare lenker til Business Central."
+  },
+  {
+    "question": "Sync with Microsoft",
+    "answer": "Funksjon som brukes til å synkronisere data mellom BC og M365-applikasjoner, som kontakter til/fra Outlook."
+  },
+  {
+    "question": "Incoming Documents",
+    "answer": "Funksjon i BC for å håndtere inkommende dokumenter, som leverandørfaktura, kreditnotaer, kvitteringer osv."
+  },
+  {
+    "question": "Purchases & Payables Setup",
+    "answer": "Reglene for leverandørsiden. Hovedoppsettet for leverandørprosesser (Accounts Payable). Her defineres hvordan systemet skal håndtere innkjøpsordre, leverandørfaktura, kreditnota, betaling til leverandør osv."
+  },
+  {
+    "question": "Feature Management page",
+    "answer": "Siden hvor Microsoft legger nye funksjoner før de blir obligatoriske. Her kan man aktivere nye funksjoner tidlig, teste kommende funksjonalitet, eller se hvilke funksjoner som blir obligatoriske senere."
+  },
+  {
+    "question": "General Ledger Setup",
+    "answer": "Oppsett for å definere grunnreglene for finansmodulen. Her bestemmes lokal valuta (LCY), MVA-avrunding, globale dimensjoner osv."
+  },
+  {
+    "question": "Document Sending Profiles",
+    "answer": "Side som bestemmer hvordan dokumenter sendes til kunder og leverandører. Noen ønsker e-post. Noen ønsker EHF."
+  },
+  {
+    "question": "Job Queue",
+    "answer": "Funksjon som lar deg kjøre oppgaver i bakgrunnen med gitt frekvens. Ex.: Oppdatere valutakurser hver natt, synkronisere kunder med CRM, eller automatisk utsending av faktura."
+  },
+  {
+    "question": "CM",
+    "answer": "The end of the current month"
+  },
+  {
+    "question": "Sales credit memo processing",
+    "answer": "Behandling av salgskreditnotaer. En salgskreditnota brukes til å redusere eller reversere noe kunden tidligere har blitt fakturert for, for eksempel ved feil pris eller antall på fakturaen, retur av varer, rabatt gitt i etterkant, eller kansellering av et salg."
+  },
+  {
+    "question": "Posting Group",
+    "answer": "Regelsett mellom forretningsdata og regnskap. Når vi selger en vare, så må systemet vite hvilken inntektskonto, mva-konto og kundefordringskonto som skal brukes. I stedet for at brukeren velger disse kontoene manuelt på hver faktura, bruker BC Posting Groups for å finne konto automatisk."
   }
 ]

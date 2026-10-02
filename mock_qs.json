@@ -1692,4 +1692,459 @@
     "correct_answer": 2,
     "explanation": "Use the Payment Reconciliation Journal to import bank payments and automatically match them with ledger entries."
   }
+  ,
+  {
+    "type": "matching",
+    "topic": "Sales invoicing",
+    "question": "You complete the sales invoicing process for a company. Which setup should you check for each process?",
+    "targets": [
+      "Create a shipment document for every item sale.",
+      "Store PDF files of sales invoices and credit memos automatically at the end of each day."
+    ],
+    "alternatives": [
+      "Document Sending Profiles",
+      "General Ledger Setup",
+      "No. Series",
+      "Sales & Receivables Setup"
+    ],
+    "correct_matches": [2, 0],
+    "explanation": "No. Series provides unique identification numbers for invoices, shipments, and other documents. Document Sending Profiles define how sales documents are sent or stored, including automatic PDF handling.",
+    "matching": true
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Payment terms",
+    "question": "A company processes standard vendor payments on the seventh day of the next month. Which date formula should you use?",
+    "alternatives": ["37D", "1M+7D", "1M+6D", "CM+7D"],
+    "correct_answer": 3,
+    "explanation": "CM means the end of the current month. Adding 7D makes the due date the seventh day of the following month, regardless of the invoice date in the current month."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Vendor payments",
+    "question": "A company purchases items by using cash and wants vendor payments to post automatically when a purchase invoice is posted. Which setup should you use?",
+    "alternatives": ["Payment Method as Cash", "Payment Term as COD", "Payment Method as Cash with balancing account", "Prepayment"],
+    "correct_answer": 2,
+    "explanation": "Set the payment method to Cash and specify a balancing account. When the purchase invoice is posted, Business Central can automatically record the corresponding payment against that account."
+  },
+  {
+    "type": "matching",
+    "topic": "General journals",
+    "question": "You need to configure a new journal template. Match each requirement to the appropriate field.",
+    "targets": [
+      "Create journal lines that must balance by document number and document type.",
+      "Create journal lines that must specify a default balancing account.",
+      "Create journal lines that use the origin of the entry as the basis for an audit trail.",
+      "Create journal lines that must include a reason why an entry was made and can be used for the audit trail."
+    ],
+    "alternatives": ["Force Doc. Balance", "Bal. Account Type and Bal. Account No.", "Source Code", "Reason Code"],
+    "correct_matches": [0, 1, 2, 3],
+    "explanation": "Force Doc. Balance requires balancing by document number and document type. Bal. Account Type and Bal. Account No. specify a default balancing account. Source Code records the origin for the audit trail, and Reason Code records why the entry was made.",
+    "matching": true
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "General ledger setup",
+    "question": "Monetary amounts for local currency must always display three decimal places. Which General Ledger Setup value should you use?",
+    "alternatives": ["Amount Decimal Places = 3:3", "Unit-Amount Decimal Places = 3:3", "Inv. Rounding Precision = 0.001", "Unit-Amount Rounding Precision = 0.001", "Amount Rounding Precision = 0.001"],
+    "correct_answer": 0,
+    "explanation": "Amount Decimal Places set to 3:3 specifies both the minimum and maximum number of decimal places, so amounts always display exactly three decimal places."
+  },
+  {
+    "type": "hotspot",
+    "topic": "Bank accounts",
+    "question": "A bank is implementing Dynamics 365 Business Central. Each bank account must be configured to a unique G/L account. Which setup should you assign to each control?",
+    "fields": [
+      {
+        "label": "Bank Account Nos.",
+        "options": ["Bank Account Posting Groups", "General Ledger Setup", "Cash Flow Setup", "Source Code Setup"],
+        "correct_answer": 1
+      },
+      {
+        "label": "G/L Account for the bank account",
+        "options": ["General Business Posting Group", "Bank Account Posting Groups", "General Posting Setup", "Bank Account Currency Code"],
+        "correct_answer": 1
+      }
+    ],
+    "explanation": "General Ledger Setup controls the bank account number series. Bank Account Posting Groups link a bank account to its G/L account."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "General ledger accounts",
+    "question": "Check G/L Account Usage is selected in General Ledger Setup. What requirement enables deletion of a G/L account?",
+    "alternatives": ["The account cannot be used in any posting groups or posting setup", "The account cannot be used in any account schedule", "The account cannot allow direct posting", "The account must have ledger entries"],
+    "correct_answer": 0,
+    "explanation": "When Check G/L Account Usage is enabled, the account must not be referenced by posting groups or posting setup before it can be deleted."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "General ledger accounts",
+    "question": "The G/L account for accounts receivable must match the sum of all customer balances. What should you do?",
+    "alternatives": ["Configure the account type", "Block the account", "Configure totaling", "Disallow direct posting"],
+    "correct_answer": 3,
+    "explanation": "Disallow direct posting to the receivables account so entries can only come through customer transactions. This keeps the G/L balance reconciled with customer balances."
+  },
+  {
+    "type": "hotspot",
+    "topic": "Sales credit memos",
+    "question": "A company uses Dynamics 365 Business Central and wants to automate sales credit memo processing. Configure each requirement.",
+    "fields": [
+      {
+        "label": "Ensure that the costs on credit memos match the costs from the originating invoice.",
+        "options": ["Select Exact Cost Reversing Mandatory", "Choose a No. Series for Posted Credit Memo Nos.", "Choose Yes to Archive Return Orders", "Add a Sales Credit Memo Account in General Posting Setup"],
+        "correct_answer": 0
+      },
+      {
+        "label": "Process the receipt of a return at the same time the credit memo is posted.",
+        "options": ["Select Return Receipt on Credit Memo", "Select Shipment on Invoice", "Choose Skip Manual Reservation", "Choose Blank for Default Quantity to Ship"],
+        "correct_answer": 0
+      },
+      {
+        "label": "List a default quantity of one on the credit memo lines.",
+        "options": ["Choose Yes for Default Item Quantity", "Choose Remainder for Default Quantity to Ship", "Choose No for Default Item Quantity", "Choose Blank for Default Quantity to Ship"],
+        "correct_answer": 0
+      }
+    ],
+    "explanation": "Select Exact Cost Reversing Mandatory so credit memo costs match the originating invoice. Select Return Receipt on Credit Memo to process the return receipt with the credit memo. Choose Yes for Default Item Quantity to enter a default quantity of one on credit memo lines."
+  },
+  {
+    "type": "matching",
+    "topic": "Posting setup",
+    "question": "Which posting setup should you use for each action?",
+    "targets": ["Automatic posting of received payment differences from customers", "Automatic posting to the payables account", "Automatic posting to different work in progress balance accounts depending on location"],
+    "alternatives": ["Bank Account Posting Groups", "Customer Posting Groups", "Inventory Posting Groups and Inventory Posting Setup", "Vendor Posting Groups", "General Posting Setup"],
+    "correct_matches": [1, 3, 2],
+    "explanation": "Customer Posting Groups control customer receivables and payment differences. Vendor Posting Groups control payables. Inventory Posting Groups and Inventory Posting Setup can select different WIP accounts by location.",
+    "matching": true
+  },
+  {
+    "type": "multi_select",
+    "topic": "General posting setup",
+    "question": "You copy a General Posting Setup and must assign a category and subcategory to each account. Which three methods efficiently complete the configuration?",
+    "alternatives": ["Use Copy to create a new General Posting Setup Card", "Import a configuration package containing the General Posting Setup", "Use Suggest Accounts to create all possible combinations", "Create a new card and then use Suggest Accounts", "Create a new card and then use Copy"],
+    "correct_answers": [0, 1, 2],
+    "explanation": "The Copy action can create a new card, a configuration package can import the setup, and Suggest Accounts can create all possible posting setup combinations."
+  },
+  {
+    "type": "hotspot",
+    "topic": "Purchase posting",
+    "question": "The accountant must report discounts received on purchased items separately from costs. Which configuration belongs in each area?",
+    "fields": [
+      {
+        "label": "Purchase & Payables Setup",
+        "options": ["Invoice Discounts for Discount Posting", "Adjust for Payment Disc.", "Line Discounts for Discount Posting", "Calc. Inv. Discount"],
+        "correct_answer": 2
+      },
+      {
+        "label": "General Posting Setup",
+        "options": ["Purch. Account", "Purch. Inv. Disc. Account", "Purch. Line Disc. Account", "Purchase Variance Account"],
+        "correct_answer": 2
+      }
+    ],
+    "explanation": "Select Line Discounts for Discount Posting in Purchase & Payables Setup and assign a Purch. Line Disc. Account in General Posting Setup. This posts item line discounts separately from purchase costs."
+  },
+  {
+    "type": "multi_select",
+    "topic": "General journals",
+    "question": "You are implementing Dynamics 365 Business Central. The company needs to post monthly general journal batches for purchase expenses incurred throughout the month. The posted entries must have unique, incremental document numbers. The numbers must increment by one and be sequential. You need to configure the system to meet the requirements. Which three actions should you perform in sequence? Each correct answer presents part of the solution.",
+    "alternatives": ["Create a Template Batch with Posting No. Series.", "Create the No. Series.", "Configure a General Journal with Purchase Reason Code.", "Configure a General Journal Template with Purchase Type.", "Create a Template Batch with No. Series."],
+    "correct_answers": [0, 1, 3],
+    "explanation": "Create the number series, configure the general journal template with Purchase as the posting type, and create a template batch with the Posting No. Series. This produces sequential posted document numbers."
+  },
+  {
+    "type": "sequence",
+    "topic": "Chart of accounts",
+    "question": "An accountant discovers inconsistencies between financial statements and balances in the chart of accounts. You suspect that the discrepancies might be a result of missing categories and subcategories. You need to ensure that the financial statements match the chart of accounts. Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.",
+    "alternatives": ["Create subcategories for each category", "Rename the G/L account to match the category and subcategory", "Verify that the financial statements match the chart of accounts", "Add the accounts to the analysis view", "Add the missing categories and subcategories to the G/L accounts"],
+    "correct_order": [0, 4, 2],
+    "explanation": "Create the required subcategories, add the missing categories and subcategories to the G/L accounts, and then verify that the financial statements match the chart of accounts."
+  },
+  {
+    "type": "matching",
+    "topic": "Posting groups",
+    "question": "You set up a new company for a customer. The customer provides you with the chart of accounts and the preferred grouping of items, vendors, and customers. You must ensure that item posting corresponds with the grouping preferences and chart of accounts for the customer. You need to create the posting groups and setup. ",
+    "targets": ["Sales", "Cost of goods sold", "Customer receivables", "Vendor payables"],
+    "alternatives": ["Specific posting groups", "General posting groups"],
+    "correct_matches": [1, 1, 0, 0],
+    "explanation": "Sales and cost of goods sold use general posting groups. Customer receivables and vendor payables use specific posting groups because they are controlled by customer and vendor posting groups.",
+    "matching": true
+  },
+  {
+    "type": "hotspot",
+    "topic": "General ledger accounts",
+    "question": "Configure an office-supplies expense account that can be used for purchase invoices and general journals.",
+    "fields": [
+      {
+        "label": "Account Category",
+        "options": ["Expense", "Cost of Goods Sold", "Income", "Liabilities"],
+        "correct_answer": 0
+      },
+      {
+        "label": "Income / Balance",
+        "options": ["Balance Sheet", "Income Statement"],
+        "correct_answer": 1
+      },
+      {
+        "label": "Direct Posting",
+        "options": ["Yes", "No"],
+        "correct_answer": 0
+      }
+    ],
+    "explanation": "Office supplies are an Expense account, so they belong on the Income Statement. Direct Posting must be Yes because the account is also used in general journal transactions."
+  },
+  {
+    "type": "hotspot",
+    "topic": "Bank accounts",
+    "question": "You are implementing Dynamics 365 Business Central for a customer. The local currency code (LCY) for the company is set to US dollars ($).\n\nThe customer plans to set up a bank account. The customer provides the following information for the account:\n\nAccount number\n- Name\n- Address\n- Bank account posting group\n\nThe account must meet the following requirements:\n\n- Use US dollars.\n- Use 9075 as the number of the next bank account statement for reconciliation in Business Central.\n\nYou need to set up the account for the customer. Which values should you use? To answer, select the appropriate options in the answer area.",
+    "fields": [
+      {
+        "label": "Currency Code",
+        "options": ["<blank>", "USD", "$"],
+        "correct_answer": 1
+      },
+      {
+        "label": "Last Statement No.",
+        "options": ["9074", "9075"],
+        "correct_answer": 1
+      }
+    ],
+    "explanation": "Use USD for the Currency Code because the company uses US dollars. Set Last Statement No. to 9075, the required statement number for reconciliation."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Posting setup",
+    "question": "Where should you define the accounts for Direct Cost Applied?",
+    "alternatives": ["Item Cards", "Inventory Posting Setup", "General Posting Setups", "Vendor Posting Groups"],
+    "correct_answer": 2,
+    "explanation": "Direct Cost Applied accounts are defined in General Posting Setup."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Vendor setup",
+    "question": "A purchase order for a vendor produces a validation error while the company is validating agreed prices and discounts. Which vendor-card setting must be populated?",
+    "alternatives": ["Order address", "Location code", "Vendor Template", "Purchase Prices", "Vendor Posting Group"],
+    "correct_answer": 4,
+    "explanation": "The Vendor Posting Group is required on the vendor card so Business Central knows how vendor transactions post to the G/L."
+  },
+  {
+    "type": "matching",
+    "topic": "General journals",
+    "question": "You are setting up the general journals and batches for an accounting department. \n\nThe accounting department has multiple users who will work simultaneously within different general journals. You need to set up the different journal templates and batches for each user according to the company's requirements. \n\nWhich options should you use? To answer, drag the appropriate options to the correct requirements. Each option may be used once, more than once, or not at all.",
+    "targets": ["Prefill the amount on journal lines based on the document number", "Assign document numbers to ledger entries independently from the user's journal batch", "Balance journal lines by document type"],
+    "alternatives": ["Force Doc. Balance", "No. Series", "Posting No. Series", "Standard Journal Code", "Suggest Balancing Amount"],
+    "correct_matches": [4, 2, 0],
+    "explanation": "Suggest Balancing Amount prefills an amount based on the document number. Posting No. Series assigns posted document numbers independently of the batch. Force Doc. Balance requires journal lines to balance by document type.",
+    "matching": true
+  },
+  {
+    "type": "matching",
+    "topic": "Payment terms",
+    "question": "Match each due-date requirement to the correct date formula.",
+    "targets": ["10 days from today", "The next 10th day of the next month", "One month plus 10 days"],
+    "alternatives": ["D10", "10D", "1M + 10D"],
+    "correct_matches": [1, 0, 2],
+    "explanation": "10D means ten days from the calculation date. D10 means the tenth day of the next month. 1M+10D means one month plus ten days.",
+    "matching": true
+  },
+  {
+    "type": "multi_select",
+    "topic": "Payment matching",
+    "question": "The company wants to mark any automatically matched payments to open invoices as not requiring a review if they match the highest degree of confidence that the two transactions are a match. \n\nYou need to configure payment matching rules. \n\nWhich three criteria should you configure? Each correct answer presents part of the solution.",
+    "alternatives": ["Statement amount", "Account number", "Related-party fields", "Transaction date", "Transaction text"],
+    "correct_answers": [0, 2, 4],
+    "explanation": "Configure Statement amount, Related-party fields, and Transaction text. These criteria provide the match confidence used to identify payments that do not need review."
+  },
+  {
+    "type": "matching",
+    "topic": "General ledger accounts",
+    "question": "Match each G/L account requirement to the setup that controls it.",
+    "targets": ["Inventory G/L balance must match item-card value entries", "Account must be reported on a financial statement", "Account must summarize other G/L account balances", "Account must close during year-end procedures"],
+    "alternatives": ["Account Category and Account Subcategory", "Account Type", "Direct Posting", "Income/Balance"],
+    "correct_matches": [2, 1, 0, 3],
+    "explanation": "Disallow direct posting for accounts controlled by subledgers such as inventory. Account Type determines reporting behavior, Account Category and Account Subcategory define totaling and financial-statement grouping, and Income/Balance determines whether the account closes at year end."
+    ,"matching": true
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Payment terms",
+    "question": "Which field is used to calculate the Due Date based on Payment Terms?",
+    "alternatives": ["Order Date", "Due Date", "Posting Date", "Document Date"],
+    "correct_answer": 3,
+    "explanation": "Business Central calculates the due date from the Document Date plus the due-date calculation in Payment Terms."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "General ledger setup",
+    "question": "Local-currency sales invoice amounts must be rounded to the nearest interval. Where should you configure this?",
+    "alternatives": ["Currency Card", "General Ledger Setup", "Sales & Receivables Setup", "Currency Exchange Rates"],
+    "correct_answer": 1,
+    "explanation": "For local currency, configure Inv. Rounding Precision and Inv. Rounding Type in General Ledger Setup. Currency Card is used for foreign-currency invoice rounding."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "General ledger accounts",
+    "question": "Check G/L Account Usage is selected. What requirement enables deletion of a G/L account?",
+    "alternatives": ["The account cannot have a balance amount", "The account cannot be used in any account schedule", "The account is configured to allow deletion", "The account must have ledger entries"],
+    "correct_answer": 0,
+    "explanation": "A G/L account with a balance cannot be deleted. This protects the integrity of the company's historical financial data."
+  },
+  {
+    "type": "multi_select",
+    "topic": "Customers",
+    "question": "Which three actions can create a new customer?",
+    "alternatives": ["On Contacts, select Related Information and then Customer", "On Contacts, select Create as Customer", "On the Configuration Template Header, select Create Instance", "On Customers, select New", "On the Customer card, select Apply Template"],
+    "correct_answers": [0, 1, 3],
+    "explanation": "Customers can be created from a contact through Related Information, by selecting Create as Customer on Contacts, or directly by selecting New on the Customers page."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "General ledger accounts",
+    "question": "You need to define a G/L account as a purchase account for general journal transactions. What should you configure?",
+    "alternatives": ["Set Gen. Posting Type to Purchase", "Assign a general product posting group linked to a purchase account", "Link a business/product posting-group combination to a purchase account", "Assign a general business posting group linked to a purchase account"],
+    "correct_answer": 0,
+    "explanation": "Set Gen. Posting Type to Purchase. This identifies the G/L account as a purchase account for general journal transactions."
+  },
+  {
+    "type": "matching",
+    "topic": "Posting groups",
+    "question": "Match each transaction use case to the posting group.",
+    "targets": ["Income statement accounts for customer transactions", "Balance sheet accounts for customer transactions", "Income statement accounts for item transactions", "Balance sheet accounts for item transactions"],
+    "alternatives": ["Gen. Bus.", "Gen. Prod.", "Customer", "Inventory"],
+    "correct_matches": [0, 2, 1, 3],
+    "explanation": "Revenue for customers uses Gen. Bus. with Gen. Prod. The customer posting group controls receivables, the product group participates in item cost and revenue posting, and the inventory posting group controls inventory balance-sheet accounts.",
+    "matching": true
+  },
+  {
+    "type": "multi_select",
+    "topic": "Payment terms",
+    "question": "A payment term must give a 2% discount if paid within 10 days and make the invoice due in 30 days. Which three settings should you configure?",
+    "alternatives": ["Discount Date Calculation = 2D", "Discount Date Calculation = 10D", "Discount % = 2", "Due Date Calculation = 30D", "Discount % = 10"],
+    "correct_answers": [1, 2, 3],
+    "explanation": "Set Discount Date Calculation to 10D, Discount % to 2, and Due Date Calculation to 30D."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Direct posting",
+    "question": "Vendor open balances must be posted directly to payables accounts through a general journal. Which setting should you use?",
+    "alternatives": ["Account Category", "Income/Balance", "Default Deferral Template", "Direct Posting"],
+    "correct_answer": 3,
+    "explanation": "Enable Direct Posting on the G/L account so users can post vendor opening balances directly to the payables account through a general journal."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Dimensions",
+    "question": "A posted sales invoice has an incorrect dimension value. Which option updates the G/L entries without inserting new ledger entries?",
+    "alternatives": ["Correct Dimensions", "Edit List", "Edit In Excel", "Reverse Transaction"],
+    "correct_answer": 0,
+    "explanation": "Correct Dimensions changes the dimension value on posted G/L entries without creating new ledger entries."
+  },
+  {
+    "type": "sequence",
+    "topic": "Users and permissions",
+    "question": "Restrict purchasing agents from viewing G/L amounts while allowing them to select G/L codes on purchase documents. Which actions should you perform in sequence?",
+    "alternatives": ["Select the permission sets you want to modify", "Remove page permissions for Chart of Accounts, G/L Entries, and the G/L Account Card", "Assign a permission set to a user"],
+    "correct_order": [0, 1, 2],
+    "explanation": "Select the permission sets to modify, remove page permissions for the chart of accounts, G/L entries, and G/L account card, then assign the modified permission set to the user. This hides G/L amounts while retaining the permissions needed to select G/L codes on purchase documents."
+  },
+  {
+    "type": "hotspot",
+    "topic": "Cash receipt journals",
+    "question": "Record a $500 payment for customer 2030 on November 16, 2022 against bank account 1010.",
+    "fields": [
+      {
+        "label": "Account Type",
+        "options": ["Customer", "G/L account", "Bank account"],
+        "correct_answer": 0
+      },
+      {
+        "label": "Account No.",
+        "options": ["2030", "1010"],
+        "correct_answer": 0
+      },
+      {
+        "label": "Amount",
+        "options": ["$500", "-$500"],
+        "correct_answer": 1
+      },
+      {
+        "label": "Bal. Account Type",
+        "options": ["Customer", "G/L account", "Bank account"],
+        "correct_answer": 2
+      },
+      {
+        "label": "Bal. Account No.",
+        "options": ["2030", "1010", "10100"],
+        "correct_answer": 1
+      }
+    ],
+    "explanation": "Use Customer as the account type with account 2030 and enter -$500 for the customer payment. Use Bank account as the balancing account type with bank account 1010."
+  },
+  {
+    "type": "multi_select",
+    "topic": "General journals",
+    "question": "An accountant posts sales services using multiple general journal batches and a predefined alphanumeric invoice sequence. Which two fields should you populate?",
+    "alternatives": ["Posting No. Series in General Journal Templates", "No. Series in General Journal Batches", "No. Series in General Journal Templates", "Posting No. Series in General Journal Batches"],
+    "correct_answers": [2, 3],
+    "explanation": "Set No. Series on General Journal Templates for the journal sequence and Posting No. Series on General Journal Batches for the posted invoice sequence."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "General ledger setup",
+    "question": "Invoice amounts in local currency must be rounded to hundredths. What value should Inv. Rounding Precision (LCY) have?",
+    "alternatives": ["0.01", "0.20", "1.00", "1.11", "2.00"],
+    "correct_answer": 0,
+    "explanation": "0.01 represents one hundredth of the local currency unit and is therefore the required invoice rounding precision."
+  },
+  {
+    "type": "sequence",
+    "topic": "Dimensions",
+    "question": "Two global dimensions must be mandatory on all income statement accounts. Which four actions should you perform in sequence?",
+    "alternatives": ["Navigate to Chart of Accounts and filter the Income/Balance column", "Select all income statement accounts", "Navigate to Account and select Dimensions-Multiple", "Define the dimension code and change Value Posting to Code Mandatory", "Navigate to Account and select Dimensions-Single"],
+    "correct_order": [0, 1, 2, 3],
+    "explanation": "Filter the chart of accounts to Income Statement accounts, select all of those accounts, open Dimensions-Multiple, and define each dimension with Value Posting set to Code Mandatory."
+  },
+  {
+    "type": "hotspot",
+    "topic": "General ledger accounts",
+    "question": "You are creating a G/L account for a checking account. Which values should you select?",
+    "fields": [
+      {
+        "label": "Income/Balance",
+        "options": ["Income statement", "Balance sheet"],
+        "correct_answer": 1
+      },
+      {
+        "label": "Account Category",
+        "options": ["Assets", "Liabilities", "Equity", "Income", "Expense"],
+        "correct_answer": 0
+      },
+      {
+        "label": "Account Type",
+        "options": ["Code Mandatory", "Same Code", "No Code"],
+        "correct_answer": 2
+      },
+      {
+        "label": "Direct Posting",
+        "options": ["Enabled", "Disabled"],
+        "correct_answer": 0
+      }
+    ],
+    "explanation": "A checking account is an asset on the Balance Sheet. Use the Assets category, select No Code for Account Type, and enable Direct Posting."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Currencies",
+    "question": "A US company needs to purchase raw materials in MXN. What should you do?",
+    "alternatives": ["Do not configure MXN and recalculate entries in USD", "Configure MXN and set up the Currency Exchange Rate Service to upload rates automatically", "Use MXN as the local currency and set rates manually", "Use MXN as an additional reporting currency and upload rates automatically"],
+    "correct_answer": 1,
+    "explanation": "Configure MXN as a currency and use the Currency Exchange Rate Service to keep its exchange rates current. The local currency remains USD."
+  },
+  {
+    "type": "multiple_choice",
+    "topic": "Contacts",
+    "question": "A customer will also become a vendor next financial year and the company wants to consolidate balances. Which option should you configure first on the contact card?",
+    "alternatives": ["Create as Employee", "Create as Customer", "Create as Bank", "Create as Vendor"],
+    "correct_answer": 1,
+    "explanation": "Create the contact as a Customer first. The customer relationship is established initially, after which the same contact can also be set up as a vendor for balance consolidation."
+  }
 ]
